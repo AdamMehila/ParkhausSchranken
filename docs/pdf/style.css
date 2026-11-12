@@ -1,0 +1,179 @@
+/* ===========================================================================
+   Layout des Testprotokolls als PDF (Microsoft Edge im Hintergrundmodus).
+   Gliederung nach der HERMES-Ergebnisvorlage Testprotokoll: Kopfzeile mit
+   Dokumenttitel, Fusszeile mit Seitenzahl.
+   {{VERSION}} ersetzt build_pdf.py durch die Protokollversion.
+   =========================================================================== */
+
+@page {
+  size: A4;
+  margin: 20mm 16mm 18mm 18mm;
+
+  @top-left {
+    content: "Testprotokoll Parksystem mit Schranken";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @top-right {
+    content: "{{VERSION}}, Adam Mehila";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @bottom-left {
+    content: "Modul M450, Klasse INA24b";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @bottom-right {
+    content: "Seite " counter(page) " von " counter(pages);
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+}
+
+/* Breite Übersichtstabellen im Querformat */
+@page quer {
+  size: A4 landscape;
+  margin: 16mm 16mm 16mm 16mm;
+
+  @top-left {
+    content: "Testprotokoll Parksystem mit Schranken";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @top-right {
+    content: "{{VERSION}}, Adam Mehila";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @bottom-left {
+    content: "Modul M450, Klasse INA24b";
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+  @bottom-right {
+    content: "Seite " counter(page) " von " counter(pages);
+    font: 8pt Arial, Helvetica, sans-serif;
+    color: #555;
+  }
+}
+
+.quer {
+  page: quer;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 1.35;
+  color: #000;
+}
+
+h1, h2, h3, h4 {
+  position: relative;   /* Bezugspunkt für die Messmarken */
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 { font-size: 20pt; margin: 0 0 6mm 0; }
+h2 { font-size: 15pt; margin: 6mm 0 3mm 0; }
+h3 { font-size: 12pt; margin: 5mm 0 2mm 0; }
+h4 { font-size: 10.5pt; margin: 5mm 0 2mm 0; }
+
+/* Deckblatt */
+.protokoll > h1:first-child {
+  font-size: 26pt;
+  margin-top: 50mm;
+  margin-bottom: 12mm;
+}
+
+/* Jedes Hauptkapitel des Protokolls beginnt auf einer neuen Seite */
+.protokoll h2 {
+  break-before: page;
+  page-break-before: always;
+}
+
+/* Der Anhang A beginnt auf einer neuen Seite */
+.anhang {
+  break-before: page;
+  page-break-before: always;
+}
+
+.seitenumbruch {
+  break-after: page;
+  page-break-after: always;
+}
+
+p { margin: 0 0 2.5mm 0; }
+ul, ol { margin: 0 0 2.5mm 0; padding-left: 6mm; }
+li { margin-bottom: 1mm; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 8.8pt;
+  margin: 0 0 4mm 0;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; page-break-inside: avoid; }
+th, td {
+  border: 0.6pt solid #888;
+  padding: 2.2pt 4pt;
+  vertical-align: top;
+  text-align: left;
+}
+th { background: #e6e6e6; }
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 8.3pt;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;   /* Monitorzeilen enthalten doppelte Leerzeichen */
+}
+
+/* Die Feldtabelle eines Testfalls bleibt bei ihrer Überschrift */
+h4 + table {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+img { max-width: 100%; }
+
+/* Inhaltsverzeichnis */
+.inhaltsverzeichnis {
+  break-after: page;
+  page-break-after: always;
+}
+.toc-titel {
+  font-size: 15pt;
+  font-weight: bold;
+  margin: 0 0 5mm 0;
+}
+.toc-zeile a {
+  display: flex;
+  align-items: baseline;
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 1.2mm;
+}
+.toc-zeile.stufe-1 { padding-left: 7mm; }
+.toc-zeile.stufe-0 { font-weight: bold; margin-top: 2mm; }
+.toc-punkte {
+  flex: 1;
+  border-bottom: 0.6pt dotted #888;
+  margin: 0 2mm;
+}
+.toc-seite {
+  width: 9mm;
+  text-align: right;
+}
+
+/* Messmarken für die Seitenzahlen: unsichtbar und ohne Einfluss auf das Layout */
+.mess {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2pt;
+  color: #fff;
+  white-space: nowrap;
+}
