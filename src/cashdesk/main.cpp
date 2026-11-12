@@ -365,11 +365,12 @@ static void handleSetClock() {
 
 #if TEST_BUILD
 // ---------------------------------------------------------------------------
-// Diese zwei Endpunkte gibt es nur im Test-Build.
+// Diese Endpunkte gibt es nur im Test-Build.
 //
 // Mit ihnen lässt sich eine Parkdauer von mehreren Stunden in Sekunden
-// prüfen. In einer echten Anlage wären sie eine offene Einladung zum Betrug,
-// deshalb verschwinden sie im Produktivbuild vollständig aus dem Programm.
+// prüfen, alles löschen und ein Ausfall der Kasse simulieren. In einer echten
+// Anlage wären sie eine offene Einladung zum Betrug, deshalb verschwinden sie
+// im Produktivbuild vollständig aus dem Programm.
 // ---------------------------------------------------------------------------
 
 // Verschiebt die Einfahrtszeit eines Fahrzeugs in die Vergangenheit.
@@ -418,6 +419,66 @@ static void handleDebugReset() {
   debugDeleteAllRecords();
   sendJsonResponse(200, F("{\"ok\":true,\"message\":\"Alle Parkvorgänge gelöscht.\"}"));
 }
+
+
+// Testhilfe H-04: Die Kasse für eine Anzahl Sekunden stumm schalten.
+//
+// Simuliert für T23 einen Ausfall der Verbindung zwischen den Picos. Die Kasse
+// bleibt im WLAN und behält alle Parkvorgänge, beantwortet in dieser Zeit aber
+// keine Anfrage. Für Pico 2 sieht das aus wie eine Kasse, die nicht erreichbar
+// ist. Würde man stattdessen den Router ausschalten, wäre auch der Laptop
+// getrennt, und die Ausfahrt liesse sich gar nicht auslösen.
+constexpr uint32_t SILENCE_DEFAULT_SECONDS = 30;
+constexpr uint32_t SILENCE_MAX_SECONDS     = 120;
+
+static bool     g_isSilenced         = false;
+static uint32_t g_silenceStartMs     = 0;
+static uint32_t g_silenceDurationMs  = 0;
+
+static void handleDebugOffline() {
+  uint32_t seconds = (uint32_t)strtoul(server.arg("seconds").c_str(), nullptr, 10);
+
+  // Fehlt der Parameter oder ist er 0, gilt der Standardwert. Die Obergrenze
+  // verhindert, dass die Kasse aus Versehen sehr lange stumm bleibt.
+  if (seconds == 0) {
+    seconds = SILENCE_DEFAULT_SECONDS;
+  }
+  if (seconds > SILENCE_MAX_SECONDS) {
+    seconds = SILENCE_MAX_SECONDS;
+  }
+
+  // Zuerst antworten, dann verstummen. Sonst bekäme der Browser nie eine
+  // Bestätigung.
+  String response = F("{\"ok\":true,\"seconds\":");
+  response += seconds;
+  response += F(",\"message\":\"Die Kasse beantwortet ");
+  response += seconds;
+  response += F(" Sekunden lang keine Anfragen.\"}");
+  sendJsonResponse(200, response);
+
+  g_isSilenced        = true;
+  g_silenceStartMs    = millis();
+  g_silenceDurationMs = seconds * 1000;
+
+  Serial.print(F("[DEBUG] Kasse antwortet "));
+  Serial.print(seconds);
+  Serial.println(F(" s lang nicht."));
+}
+
+
+// Sagt, ob die Kasse gerade stumm geschaltet ist. Ist die Zeit abgelaufen,
+// endet der Zustand hier, und der Monitor meldet es.
+static bool isSilenced() {
+  if (!g_isSilenced) {
+    return false;
+  }
+  if (millis() - g_silenceStartMs >= g_silenceDurationMs) {
+    g_isSilenced = false;
+    Serial.println(F("[DEBUG] Kasse antwortet wieder."));
+    return false;
+  }
+  return true;
+}
 #endif
 
 
@@ -460,8 +521,9 @@ void setup() {
   server.on("/api/exit",     handleExitRequest);
   server.on("/api/setclock", handleSetClock);
 #if TEST_BUILD
-  server.on("/api/debug/time",  handleDebugMoveTime);
-  server.on("/api/debug/reset", handleDebugReset);
+  server.on("/api/debug/time",    handleDebugMoveTime);
+  server.on("/api/debug/reset",   handleDebugReset);
+  server.on("/api/debug/offline", handleDebugOffline);
 #endif
   server.onNotFound(handleUnknownEndpoint);
 
@@ -479,7 +541,15 @@ void setup() {
 // server.handleClient() nicht mehr drankommt.
 void loop() {
   // Schaut nach, ob eine Browseranfrage da ist, und beantwortet sie.
+#if TEST_BUILD
+  // Testhilfe H-04: Ist die Kasse stumm geschaltet, bleiben Anfragen
+  // unbeantwortet. WLAN, Uhr und Parkvorgänge laufen normal weiter.
+  if (!isSilenced()) {
+    server.handleClient();
+  }
+#else
   server.handleClient();
+#endif
 
   // Baut die WLAN-Verbindung nach einem Ausfall wieder auf.
   keepWifiAlive();
