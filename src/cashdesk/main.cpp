@@ -27,6 +27,7 @@
 #include "../common/license_plate.h"
 #include "../common/network.h"
 #include "../common/clock_time.h"
+#include "../common/version.h"
 #include "parking_garage.h"
 #include "web_page_cashdesk.h"
 
@@ -427,7 +428,7 @@ void setup() {
   delay(1500);
 
   Serial.println();
-  Serial.println(F("=== Parksystem M450 - Pico 1 (Kasse) ==="));
+  Serial.println(F("=== Parksystem M450 - Pico 1 (Kasse) - Firmware " FIRMWARE_VERSION " ==="));
 
   resetAllParkingRecords();
   startWifi(IP_CASHDESK, "parkhaus-kasse");

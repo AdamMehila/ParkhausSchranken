@@ -24,6 +24,7 @@
 #include "../common/json_text.h"
 #include "../common/license_plate.h"
 #include "../common/network.h"
+#include "../common/version.h"
 #include "cashdesk_client.h"
 #include "barrier.h"
 #include "web_page_barriers.h"
@@ -419,7 +420,7 @@ void setup() {
   delay(1500);   // dem seriellen Monitor Zeit zum Verbinden geben
 
   Serial.println();
-  Serial.println(F("=== Parksystem M450 - Pico 2 (Schranken) ==="));
+  Serial.println(F("=== Parksystem M450 - Pico 2 (Schranken) - Firmware " FIRMWARE_VERSION " ==="));
 
   entryBarrier.begin();
 
