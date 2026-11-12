@@ -248,6 +248,14 @@ static void handleExitRequest() {
 
   g_cashDeskIsOnline = true;
 
+  // Testhilfe H-01: Die Antwort der Kasse erscheint im Monitor. So lässt sich
+  // im Test beobachten, dass Pico 2 vor jeder Ausfahrt bei Pico 1 nachfragt
+  // und was die Kasse geantwortet hat (paid, unpaid oder unknown).
+  Serial.print(F("[AUSFAHRT] Kasse meldet fuer "));
+  Serial.print(plate);
+  Serial.print(F(": "));
+  Serial.println(reply.paymentState);
+
   // Prüfung 3: Kennt die Kasse dieses Kennzeichen überhaupt.
   //
   // Das ist der Fall, in dem sich jemand vertippt. Er hat vielleicht unter

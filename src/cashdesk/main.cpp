@@ -203,6 +203,16 @@ static void handleVehicleList() {
 static void handleStatusRequest() {
   ParkingInfo info = lookupParkingInfo(server.arg("plate"));
 
+  // Testhilfe H-01: Statusabfragen von Pico 2 erscheinen im Monitor. Abfragen
+  // aus dem Browser werden bewusst nicht ausgegeben. Die Kassen-Seite fragt bei
+  // einer offenen Suche alle zwei Sekunden nach und würde den Monitor füllen.
+  if (server.client().remoteIP() == IP_BARRIERS) {
+    Serial.print(F("[KASSE] Statusabfrage von Pico 2: "));
+    Serial.print(info.plate);
+    Serial.print(F(" -> "));
+    Serial.println(paymentStateToText(info.state));
+  }
+
   bool plateIsUnknown = (info.state == PaymentState::PLATE_UNKNOWN);
 
   String response = F("{\"plate\":\"");
