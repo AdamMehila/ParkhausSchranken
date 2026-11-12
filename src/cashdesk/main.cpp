@@ -379,9 +379,22 @@ static void handleDebugMoveTime() {
 
   bool moved = debugMoveEntryTimeBack(plate, minutes);
 
+  // Testhilfe H-03: Dauer und Gebühr für genau diese Anzahl Minuten.
+  //
+  // Nach der Verschiebung läuft die Uhr weiter. Schon eine Sekunde später
+  // dauert ein Parkvorgang von 60 Minuten 60 Minuten und 1 Sekunde, und die
+  // Kasse rechnet die zweite Stunde. Die genaue Grenze bei 60 Minuten lässt
+  // sich über die Suche deshalb nicht prüfen. Hier wird die Gebühr mit
+  // derselben Funktion wie an der Kasse berechnet, aber für genau
+  // minutes * 60 Sekunden.
+  uint32_t exactSeconds  = minutes * 60;
+  String   exactDuration = formatDuration(exactSeconds);
+  String   exactFee      = formatMoney(calculateFeeInCents(exactSeconds));
+
   String message;
   if (moved) {
     message = String(F("Einfahrtszeit um ")) + minutes + F(" Minuten zurückgesetzt.");
+    message += String(F(" Gebühr für genau ")) + exactDuration + F(": ") + exactFee + F(".");
   } else {
     message = F("Kennzeichen steht nicht im Parkhaus.");
   }
@@ -390,6 +403,10 @@ static void handleDebugMoveTime() {
   response += moved ? F("true") : F("false");
   response += F(",\"message\":\"");
   response += escapeForJson(message);
+  response += F("\",\"exactDuration\":\"");
+  response += exactDuration;
+  response += F("\",\"exactFee\":\"");
+  response += exactFee;
   response += F("\"}");
 
   sendJsonResponse(200, response);
