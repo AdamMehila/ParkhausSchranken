@@ -1,0 +1,18 @@
+Build-Nachweis H-03
+
+Commit: a9377ce005da96d2aed0100d3d37a2f7a0d1fdb7
+Commit-Nachricht: H-03: Debug-Zeit nennt Gebuehr fuer die exakte Dauer
+Zeitpunkt des Builds: 12.11.2026 18:35:48
+Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins
+Werkzeug: PlatformIO Core, version 6.2.0
+Rückgabewert: 0
+Warnungen in diesem Lauf: 0
+Hinweis: Der Kompilierlauf vor dem Commit zeigte 2 Warnungen, beide aus framework-arduinopico/libraries/WiFi/src/WiFiClient.h:71 (-Woverloaded-virtual), keine mit Fundort in src/.
+
+Environment          Status    Duration
+-------------------  --------  ------------
+pico1_cashdesk       SUCCESS   00:00:12.813
+pico2_barriers       SUCCESS   00:00:13.909
+servo_test           SUCCESS   00:00:06.619
+servo_test_all_pins  SUCCESS   00:00:06.551
+========================= 4 succeeded in 00:00:39.892 =========================

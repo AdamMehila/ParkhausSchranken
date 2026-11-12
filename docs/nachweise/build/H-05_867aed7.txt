@@ -1,0 +1,20 @@
+Build-Nachweis H-05
+
+Commit: 867aed752bac289e053cf296513dd973d46c1674
+Commit-Nachricht: H-05: Umgebungen fuer den Produktivbuild (TEST_BUILD=0)
+Zeitpunkt des Builds: 12.11.2026 18:42:24
+Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod
+Werkzeug: PlatformIO Core, version 6.2.0
+Rückgabewert: 0
+Warnungen in diesem Lauf: 0
+Hinweis: Der vollstaendige Kompilierlauf vor dem Commit zeigte 104 Warnungen, alle aus framework-arduinopico/libraries/WiFi/src/WiFiClient.h:71 (-Woverloaded-virtual), keine mit Fundort in src/.
+
+Environment          Status    Duration
+-------------------  --------  ------------
+pico1_cashdesk       SUCCESS   00:00:12.673
+pico2_barriers       SUCCESS   00:00:13.598
+pico1_cashdesk_prod  SUCCESS   00:00:12.697
+pico2_barriers_prod  SUCCESS   00:00:14.104
+servo_test           SUCCESS   00:00:06.919
+servo_test_all_pins  SUCCESS   00:00:06.352
+========================= 6 succeeded in 00:01:06.343 =========================
