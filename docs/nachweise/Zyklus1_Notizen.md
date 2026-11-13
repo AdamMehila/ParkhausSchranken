@@ -33,6 +33,10 @@ Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Screenshots nac
 
 Bei jedem Testfall steht, welche Beobachtung von wem stammt.
 
+Automatisierter Chrome ab 18:22: ein zweites Chrome-Fenster, Chrome 157.0.8103.79 mit eigenem leerem Profil und Debug-Port 9222, mit Kasse-Seite und Schranken-Seite. Gesteuert mit tools/browser_test.mjs über das Chrome-DevTools-Protokoll. Eingaben gehen als Tastatureingabe, Klicks als Mausereignis an die Mitte des Knopfs. Abgelesen wird erst, wenn die Anfrage der Seite an den Pico beantwortet ist. Jede Aktion steht mit Uhrzeit und Ergebnis in Browser_Z1.log. Probelauf um 18:23:09 (kein Testfall): Suche SG 11122 auf der Kasse-Seite, rote Meldung "Das Kennzeichen SG 11122 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt."
+
+Log Pico 2 kurz nach dem Start des zweiten Chrome-Fensters (kein Testfall): `18:23:04.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`, `18:23:13.983 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`, `18:23:26.965 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`.
+
 ## Beobachtungen vor Zyklus 1
 
 Nur Beobachtungen, keine Bewertung.
