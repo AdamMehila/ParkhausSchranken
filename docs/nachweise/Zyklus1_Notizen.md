@@ -90,6 +90,14 @@ Weitere Zeilen dieser Art im Log von Pico 2 nach 18:23:27 bis zur Rückkehr von 
 
 Im Log von Pico 1 steht zwischen 18:19:05 und 20:11 keine Zeile. Im Log von Pico 2 steht in dieser Zeit keine Trennung und kein Banner.
 
+Belegung "0 / 0" auf der Schranken-Seite (Auffälligkeit `"totalSpots":0` von vorhin, wieder aufgetreten), während T08:
+
+- `20:19:19.091 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1` (Log Pico 2)
+- 20:19:22: Screenshot T08_Z1_1.png, Schranken-Seite mit "Belegung unbekannt" und "Kasse nicht erreichbar"
+- 20:19:32: Ablesung mit H-07 `"belegung":"0 / 0"`, `"kasse":"Kasse erreichbar"`, Screenshot T08_Z1_2.png mit "Belegung 0 / 0" und "Kasse erreichbar"
+- 20:19:39: drei Aufrufe `http://192.168.137.212/api/state` durch Claude, jedes Mal `"cashDeskOnline":true`, `"occupied":0`, `"totalSpots":3`
+- 20:19:40: Ablesung mit H-07 `"belegung":"0 / 3"`, `"kasse":"Kasse erreichbar"`
+
 ## Eingangskriterien
 
 Zweiter Durchgang. Adam hat laut eigener Angabe Pico 1 und Pico 2 ab- und wieder eingesteckt, den Kasse-Tab geschlossen, `http://192.168.137.211` in einem neuen Tab geöffnet und danach den Schranken-Tab mit F5 neu geladen.
@@ -175,17 +183,24 @@ Zweiter Versuch, per HTTP-Abfrage durch Claude statt im Browser (Adam abwesend):
 
 Soll: M02 "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345.", Arm bleibt zu, Monitor Pico 2 `... Laenge: 30`, kein neues Banner.
 
-- Uhrzeit:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam. Vor der Durchführung zwei Versuche ohne Wirkung:
+
+- Klick geplant für 20:16:00. Adam hat die Frage zum Arm vor 20:16:00 beantwortet: "war nicht aufmerksam versuchs nochmal". Claude hat die geplante Aktion zwischen 20:15:38 und 20:15:49 abgebrochen. Sie ist nicht gelaufen: kein Eintrag in Browser_Z1.log, keine Logzeile in beiden Monitoren.
+- Versuch um 20:17:00: H-07 hat 30 mal A ins Feld "Einfahrt" geschrieben und um 20:17:05.101 auf "Einfahrt bestätigen" geklickt. Die Seite zeigte keine Meldung, es ging keine Anfrage an Pico 2, in beiden Monitoren steht keine Zeile. Ursache: Der Schranken-Tab lag im Chrome-Fenster im Hintergrund (`visibilityState` "hidden"). Chrome stellt einem verdeckten Tab keine Mausereignisse zu. Korrektur in H-07, Commit 84f99c7: Tab vor jeder Aktion in den Vordergrund holen. Adam wurde zu diesem Versuch nicht nach dem Arm gefragt.
+
+Durchführung:
+
+- Uhrzeit: 20:19:00.131 (Klick, Browser_Z1.log)
 - Kennzeichen: 30 mal A
-- Ausgangszustand:
-- Meldungstext:
-- Servo:
-- Monitorzeile Pico 2:
-- Neues Banner im Monitor (ja oder nein):
-- Seite danach bedienbar:
+- Ausgangszustand: kein Reset seit 17:45:54. Gelesen um 20:14:57: Belegung "0 / 3" auf beiden Seiten, "Kasse erreichbar", keine Fahrzeuge im Parkhaus, unter "Abgeschlossene Vorgänge" SG 11122. Im Feld "Einfahrt" standen noch die 30 mal A aus dem Versuch um 20:17, H-07 hat das Feld vor der Eingabe markiert und überschrieben
+- Meldungstext: Claude (Schranken-Seite, H-07): rote Meldung "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345."
+- Servo: Adam: "Arm bewegt: nein". Schranken-Seite: Schrankenarm "geschlossen". Log Pico 2: keine Zeile `[SCHRANKE] Schranke oeffnet`
+- Monitorzeile Pico 2: `20:19:00.177 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30`
+- Neues Banner im Monitor (ja oder nein): nein. Letztes Banner im Log Pico 2 um 17:53:58.343, danach keine Trennung
+- Seite danach bedienbar: Die Seite hat zwischen 20:19:01 und 20:19:21 21 Antworten auf `/api/state` erhalten. Ablesung um 20:19:40: Belegung "0 / 3", "Kasse erreichbar"
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T08_Z1_1.png (Schranken-Seite 20:19:22), T08_Z1_2.png (Schranken-Seite 20:19:32), Browser_Z1.log, Monitor_Pico2_Z1.log
+- Bemerkung: T08_Z1_1.png zeigt "Belegung unbekannt" und "Kasse nicht erreichbar". Log Pico 2 kurz davor: `20:19:19.091 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`. T08_Z1_2.png zeigt "Belegung 0 / 0" und "Kasse erreichbar". Siehe "Beobachtungen während Zyklus 1"
 
 ## T27 Fehlversuch mit Datum und Uhrzeit
 
