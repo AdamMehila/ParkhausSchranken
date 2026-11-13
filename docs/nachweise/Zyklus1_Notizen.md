@@ -98,6 +98,14 @@ Belegung "0 / 0" auf der Schranken-Seite (Auffälligkeit `"totalSpots":0` von vo
 - 20:19:39: drei Aufrufe `http://192.168.137.212/api/state` durch Claude, jedes Mal `"cashDeskOnline":true`, `"occupied":0`, `"totalSpots":3`
 - 20:19:40: Ablesung mit H-07 `"belegung":"0 / 3"`, `"kasse":"Kasse erreichbar"`
 
+Wieder `"totalSpots":0`, nach dem Reset vor T01:
+
+- 20:29:48.160: Ablesung mit H-07, Schranken-Seite `"belegung":"0 / 3"`
+- direkt danach, zwischen 20:29:48.160 und 20:29:53.358: Aufruf `http://192.168.137.212/api/state` durch Claude, Antwort mit `"cashDeskOnline":true`, `"occupied":0`, `"totalSpots":0`
+- 20:29:53.358 bis 20:29:54.010: sechs Aufrufe `/api/state`, jedes Mal `"cashDeskOnline":true`, `"occupied":0`, `"totalSpots":3`
+- 20:29:54: Ablesung mit H-07 `"belegung":"0 / 3"`, `"kasse":"Kasse erreichbar"`
+- Im Log von Pico 2 steht zwischen 20:22:41 und 20:30 keine Zeile `[KASSE-CLIENT] Kasse nicht erreichbar`
+
 ## Eingangskriterien
 
 Zweiter Durchgang. Adam hat laut eigener Angabe Pico 1 und Pico 2 ab- und wieder eingesteckt, den Kasse-Tab geschlossen, `http://192.168.137.211` in einem neuen Tab geöffnet und danach den Schranken-Tab mit F5 neu geladen.
@@ -309,50 +317,67 @@ Adam war ab 18:15 abwesend. Die Schritte 5 bis 8 hat Claude per HTTP-Abfrage aus
 - Nachweis: Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log, diese Notizen
 - Bemerkung: Schritt 4 zu spät, nicht durchgeführt. Schritte 5 bis 8 per HTTP-Abfrage durch Claude statt im Browser beobachtet. Der Servo-Arm wurde in den Schritten 6 und 8 von niemandem beobachtet
 
+## Reset vor T01
+
+Ausführung und Ablesung durch Claude mit H-07 in Chrome.
+
+- Uhrzeit: Klick auf "Alle Vorgänge löschen" um 20:29:40.908
+- Meldung: Claude (Kasse-Seite): grüne Meldung "Alle Parkvorgänge gelöscht.", Belegung "0 / 3", "Fahrzeuge im Parkhaus" und "Abgeschlossene Vorgänge" leer
+- Log Pico 1: `20:29:41.007 > [DEBUG] Alle Parkvorgaenge geloescht.`
+- Schranken-Seite: bis 20:29:42 "1 / 3", um 20:29:48.160 "0 / 3"
+- Bemerkung: `/api/state` von Pico 2 zwischen 20:29:48.160 und 20:29:53.358 mit `"totalSpots":0`, siehe "Beobachtungen während Zyklus 1"
+
 ## T01 Gültiges Kennzeichen bei der Einfahrt
 
 Soll: M04 "LU 12345 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder.", Arm offen in höchstens 3 s, zu nach 5 s ± 1 s, `[KASSE] Einfahrt: LU 12345  Belegung: 1/3`, Eintrag mit Datum und Uhrzeit, Belegung 1 / 3.
 
-- Uhrzeit des Klicks:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam.
+
+- Uhrzeit des Klicks: 20:31:00.123 (Uhr des Laptops, Browser_Z1.log)
 - Kennzeichen: LU 12345
-- Ausgangszustand (Reset gemacht):
-- Meldungstext:
-- Servo:
-- Monitorzeilen Pico 2:
-- Monitorzeile Pico 1:
-- Eintrag Kasse-Seite (Einfahrt, Status):
-- Belegung beide Seiten:
+- Ausgangszustand (Reset gemacht): Reset um 20:29:40, Belegung "0 / 3" auf beiden Seiten (Schranken-Seite 20:29:54)
+- Meldungstext: Claude (Schranken-Seite): grüne Meldung "LU 12345 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder."
+- Servo: Adam: "Arm bewegt: ja". Zeiten aus dem Log von Pico 2: Befehl zum Öffnen 0,134 s nach dem Klick (20:31:00.123 bis 20:31:00.257), Befehl zum Schliessen 5,012 s nach dem Öffnen (20:31:00.257 bis 20:31:05.269). Die Zeit bis zur senkrechten Stellung des Arms wurde nicht mit der Stoppuhr gemessen. Schranken-Seite direkt nach dem Klick: Schrankenarm "offen", um 20:31:13 "geschlossen"
+- Monitorzeilen Pico 2: `20:31:00.257 > [SCHRANKE] Schranke oeffnet (0 Grad).`, `20:31:05.269 > [SCHRANKE] Schranke schliesst (90 Grad).`
+- Monitorzeile Pico 1: `20:31:00.257 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3`
+- Eintrag Kasse-Seite (Einfahrt, Status): Claude (Kasse-Seite 20:31:12): "LU 12345, 13.11.2026 20:30:59, 0 h 00 min, CHF 2.00, offen"
+- Belegung beide Seiten: "1 / 3" (Kasse-Seite 20:31:12, Schranken-Seite 20:31:13)
 - Status:
-- Nachweis:
+- Nachweis: T01_Z1_1.png (Schranken-Seite 20:31:13), T01_Z1_2.png (Kasse-Seite 20:31:13), Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log
 - Bemerkung:
 
 ## T02 Einfahrtszeit gegen Laptop-Uhr
 
 Soll: gleiches Datum, Uhrzeit höchstens 1 Minute Abweichung zur Uhrzeit des Klicks aus T01.
 
-- Uhrzeit:
-- Angezeigte Einfahrt LU 12345:
-- Uhrzeit des Klicks aus T01:
-- Abweichung:
+Ablesung durch Claude mit H-07 und per HTTP-Abfrage.
+
+- Uhrzeit: 20:31:12.889 (Ablesung Kasse-Seite), 20:31:13 (`/api/vehicles`)
+- Angezeigte Einfahrt LU 12345: "13.11.2026 20:30:59" (Kasse-Seite und `/api/vehicles` `"entry":"13.11.2026 20:30:59"`)
+- Uhrzeit des Klicks aus T01: 13.11.2026 20:31:00.123 (Uhr des Laptops)
+- Abweichung: Datum gleich. Die angezeigte Einfahrt liegt in der Sekunde 20:30:59, der Klick in der Sekunde 20:31:00. Abweichung 1 s, die Kasse zeigt die frühere Zeit
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T01_Z1_2.png, Browser_Z1.log
+- Bemerkung: Uhr der Kasse gestellt um 17:39:16 (`[KASSE] Uhr gestellt: 13.11.2026 17:39:16`). Auch in T25 lag die angezeigte Einfahrt 1 s vor dem Klick (20:26:29 gegen 20:26:30.132)
 
 ## T03 Erneute Einfahrt nach Abschluss
 
 Vorarbeit: LU 12345 bezahlen (M18) und ausfahren (M11). Soll: M04, neue Zeile unter "Fahrzeuge im Parkhaus", alte Zeile unverändert unter "Abgeschlossene Vorgänge", Belegung 1 / 3.
 
-- Uhrzeit Vorarbeit:
-- Meldungen der Vorarbeit:
-- Uhrzeit der erneuten Einfahrt:
-- Meldungstext:
-- Servo:
-- "Fahrzeuge im Parkhaus":
-- "Abgeschlossene Vorgänge":
-- Belegung:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam.
+
+- Uhrzeit Vorarbeit: Suche 20:31:28.455, Bezahlen 20:31:29.064, Ausfahrt 20:32:30.138
+- Meldungen der Vorarbeit: Claude (Kasse-Seite): vor dem Bezahlen "Offener Betrag: CHF 2.00", Parkdauer "0 h 00 min", Status "offen". Nach dem Bezahlen "Bezahlung erfolgt. Betrag: CHF 2.00.", Status "bezahlt", Knopf "Bezahlen" gesperrt. Claude (Schranken-Seite): grüne Meldung "Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für LU 12345.", Belegung "0 / 3". Log Pico 1: `20:31:29.154 > [KASSE] Bezahlt: LU 12345 CHF 2.00`, `20:32:30.182 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid`, `20:32:30.284 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3`. Log Pico 2: `20:32:30.233 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid`, `20:32:30.284 > [SCHRANKE] Schranke oeffnet (0 Grad).`, `20:32:35.307 > [SCHRANKE] Schranke schliesst (90 Grad).` Adam wurde zur Vorarbeit nicht nach dem Arm gefragt
+- Uhrzeit der erneuten Einfahrt: 20:32:50.128 (Klick)
+- Meldungstext: Claude (Schranken-Seite): grüne Meldung "LU 12345 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder."
+- Servo: Adam: "Arm bewegt: ja". Log Pico 2: `20:32:50.266 > [SCHRANKE] Schranke oeffnet (0 Grad).`, `20:32:55.250 > [SCHRANKE] Schranke schliesst (90 Grad).`
+- Monitorzeile Pico 1: `20:32:50.215 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3`
+- "Fahrzeuge im Parkhaus": Claude (Kasse-Seite 20:33:05): "LU 12345, 13.11.2026 20:32:49, 0 h 00 min, CHF 2.00, offen"
+- "Abgeschlossene Vorgänge": "LU 12345, 13.11.2026 20:30:59, 13.11.2026 20:32:29, CHF 2.00, ausgefahren". Einfahrt gleich wie in T01
+- Belegung: "1 / 3" auf beiden Seiten (20:33:05)
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T03_Z1_1.png (Schranken-Seite 20:33:05), T03_Z1_2.png (Kasse-Seite 20:33:05), Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log
+- Bemerkung: Die Kasse zeigt die Ausfahrt mit 20:32:29, der Klick auf "Ausfahrt bestätigen" war um 20:32:30.138 (Uhr des Laptops)
 
 ## T04 Einfahrtsschranke öffnet in 3 Sekunden
 
