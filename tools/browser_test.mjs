@@ -7,7 +7,9 @@
 //
 //   kasse-read                     Belegung, Uhr, Listen, Suchresultat und Meldungen der Kasse-Seite
 //   kasse-search <Kennzeichen>     Suchfeld füllen, "Suchen" klicken
-//   kasse-pay                      "Bezahlen" klicken (nur wenn der Knopf frei ist)
+//   kasse-pay [trotzdem]           "Bezahlen" klicken. Ohne "trotzdem" nur, wenn der Knopf frei ist.
+//                                  Mit "trotzdem" auch auf den gesperrten Knopf klicken und melden,
+//                                  ob die Seite eine Anfrage an /api/pay geschickt hat
 //   kasse-debugtime <Kz> <Min>     Karte Testwerkzeuge: "Einfahrt zurücksetzen"
 //   kasse-reset                    Karte Testwerkzeuge: "Alle Vorgänge löschen"
 //   schranke-read                  Belegung, Kasse erreichbar, Arm-Anzeigen, Meldungen, ganzer Seitentext
@@ -137,16 +139,16 @@ async function typeInto(cdp, selector, text) {
   return cdp.eval(`document.querySelector(${JSON.stringify(selector)}).value`);
 }
 
-async function click(cdp, selector) {
+async function click(cdp, selector, force = false) {
   const box = await cdp.eval(`(() => { const e = document.querySelector(${JSON.stringify(selector)});
     e.scrollIntoView({ block: "center" }); const r = e.getBoundingClientRect();
     return { x: r.x + r.width / 2, y: r.y + r.height / 2, disabled: !!e.disabled }; })()`);
-  if (box.disabled) return { clicked: false, reason: "Knopf gesperrt (disabled)" };
+  if (box.disabled && !force) return { clicked: false, reason: "Knopf gesperrt (disabled)" };
   const t = await pageNow(cdp);
   for (const type of ["mouseMoved", "mousePressed", "mouseReleased"]) {
     await cdp.send("Input.dispatchMouseEvent", { type, x: box.x, y: box.y, button: "left", clickCount: 1 });
   }
-  return { clicked: true, t, clickTime: now() };
+  return { clicked: true, t, clickTime: now(), disabled: box.disabled };
 }
 
 const READ_MESSAGE = id => `(() => { const e = document.getElementById("${id}");
@@ -197,12 +199,14 @@ async function screenshot(cdp, file) {
   return { datei: file, breite: Math.round(size.width), hoehe: Math.round(size.height) };
 }
 
-async function act(cdp, { fill, button, path }) {
+async function act(cdp, { fill, button, path, force = false }) {
   const result = {};
   for (const [selector, text] of fill ?? []) result[`eingabe ${selector}`] = await typeInto(cdp, selector, text);
-  const c = await click(cdp, button);
+  const c = await click(cdp, button, force);
   result.klick = c.clicked ? c.clickTime : c.reason;
-  if (c.clicked && path) result.anfrageFertig = await waitForRequest(cdp, path, c.t);
+  if (c.clicked) result.knopfGesperrtBeimKlick = c.disabled;
+  // Bei einem Klick auf einen gesperrten Knopf 3 s warten. Bleibt die Anfrage aus, ist anfrageFertig false.
+  if (c.clicked && path) result.anfrageFertig = await waitForRequest(cdp, path, c.t, c.disabled ? 3000 : 12000);
   else await sleep(400);
   return result;
 }
@@ -221,7 +225,7 @@ async function main() {
         out.seite = await readKasse(cdp); break;
       case "kasse-pay":
         cdp = await connect("kasse");
-        out = await act(cdp, { button: "#payButton", path: "/api/pay" });
+        out = await act(cdp, { button: "#payButton", path: "/api/pay", force: args[0] === "trotzdem" });
         out.seite = await readKasse(cdp); break;
       case "kasse-debugtime":
         cdp = await connect("kasse");
