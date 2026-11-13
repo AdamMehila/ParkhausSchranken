@@ -33,7 +33,8 @@ def main() -> None:
             log.write(f"{now()} --- {text}\n")
             log.flush()
 
-        note(f"Monitor gestartet fuer {port}, 115200 Baud")
+        # Die Logzeilen tragen nur die Uhrzeit. Das Datum steht deshalb in der Startzeile.
+        note(f"Monitor gestartet am {datetime.date.today():%d.%m.%Y} fuer {port}, 115200 Baud")
         waiting_since_note = False
         while True:
             try:
