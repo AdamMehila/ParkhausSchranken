@@ -21,7 +21,7 @@ Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Screenshots nac
 - Monitore bis 17:33: `pio device monitor --port COMx --filter time --filter log2file` je in einem eigenen Konsolenfenster, gestartet 17:15:19 (Pico 1) und 17:15:26 (Pico 2). Logdateien logs/device-monitor-261113-171519.log (Pico 1) und logs/device-monitor-261113-171526.log (Pico 2)
 - Monitore ab 17:34:02: tools/serial_monitor.py im Hintergrund, Logdateien Monitor_Pico1_Z1.log (COM6) und Monitor_Pico2_Z1.log (COM3). Gleiches Zeilenformat wie der Filter `time`. Verbindungen und Trennungen stehen als Zeilen mit `---` im Log. Grund siehe "Beobachtungen vor Zyklus 1"
 - Uhrzeit Beginn: 17:18 (erster Durchgang der Eingangskriterien), 17:36 (zweiter Durchgang)
-- Uhrzeit Ende:
+- Uhrzeit Ende: noch offen. Unterbruch am 13.11.2026 um 20:54, Adam hat beide Picos ausgesteckt. Fortsetzung am 14.11.2026, siehe "Unterbruch nach T03"
 
 ## Durchführung: wer hat was ausgeführt
 
@@ -105,6 +105,30 @@ Wieder `"totalSpots":0`, nach dem Reset vor T01:
 - 20:29:53.358 bis 20:29:54.010: sechs Aufrufe `/api/state`, jedes Mal `"cashDeskOnline":true`, `"occupied":0`, `"totalSpots":3`
 - 20:29:54: Ablesung mit H-07 `"belegung":"0 / 3"`, `"kasse":"Kasse erreichbar"`
 - Im Log von Pico 2 steht zwischen 20:22:41 und 20:30 keine Zeile `[KASSE-CLIENT] Kasse nicht erreichbar`
+
+Zeilen `[KASSE-CLIENT] Kasse nicht erreichbar` im Log von Pico 2 nach T03, von der letzten Ablesung um 20:33:05 bis zum Ausstecken um 20:54:18. In dieser Zeit hat Claude keinen Testschritt ausgeführt. Im automatisierten Chrome-Fenster waren Kasse-Seite und Schranken-Seite offen. Andere Zeilen stehen in dieser Zeit in keinem der beiden Logs. Zum ersten Mal erscheint der Fehler -5:
+
+- `20:34:44.439 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:41:38.026 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -5`
+- `20:41:51.943 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -5`
+- `20:42:26.324 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:42:51.332 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `20:43:22.508 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:44:02.383 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:44:12.302 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `20:44:28.331 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `20:44:50.501 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:45:03.308 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `20:45:22.343 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:45:44.378 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:46:30.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:47:19.379 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:47:38.472 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:48:42.321 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:48:52.369 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:51:44.306 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `20:52:00.391 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:52:10.428 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
 
 ## Eingangskriterien
 
@@ -378,6 +402,16 @@ Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet v
 - Status:
 - Nachweis: T03_Z1_1.png (Schranken-Seite 20:33:05), T03_Z1_2.png (Kasse-Seite 20:33:05), Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log
 - Bemerkung: Die Kasse zeigt die Ausfahrt mit 20:32:29, der Klick auf "Ausfahrt bestätigen" war um 20:32:30.138 (Uhr des Laptops)
+
+## Unterbruch nach T03
+
+- Nach T03 (letzte Ablesung 20:33:05) hat Claude vor T04 gefragt, wie die Stoppuhrmessung in T04, T05 und T19 gemacht werden soll. Adam: "ich mach mal schluss für heute hab beide raspberries ausgesteckt machen wir morgen weiter"
+- Log: `20:54:18.218 --- Verbindung getrennt (SerialException)` (Pico 2, COM3), `20:54:19.067 --- Verbindung getrennt (SerialException)` (Pico 1, COM6)
+- Zustand bei der letzten Ablesung um 20:33:05: LU 12345 im Parkhaus (Einfahrt 20:32:49, offen), Belegung "1 / 3", unter "Abgeschlossene Vorgänge" LU 12345 aus T01 bis T03. Pico 1 hält die Parkvorgänge nur im Arbeitsspeicher
+- Beide Monitore um 20:55 beendet. Letzte Zeilen: `20:54:19.120 --- COM6 nicht verfuegbar, warte auf den Port` und `20:54:18.272 --- COM3 nicht verfuegbar, warte auf den Port`. Das Wachhalten des Laptops ist ebenfalls beendet
+- H-06 schreibt ab Commit 3bba959 das Datum in die Startzeile des Monitors, weil die Logzeilen nur die Uhrzeit tragen
+- Offen für die Fortsetzung: Entscheid von Adam, wie in T04, T05 und T19 die Zeit am Arm gemessen wird
+- Vorschlag von Claude für die Fortsetzung am 14.11.2026: Picos einstecken, Monitore mit neuen Logdateien starten, Kasse-Seite zuerst öffnen, Eingangskriterien wiederholen, dann Reset und T04
 
 ## T04 Einfahrtsschranke öffnet in 3 Sekunden
 
