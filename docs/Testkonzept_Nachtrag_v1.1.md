@@ -47,8 +47,8 @@ Der Nachtrag hat zwei Gründe:
 | Nr. | Titel | Version | Datum |
 | --- | --- | --- | --- |
 | [1] | Testkonzept Parksystem mit Schranken | Testkonzept 1.0 | 25.09.2026 |
-| [2] | User Stories Parksystem mit Schranken | ohne Versionsangabe | ‹OFFEN› |
-| [3] | Bewertung Testkonzept M450 INA24b | ohne Versionsangabe | ‹OFFEN› |
+| [2] | User Stories Parksystem mit Schranken | ohne Versionsangabe | 07.09.2026 |
+| [3] | Bewertung Testkonzept M450 INA24b | ohne Versionsangabe | 29.10.2026 |
 | [4] | Auftrag A01-03 Implementierung Parkhaus mit Schranke | ohne Versionsangabe | ohne Datumsangabe |
 | [5] | Auftrag A01-04 Testdurchführung und Testprotokoll Parksystem | ohne Versionsangabe | Abgabe 14.11.2026 |
 | [6] | Firmware Parksystem, Git-Repository ParkhausSchranken, Branch Testprotokoll | Firmware 1.0 (Commit 867aed7) | 12.11.2026 |

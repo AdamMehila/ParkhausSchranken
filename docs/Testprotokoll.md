@@ -33,8 +33,8 @@ Grundlage ist Testkonzept 1.1. Es besteht aus Testkonzept 1.0 und einem Nachtrag
 | --- | --- | --- | --- |
 | [1] | Testkonzept Parksystem mit Schranken | Testkonzept 1.0 | 25.09.2026 |
 | [2] | Testkonzept Parksystem mit Schranken, Nachtrag (Anhang A) | Testkonzept 1.1 | 12.11.2026 |
-| [3] | User Stories Parksystem mit Schranken | ohne Versionsangabe | ‹OFFEN› |
-| [4] | Bewertung Testkonzept M450 INA24b | ohne Versionsangabe | ‹OFFEN› |
+| [3] | User Stories Parksystem mit Schranken | ohne Versionsangabe | 07.09.2026 |
+| [4] | Bewertung Testkonzept M450 INA24b | ohne Versionsangabe | 29.10.2026 |
 | [5] | Auftrag A01-03 Implementierung Parkhaus mit Schranke | ohne Versionsangabe | ohne Datumsangabe |
 | [6] | Auftrag A01-04 Testdurchführung und Testprotokoll Parksystem | ohne Versionsangabe | Abgabe 14.11.2026 |
 | [7] | Firmware Parksystem, Git-Repository ParkhausSchranken, Branch Testprotokoll | Firmware 1.0 (Commit 867aed7) | 12.11.2026 |
