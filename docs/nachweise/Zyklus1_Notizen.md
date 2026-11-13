@@ -206,16 +206,26 @@ Durchführung:
 
 Soll: M01, M02, M03. Liste "Fehlversuche" auf der Schranken-Seite mit Datum, Uhrzeit, Eingabe und Grund, drei Zeilen, neueste oben, Uhrzeit höchstens 1 Minute Abweichung.
 
-- Uhrzeit Klick 1 (leer):
-- Uhrzeit Klick 2 (30 mal A):
-- Uhrzeit Klick 3 (`!@#$%^&*()`):
-- Ausgangszustand (Schranken-Seite seit Start von Pico 2 geöffnet):
-- Meldungstexte:
-- Liste "Fehlversuche" vorhanden (ja oder nein):
-- Inhalt der Liste (abschreiben):
+Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam.
+
+- Uhrzeit Klick 1 (leer): 20:22:00.111 (Browser_Z1.log)
+- Uhrzeit Klick 2 (30 mal A): 20:22:20.109 (Browser_Z1.log)
+- Uhrzeit Klick 3 (`!@#$%^&*()`): 20:22:40.122 (Browser_Z1.log)
+- Ausgangszustand (Schranken-Seite seit Start von Pico 2 geöffnet): Pico 2 zuletzt gestartet um 17:53:58 (Banner). Adam hat die Schranken-Seite danach mit F5 neu geladen, das automatisierte Chrome-Fenster hat sie um 18:22 geöffnet. Belegung "0 / 3", "Kasse erreichbar"
+- Meldungstexte: Claude (Schranken-Seite, H-07), alle rot:
+  - Klick 1: "Bitte ein Kennzeichen eingeben."
+  - Klick 2: "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345."
+  - Klick 3: "Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345."
+- Servo: Adam: Klick 1 "Arm bewegt: nein", Klick 2 "Arm bewegt: nein", Klick 3 "Arm bewegt: nein". Schranken-Seite nach jedem Klick: Schrankenarm "geschlossen"
+- Monitorzeilen Pico 2:
+  - `20:22:00.198 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0`
+  - `20:22:20.155 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30`
+  - `20:22:40.203 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10`
+- Liste "Fehlversuche" vorhanden (ja oder nein): nein. Claude: Der ganze Seitentext der Schranken-Seite um 20:23:00 enthält weder "Fehlversuche" noch eine Liste mit Datum, Uhrzeit, Eingabe und Grund. Abschnitte der Seite: Belegung, Kasse erreichbar, Einfahrt, Ausfahrt, Smoke-Test der Servos (nur im Test-Build)
+- Inhalt der Liste (abschreiben): keine Liste
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T27_Z1_1.png (Schranken-Seite 20:23:00 nach Klick 3), Browser_Z1.log, Monitor_Pico2_Z1.log
+- Bemerkung: Log Pico 2 vor Klick 1: `20:21:37.076 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
 
 ## T15 Unbekanntes Kennzeichen an der Kasse
 
