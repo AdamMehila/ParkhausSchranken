@@ -86,6 +86,10 @@ async function connect(name) {
   if (!tab) throw new Error(`Kein Tab für ${name} gefunden`);
   const cdp = new Cdp(tab.webSocketDebuggerUrl);
   await cdp.open();
+  // Ein verdeckter Tab bekommt keine Mausklicks und Tastatureingaben zugestellt.
+  // Darum den Tab vor jeder Aktion in den Vordergrund holen und warten, bis er sichtbar ist.
+  await cdp.send("Page.bringToFront");
+  for (let i = 0; i < 40 && (await cdp.eval("document.visibilityState")) !== "visible"; i++) await sleep(50);
   await cdp.eval(INSTALL_TRACKER);
   return cdp;
 }
@@ -184,6 +188,7 @@ async function readSchranke(cdp) {
 async function screenshot(cdp, file) {
   const m = await cdp.send("Page.getLayoutMetrics");
   const size = m.cssContentSize ?? m.contentSize;
+  await sleep(300);   // Zeit für das Zeichnen nach dem Wechsel in den Vordergrund
   const r = await cdp.send("Page.captureScreenshot", {
     format: "png", captureBeyondViewport: true,
     clip: { x: 0, y: 0, width: size.width, height: size.height, scale: 1 }
