@@ -264,19 +264,24 @@ Ausführung und Ablesung durch Claude mit H-07 in Chrome. Kein Servo beteiligt.
 
 Soll: zweimal M05 "Dieses Fahrzeug steht bereits im Parkhaus.", Arm bleibt zu, Belegung unverändert, eine Zeile LU 12345, keine neue Zeile `[KASSE] Einfahrt: LU 12345`. Knopf klicken, nicht Enter.
 
-- Uhrzeit Einfahrt LU 12345 (Vorarbeit):
-- Belegung vor dem Test:
-- Uhrzeit Versuch "LU 12345":
-- Meldungstext:
-- Uhrzeit Versuch "lu12345":
-- Meldungstext:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam. Jede Eingabe per Klick auf "Einfahrt bestätigen".
+
+- Uhrzeit Einfahrt LU 12345 (Vorarbeit): Klick 20:26:30.132. Claude (Schranken-Seite): grüne Meldung "LU 12345 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder." Log Pico 1 `20:26:30.212 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3`, Log Pico 2 `20:26:30.279 > [SCHRANKE] Schranke oeffnet (0 Grad).` und `20:26:35.229 > [SCHRANKE] Schranke schliesst (90 Grad).` Adam wurde zur Vorarbeit nicht nach dem Arm gefragt
+- Belegung vor dem Test: "1 / 3" auf beiden Seiten. Das Fahrzeug aus T29 ist nicht mehr im Parkhaus, SG 11122 ist um 18:18:55 ausgefahren (Abweichung von der Vorbedingung in Testkonzept 1.1)
+- Uhrzeit Versuch "LU 12345": Klick 20:26:50.117
+- Meldungstext: Claude (Schranken-Seite): rote Meldung "Dieses Fahrzeug steht bereits im Parkhaus."
+- Uhrzeit Versuch "lu12345": Klick 20:27:10.115
+- Meldungstext: Claude (Schranken-Seite): rote Meldung "Dieses Fahrzeug steht bereits im Parkhaus."
 - Servo:
-- Belegung nach dem Test:
-- Zeilen LU 12345 auf der Kasse-Seite:
-- Monitor Pico 1:
+  - Versuch "LU 12345" um 20:26:50: Adam: "Arm bewegt: ja". Schranken-Seite nach dem Klick: Schrankenarm "geschlossen". Log Pico 2: keine Zeile zwischen `20:26:35.229` (Schliessen nach der Vorarbeit) und 20:29:01
+  - Versuch "lu12345" um 20:27:10: Adam: "Arm bewegt: nein". Schranken-Seite: Schrankenarm "geschlossen"
+  - Wiederholung des Versuchs "LU 12345" um 20:28:30.112 (zusätzlicher Durchgang wegen der Antwort "ja" bei Versuch 1, Adam vorher angekündigt): Adam: "Arm bewegt: nein". Claude: rote Meldung "Dieses Fahrzeug steht bereits im Parkhaus.", Schrankenarm "geschlossen". Sechs Aufrufe `/api/state` von 20:28:30.739 bis 20:28:31.406: jedes Mal `"entryBarrierOpen":false`, `"entryBarrierMsLeft":0`
+- Belegung nach dem Test: "1 / 3" auf beiden Seiten (Schranken-Seite 20:27:44, Kasse-Seite 20:27:44 und 20:28:59). `/api/vehicles` um 20:27:44: `"occupied":1`
+- Zeilen LU 12345 auf der Kasse-Seite: genau eine Zeile unter "Fahrzeuge im Parkhaus": "LU 12345, 13.11.2026 20:26:29, 0 h 01 min, CHF 2.00, offen" (20:27:44), um 20:28:59 dieselbe Zeile mit "0 h 02 min"
+- Monitor Pico 1: nach `20:26:30.212 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3` keine Zeile bis 20:29:01. Keine neue Zeile `[KASSE] Einfahrt: LU 12345`
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T25_Z1_1.png (Schranken-Seite 20:27:43 nach Versuch "lu12345"), T25_Z1_2.png (Kasse-Seite 20:27:44), T25_Z1_3.png (Schranken-Seite 20:29:00 nach der Wiederholung), Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log
+- Bemerkung: Die Kasse-Seite zeigt als Einfahrt 20:26:29. Der Klick war um 20:26:30.132 (Uhr des Laptops), die Zeile im Log von Pico 1 um 20:26:30.212
 
 ## T29 Fortsetzung (Schritte 4 bis 8)
 
