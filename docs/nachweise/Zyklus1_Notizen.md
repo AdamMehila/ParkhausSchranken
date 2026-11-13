@@ -231,29 +231,33 @@ Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet v
 
 Soll: M15 "Das Kennzeichen UR 99988 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt.", keine Angaben zu Einfahrt, Parkdauer und Gebühr, Bezahlen ausgegraut.
 
-- Uhrzeit:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome. Kein Servo beteiligt.
+
+- Uhrzeit: 20:24:08.672 (Klick auf "Suchen", Browser_Z1.log)
 - Kennzeichen: UR 99988
-- Ausgangszustand:
-- Meldungstext:
-- Angaben im Suchresultat:
-- Knopf "Bezahlen":
+- Ausgangszustand: `/api/vehicles` um 20:24:07: `"occupied":0`, keine Fahrzeuge im Parkhaus, unter "history" nur SG 11122. UR 99988 ist nicht im Parkhaus. Auf der Kasse-Seite stand noch die Meldung der Probe von 18:23 zu SG 11122
+- Meldungstext: Claude (Kasse-Seite, H-07): rote Meldung "Das Kennzeichen UR 99988 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt."
+- Angaben im Suchresultat: Das Suchresultat mit Einfahrt, Parkdauer, Gebühr und Status ist ausgeblendet. Es erscheinen keine Angaben
+- Knopf "Bezahlen": gesperrt (`disabled`), im Screenshot grau. Mausklick von H-07 auf den gesperrten Knopf um 20:24:09.243: Die Seite hat innert 3 s keine Anfrage an `/api/pay` geschickt. Zähler der Seite seit 20:24:25: nur Abfragen `/api/vehicles`. Keine Zeile im Log von Pico 1
 - Status:
-- Nachweis:
+- Nachweis: T15_Z1_1.png (Kasse-Seite 20:24:12), Browser_Z1.log
 - Bemerkung:
 
 ## T18 Bezahlung für unbekanntes Kennzeichen
 
 Soll: M15 mit ZG 77766, Bezahlen ausgegraut. Aufruf `/api/pay?plate=ZG%2077766` ergibt M20 mit `"ok":false`. Keine Zeile `[KASSE] Bezahlt`.
 
-- Uhrzeit:
+Ausführung und Ablesung durch Claude mit H-07 in Chrome. Kein Servo beteiligt.
+
+- Uhrzeit: 20:24:24.848 (Klick auf "Suchen", Browser_Z1.log)
 - Kennzeichen: ZG 77766
-- Ausgangszustand:
-- Meldungstext Suche:
-- Knopf "Bezahlen":
-- Antwort des Aufrufs (abschreiben):
-- Monitor Pico 1:
+- Ausgangszustand: wie T15. ZG 77766 ist nicht im Parkhaus (`/api/vehicles` um 20:24:07 ohne Fahrzeuge)
+- Meldungstext Suche: Claude (Kasse-Seite, H-07): rote Meldung "Das Kennzeichen ZG 77766 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt." Suchresultat ausgeblendet
+- Knopf "Bezahlen": gesperrt (`disabled`). Mausklick von H-07 auf den gesperrten Knopf um 20:24:25.405: Die Seite hat keine Anfrage an `/api/pay` geschickt. Zähler der Seite von 20:24:25 bis 20:24:45: elf Abfragen `/api/vehicles`, keine an `/api/pay`
+- Antwort des Aufrufs (abschreiben): 20:24:29, `http://192.168.137.211/api/pay?plate=ZG%2077766` in einem neuen Tab des automatisierten Chrome-Fensters: `{"ok":false,"status":"unknown","alreadyPaid":false,"amount":"CHF 0.00","message":"Dieses Kennzeichen ist nicht im System. Eine Bezahlung ist nicht möglich."}`
+- Monitor Pico 1: keine Zeile zwischen 20:24:00 und 20:24:38, also keine Zeile `[KASSE] Bezahlt`. `/api/vehicles` um 20:24:30: `"occupied":0`, keine Fahrzeuge, "history" unverändert
 - Status:
-- Nachweis:
+- Nachweis: T18_Z1_1.png (Kasse-Seite 20:24:28), T18_Z1_2.png (Antwort des Aufrufs 20:24:30), Browser_Z1.log, Monitor_Pico1_Z1.log
 - Bemerkung:
 
 ## T25 Doppelte Einfahrt
