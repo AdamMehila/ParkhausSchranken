@@ -1,0 +1,125 @@
+17:34:02.329 --- Monitor gestartet fuer COM3, 115200 Baud
+17:34:02.346 --- verbunden mit COM3
+17:35:21.997 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:36:40.712 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:36:50.673 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:37:00.697 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:38:46.704 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:39:00.104 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:39:12.807 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:42:10.468 > [SCHRANKE] Schranke oeffnet (0 Grad).
+17:42:15.501 > [SCHRANKE] Schranke schliesst (90 Grad).
+17:43:40.760 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:43:50.732 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:44:00.740 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:44:10.708 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:53:50.904 --- Verbindung getrennt (SerialException)
+17:53:50.955 --- COM3 nicht verfuegbar, warte auf den Port
+17:53:57.346 --- verbunden mit COM3
+17:53:58.343 > 
+17:53:58.343 > === Parksystem M450 - Pico 2 (Schranken) - Firmware 1.0 ===
+17:53:58.343 > [SCHRANKE] Schranke bereit an GPIO 8
+17:53:58.343 > [SCHRANKE] Ein-Servo-Betrieb: Ein- und Ausfahrt teilen GP8
+17:53:58.343 > [WLAN] Suche Netze in der Umgebung ...
+17:53:59.810 >   --> nbkauzAM02 7335  Signal -34 dBm  Kanal 1  WPA2
+17:53:59.810 >       braendi  Signal -82 dBm  Kanal 6  WPA2
+17:53:59.810 >       braendi-devices  Signal -78 dBm  Kanal 6  WPA2
+17:53:59.810 >       braendi-public  Signal -79 dBm  Kanal 6  WPA2
+17:53:59.810 >         Signal -84 dBm  Kanal 6  WPA2
+17:53:59.810 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -65 dBm  Kanal 11  WPA2
+17:53:59.810 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -59 dBm  Kanal 1  WPA2
+17:53:59.810 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -72 dBm  Kanal 6  WPA2
+17:53:59.810 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -77 dBm  Kanal 6  WPA2
+17:53:59.810 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -87 dBm  Kanal 6  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -97 dBm  Kanal 6  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -55 dBm  Kanal 11  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 11  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -70 dBm  Kanal 11  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -48 dBm  Kanal 1  WPA2
+17:53:59.811 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -67 dBm  Kanal 1  WPA2
+17:53:59.812 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -50 dBm  Kanal 6  WPA2
+17:53:59.812 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -58 dBm  Kanal 11  WPA2
+17:53:59.812 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -81 dBm  Kanal 1  WPA2
+17:53:59.812 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -69 dBm  Kanal 11  WPA2
+17:53:59.812 >         Signal -67 dBm  Kanal 11  WPA2
+17:53:59.812 >         Signal -75 dBm  Kanal 11  WPA2
+17:53:59.812 >         Signal -68 dBm  Kanal 6  WPA2
+17:53:59.813 >         Signal -64 dBm  Kanal 6  WPA2
+17:53:59.813 >         Signal -88 dBm  Kanal 6  WPA2
+17:53:59.813 >         Signal -56 dBm  Kanal 11  WPA2
+17:53:59.813 >         Signal -63 dBm  Kanal 11  WPA2
+17:53:59.813 >         Signal -70 dBm  Kanal 11  WPA2
+17:53:59.813 >         Signal -47 dBm  Kanal 1  WPA2
+17:53:59.813 >         Signal -67 dBm  Kanal 1  WPA2
+17:53:59.865 >         Signal -52 dBm  Kanal 6  WPA2
+17:53:59.865 >         Signal -56 dBm  Kanal 11  WPA2
+17:53:59.865 >         Signal -73 dBm  Kanal 1  WPA2
+17:53:59.865 >         Signal -69 dBm  Kanal 11  WPA2
+17:53:59.865 > [WLAN] Verbinde mit nbkauzAM02 7335
+17:53:59.991 > 
+17:53:59.991 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212
+17:53:59.991 > [SCHRANKEN] Webserver laeuft. Kasse erwartet unter 192.168.137.211
+17:54:01.996 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+17:57:26.968 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+17:58:25.593 > [SCHRANKE] Schranke oeffnet (0 Grad).
+17:58:30.626 > [SCHRANKE] Schranke schliesst (90 Grad).
+18:03:55.372 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+18:04:52.745 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0
+18:18:47.988 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+18:18:55.897 > [AUSFAHRT] Kasse meldet fuer SG 11122: paid
+18:18:55.953 > [SCHRANKE] Schranke oeffnet (0 Grad).
+18:19:00.985 > [SCHRANKE] Schranke schliesst (90 Grad).
+18:19:04.031 > [AUSFAHRT] Kasse meldet fuer SG 11122: unknown
+18:19:04.031 > [AUSFAHRT] Unbekanntes Kennzeichen: SG 11122
+18:23:04.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+18:23:13.983 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+18:23:26.965 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+18:27:49.302 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+19:05:38.076 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+19:15:21.030 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+19:17:46.036 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+19:40:07.996 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+19:44:24.079 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+19:51:10.427 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:06:02.061 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:18:06.101 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:19:00.177 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30
+20:19:19.091 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:21:05.106 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:21:24.131 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:21:37.076 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:22:00.198 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0
+20:22:20.155 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30
+20:22:40.203 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+20:26:30.279 > [SCHRANKE] Schranke oeffnet (0 Grad).
+20:26:35.229 > [SCHRANKE] Schranke schliesst (90 Grad).
+20:31:00.257 > [SCHRANKE] Schranke oeffnet (0 Grad).
+20:31:05.269 > [SCHRANKE] Schranke schliesst (90 Grad).
+20:32:30.233 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+20:32:30.284 > [SCHRANKE] Schranke oeffnet (0 Grad).
+20:32:35.307 > [SCHRANKE] Schranke schliesst (90 Grad).
+20:32:50.266 > [SCHRANKE] Schranke oeffnet (0 Grad).
+20:32:55.250 > [SCHRANKE] Schranke schliesst (90 Grad).
+20:34:44.439 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:41:38.026 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -5
+20:41:51.943 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -5
+20:42:26.324 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:42:51.332 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:43:22.508 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:44:02.383 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:44:12.302 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:44:28.331 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:44:50.501 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:45:03.308 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:45:22.343 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:45:44.378 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:46:30.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:47:19.379 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:47:38.472 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:48:42.321 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:48:52.369 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:51:44.306 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+20:52:00.391 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:52:10.428 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+20:54:18.218 --- Verbindung getrennt (SerialException)
+20:54:18.272 --- COM3 nicht verfuegbar, warte auf den Port

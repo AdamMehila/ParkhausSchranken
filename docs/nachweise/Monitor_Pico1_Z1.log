@@ -1,0 +1,61 @@
+17:34:02.306 --- Monitor gestartet fuer COM6, 115200 Baud
+17:34:02.335 --- verbunden mit COM6
+17:36:38.273 --- Verbindung getrennt (SerialException)
+17:36:38.324 --- COM6 nicht verfuegbar, warte auf den Port
+17:36:44.414 --- verbunden mit COM6
+17:36:45.225 > 
+17:36:45.225 > === Parksystem M450 - Pico 1 (Kasse) - Firmware 1.0 ===
+17:36:45.225 > [WLAN] Suche Netze in der Umgebung ...
+17:36:46.667 >   --> nbkauzAM02 7335  Signal -50 dBm  Kanal 1  WPA2
+17:36:46.668 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -82 dBm  Kanal 6  WPA2
+17:36:46.668 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -70 dBm  Kanal 11  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -60 dBm  Kanal 1  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -78 dBm  Kanal 11  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -68 dBm  Kanal 6  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -60 dBm  Kanal 11  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -74 dBm  Kanal 11  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -89 dBm  Kanal 6  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -41 dBm  Kanal 1  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -92 dBm  Kanal 6  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -72 dBm  Kanal 1  WPA2
+17:36:46.688 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -58 dBm  Kanal 6  WPA2
+17:36:46.689 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -58 dBm  Kanal 11  WPA2
+17:36:46.689 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -78 dBm  Kanal 1  WPA2
+17:36:46.689 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -77 dBm  Kanal 11  WPA2
+17:36:46.689 >         Signal -89 dBm  Kanal 6  WPA2
+17:36:46.689 >         Signal -69 dBm  Kanal 6  WPA2
+17:36:46.689 >         Signal -84 dBm  Kanal 6  WPA2
+17:36:46.689 >         Signal -59 dBm  Kanal 11  WPA2
+17:36:46.689 >         Signal -68 dBm  Kanal 11  WPA2
+17:36:46.689 >         Signal -75 dBm  Kanal 11  WPA2
+17:36:46.689 >         Signal -39 dBm  Kanal 1  WPA2
+17:36:46.689 >         Signal -90 dBm  Kanal 6  WPA2
+17:36:46.743 >         Signal -82 dBm  Kanal 6  WPA2
+17:36:46.743 >         Signal -56 dBm  Kanal 6  WPA2
+17:36:46.743 >         Signal -58 dBm  Kanal 11  WPA2
+17:36:46.743 >         Signal -82 dBm  Kanal 1  WPA2
+17:36:46.743 >         Signal -81 dBm  Kanal 11  WPA2
+17:36:46.743 > [WLAN] Verbinde mit nbkauzAM02 7335
+17:36:46.805 > 
+17:36:46.805 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211
+17:36:46.868 > [KASSE] Webserver laeuft. Plaetze: 3
+17:36:50.498 > [WLAN] Verbindung verloren. Grund: Anmeldung fehlgeschlagen. Der Router hat den Pico abgewiesen.
+17:37:01.844 > [WLAN] Neuer Verbindungsversuch. Letzter Stand: Anmeldung fehlgeschlagen. Der Router hat den Pico abgewiesen.
+17:37:02.033 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211
+17:39:16.943 > [KASSE] Uhr gestellt: 13.11.2026 17:39:16
+17:45:54.050 > [DEBUG] Alle Parkvorgaenge geloescht.
+17:58:25.593 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+17:59:17.461 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -50 Minuten
+18:01:01.778 > [KASSE] Bezahlt: SG 11122 CHF 2.00
+18:18:55.837 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid
+18:18:55.953 > [KASSE] Ausfahrt: SG 11122  Belegung: 0/3
+18:19:04.031 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> unknown
+20:26:30.212 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+20:29:41.007 > [DEBUG] Alle Parkvorgaenge geloescht.
+20:31:00.257 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+20:31:29.154 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+20:32:30.182 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+20:32:30.284 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3
+20:32:50.215 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+20:54:19.067 --- Verbindung getrennt (SerialException)
+20:54:19.120 --- COM6 nicht verfuegbar, warte auf den Port
