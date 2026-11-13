@@ -1,0 +1,17 @@
+Ladezeit der Seiten, Eingangskriterien Zyklus 1, 13.11.2026
+Werkzeug: PowerShell Invoke-WebRequest -UseBasicParsing, Stopwatch vom Absenden bis zur vollstaendig empfangenen Antwort.
+Gemessen wird die HTML-Seite ohne Ausfuehrung von JavaScript.
+
+Messung 1:
+http://192.168.137.211/ Messung 1: 0.121 s, HTTP 200, 13018 Bytes, Start 17:32:24
+http://192.168.137.211/ Messung 2: 0.085 s, HTTP 200, 13018 Bytes, Start 17:32:25
+http://192.168.137.211/ Messung 3: 0.026 s, HTTP 200, 13018 Bytes, Start 17:32:26
+http://192.168.137.212/ Messung 1: 0.040 s, HTTP 200, 11175 Bytes, Start 17:32:26
+http://192.168.137.212/ Messung 2: 0.084 s, HTTP 200, 11175 Bytes, Start 17:32:27
+http://192.168.137.212/ Messung 3: 0.030 s, HTTP 200, 11175 Bytes, Start 17:32:27
+http://192.168.137.211/api/vehicles Messung 1: 0.022 s, HTTP 200, 128 Bytes, Start 17:32:28
+http://192.168.137.211/api/vehicles Messung 2: 0.026 s, HTTP 200, 128 Bytes, Start 17:32:28
+http://192.168.137.211/api/vehicles Messung 3: 0.093 s, HTTP 200, 128 Bytes, Start 17:32:29
+http://192.168.137.212/api/state Messung 1: 0.091 s, HTTP 200, 218 Bytes, Start 17:32:29
+http://192.168.137.212/api/state Messung 2: 0.020 s, HTTP 200, 218 Bytes, Start 17:32:30
+http://192.168.137.212/api/state Messung 3: 0.088 s, HTTP 200, 218 Bytes, Start 17:32:30

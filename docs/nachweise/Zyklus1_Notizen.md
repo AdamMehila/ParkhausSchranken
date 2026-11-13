@@ -6,86 +6,141 @@ Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Screenshots nac
 
 ## Kopf
 
-- Datum:
-- Ort:
-- Firmware-Version laut Banner Pico 1:
-- Firmware-Version laut Banner Pico 2:
+- Datum: 13.11.2026
+- Ort: zuhause
+- Firmware-Version laut Banner Pico 1: Firmware 1.0 (Monitor_Pico1_Z1.log, 17:36:45)
+- Firmware-Version laut Banner Pico 2: Firmware 1.0 (Monitor_Pico2_Z1.log, 17:53:58)
 - Commit: 867aed7
-- Chrome-Version:
-- COM-Port Pico 1:
-- COM-Port Pico 2:
-- WLAN-Name (ohne Passwort):
-- Adresse Pico 1:
-- Adresse Pico 2:
-- Gateway, Subnetzmaske:
-- Uhrzeit Beginn:
+- Chrome-Version: 157.0.8103.79 (Dateiversion von chrome.exe)
+- COM-Port Pico 1: COM6
+- COM-Port Pico 2: COM3
+- WLAN-Name (ohne Passwort): nbkauzAM02 7335, Windows-Hotspot des Testlaptops, 2,4 GHz, Kanal 1, WPA2
+- Adresse Pico 1: 192.168.137.211
+- Adresse Pico 2: 192.168.137.212
+- Gateway, Subnetzmaske: 192.168.137.1, 255.255.255.0
+- Monitore bis 17:33: `pio device monitor --port COMx --filter time --filter log2file` je in einem eigenen Konsolenfenster, gestartet 17:15:19 (Pico 1) und 17:15:26 (Pico 2). Logdateien logs/device-monitor-261113-171519.log (Pico 1) und logs/device-monitor-261113-171526.log (Pico 2)
+- Monitore ab 17:34:02: tools/serial_monitor.py im Hintergrund, Logdateien Monitor_Pico1_Z1.log (COM6) und Monitor_Pico2_Z1.log (COM3). Gleiches Zeilenformat wie der Filter `time`. Verbindungen und Trennungen stehen als Zeilen mit `---` im Log. Grund siehe "Beobachtungen vor Zyklus 1"
+- Uhrzeit Beginn: 17:18 (erster Durchgang der Eingangskriterien), 17:36 (zweiter Durchgang)
 - Uhrzeit Ende:
+
+## Durchführung: wer hat was ausgeführt
+
+| Zeitraum | Ausführung | Beobachtung |
+| --- | --- | --- |
+| bis 18:15 (Eingangskriterien, T29 Schritte 1 bis 3, T06) | Adam in Chrome nach Anweisung von Claude | Adam: Meldungen, Anzeigen, Servo-Arm. Claude: Monitor-Logs, Screenshots aus dem Ordner des Snipping Tools übernommen und umbenannt |
+| 18:15 bis zur Rückkehr von Adam (T29 Schritte 5 bis 8, T07 zweiter Versuch) | Claude per HTTP-Abfrage an die Endpunkte, die auch die Seiten benutzen | Claude: JSON-Antworten, Monitor-Logs. Servo-Arm von niemandem beobachtet |
+| ab der Rückkehr von Adam | Claude per HTTP-Abfrage oder automatisiertem Chrome | Claude: Meldungen, Zustände, Logs. Adam nur Servo-Arm ("Arm bewegt: ja/nein") |
+
+Bei jedem Testfall steht, welche Beobachtung von wem stammt.
+
+## Beobachtungen vor Zyklus 1
+
+Nur Beobachtungen, keine Bewertung.
+
+Erster Durchgang der Eingangskriterien mit Neustart beider Picos (Adam, zwischen 17:18 und 17:30):
+
+- Adam: Pico 1 und Pico 2 ab- und wieder eingesteckt, danach in Chrome zuerst die Kasse-Seite und dann die Schranken-Seite mit F5 neu geladen. "Beide Seiten haben geladen und funktionieren." Ladezeit nicht gemessen.
+- Adam: Servo-Test auf der Schranken-Seite mit "Servo testen": grüne Meldung "Servo an GP8 öffnet die Schranke und schliesst sie nach 5 Sekunden wieder.", Arm ging hoch und nach 5 s wieder runter.
+- Adam: Auf der Kasse-Seite gibt es keine Karte "Testwerkzeuge (nur im Test-Build)", auch nicht nach Strg+F5 und ganz nach unten scrollen. Der Reset wurde deshalb nicht ausgeführt.
+- Log Pico 2 (logs/device-monitor-261113-171526.log), danach keine weiteren Zeilen:
+  - `17:22:14.569 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+  - `17:22:42.566 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+  - `17:23:34.644 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+  - `17:25:20.565 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+  - `17:25:45.565 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- Log Pico 1 (logs/device-monitor-261113-171519.log): leer, kein Banner, keine Zeile `[KASSE] Uhr gestellt`.
+
+Prüfung durch Claude auf Adams Auftrag, 17:30 bis 17:34:
+
+- platformio.ini, Umgebung pico1_cashdesk: `-DTEST_BUILD=1` (Zeile 95).
+- Aufruf `http://192.168.137.211/api/debug/time` ohne Parameter um 17:30: HTTP 200, `{"ok":false,"message":"Kennzeichen steht nicht im Parkhaus.","exactDuration":"0 h 00 min","exactFee":"CHF 2.00"}`.
+- Aufruf `http://192.168.137.211/api/vehicles` um 17:30: `"testBuild":true`, `"clockIsSet":true`, `"now":"13.11.2026 17:30:15"`.
+- Banner Pico 1 vor dem Neustart, Mitschnitt beim Flashen: `17:06:53.216 > === Parksystem M450 - Pico 1 (Kasse) - Firmware 1.0 ===`. Nach dem Neustart steht kein Banner im Log.
+- COM6 und COM3 waren um 17:31 frei. Die beiden Fenster mit `pio device monitor` hatten sich nach dem Ab- und Einstecken nicht wieder mit den Picos verbunden. Darum fehlen Banner und `[KASSE] Uhr gestellt` im Log.
+- Kasse-Seite in einem zweiten Chrome 157.0.8103.79 im Hintergrundmodus mit leerem Profil um 17:31: Karte "Testwerkzeuge (nur im Test-Build)" sichtbar (`display: block`), Belegung "0 / 3", Uhr "13.11.2026 17:31:44".
+- Ergebnis der Prüfung: Auf Pico 1 läuft der Test-Build. Die Seite blendet die Karte erst ein, wenn sie /api/vehicles erfolgreich abgerufen hat (src/cashdesk/web_page_cashdesk.h:269-281). Warum die Karte in Adams Chrome-Tab fehlte, ist noch offen.
+- Die pio-Monitore wurden um 17:33 beendet. Ab 17:34:02 laufen die Monitore mit tools/serial_monitor.py (Abweichung von Testkonzept 1.1, Kapitel 4.3). Grund: `pio device monitor` lässt sich nicht im Hintergrund starten ("requires an interactive terminal on stdin") und verbindet sich nach einem Neustart des Picos nicht selbst wieder.
 
 ## Eingangskriterien
 
-- Uhrzeit:
-- Banner beider Picos mit "Firmware 1.0" gesehen:
-- Monitore mit Zeitstempel und Logdatei offen:
-- Kasse-Seite zuerst geöffnet, Monitorzeile `[KASSE] Uhr gestellt: ...` (Zeile abschreiben):
-- Schranken-Seite danach geöffnet:
-- Ladezeit Kasse-Seite (höchstens 3 s):
-- Ladezeit Schranken-Seite (höchstens 3 s):
-- Servo-Test: Meldung (Soll M23) und Armbewegung:
-- Reset: Meldung (Soll M22):
-- Belegung auf beiden Seiten (Soll 0 / 3):
-- Nachweis:
-- Bemerkung:
+Zweiter Durchgang. Adam hat laut eigener Angabe Pico 1 und Pico 2 ab- und wieder eingesteckt, den Kasse-Tab geschlossen, `http://192.168.137.211` in einem neuen Tab geöffnet und danach den Schranken-Tab mit F5 neu geladen.
+
+- Uhrzeit: 17:36:38 (Trennung Pico 1 im Log) bis 17:45:54 (Reset im Log)
+- Banner beider Picos mit "Firmware 1.0" gesehen: Pico 1 `17:36:45.225 > === Parksystem M450 - Pico 1 (Kasse) - Firmware 1.0 ===` (Monitor_Pico1_Z1.log). Pico 2: Im Log von Pico 2 steht zwischen 17:34:02 und 17:49 weder eine Trennung noch ein Banner. Pico 2 hat in diesem Durchgang nicht neu gestartet. Nachgeholt: Adam hat nur Pico 2 ab- und wieder eingesteckt, Log `17:53:50.904 --- Verbindung getrennt`, dann `17:53:58.343 > === Parksystem M450 - Pico 2 (Schranken) - Firmware 1.0 ===`, `17:53:59.991 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212`, `17:54:01.996 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`. Adam danach auf der Schranken-Seite nach F5: Belegung "0 / 3", "Kasse erreichbar"
+- Monitore mit Zeitstempel und Logdatei offen: ja, seit 17:34:02 (tools/serial_monitor.py)
+- Kasse-Seite zuerst geöffnet, Monitorzeile `[KASSE] Uhr gestellt: ...` (Zeile abschreiben): `17:39:16.943 > [KASSE] Uhr gestellt: 13.11.2026 17:39:16`. Adam: Karte "Testwerkzeuge (nur im Test-Build)" ist im neuen Tab sichtbar
+- Schranken-Seite danach geöffnet: Adam: mit F5 neu geladen
+- Ladezeit Kasse-Seite (höchstens 3 s): Messung durch Claude mit PowerShell `Invoke-WebRequest`, Zeit bis die HTML-Seite vollständig empfangen ist, ohne Ausführung von JavaScript. 17:32:24 bis 17:32:26: 0,121 s, 0,085 s, 0,026 s (HTTP 200, 13018 Bytes). Nachweis Ladezeit_EK_Z1.txt
+- Ladezeit Schranken-Seite (höchstens 3 s): gleiche Messung, 17:32:26 bis 17:32:27: 0,040 s, 0,084 s, 0,030 s (HTTP 200, 11175 Bytes). Nachweis Ladezeit_EK_Z1.txt
+- Servo-Test: Meldung (Soll M23) und Armbewegung: Adam: grüne Meldung "Servo an GP8 öffnet die Schranke und schliesst sie nach 5 Sekunden wieder.", Arm ging hoch und nach 5 s wieder runter. Log Pico 2: `17:42:10.468 > [SCHRANKE] Schranke oeffnet (0 Grad).` und `17:42:15.501 > [SCHRANKE] Schranke schliesst (90 Grad).`
+- Reset: Meldung (Soll M22): Adam: "Alle Parkvorgänge gelöscht." Log Pico 1: `17:45:54.050 > [DEBUG] Alle Parkvorgaenge geloescht.`
+- Belegung auf beiden Seiten (Soll 0 / 3): Adam: "0 / 3" auf beiden Seiten
+- Nachweis: EK_Z1_1.png (Kasse-Seite mit "Alle Parkvorgänge gelöscht.", Belegung 0 / 3, Uhr 13.11.2026 17:46:16), Ladezeit_EK_Z1.txt, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log. EK_Z1_2.png (Schranken-Seite um 17:54:38 mit Belegung 0 / 3, "Kasse erreichbar", Schrankenarm "geschlossen"). Die erste Fassung von EK_Z1_2.png zeigte die Kasse-Seite und wurde durch die Aufnahme von 17:54:38 ersetzt
+- Bemerkung: Log Pico 1 nach dem Neustart: `17:36:50.498 > [WLAN] Verbindung verloren. Grund: Anmeldung fehlgeschlagen. Der Router hat den Pico abgewiesen.`, `17:37:01.844 > [WLAN] Neuer Verbindungsversuch. ...`, `17:37:02.033 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211`. Log Pico 2, Zeilen `[KASSE-CLIENT] Kasse nicht erreichbar, Fehler N`: 17:35:21.997 (-11), 17:36:40.712 (-1), 17:36:50.673 (-1), 17:37:00.697 (-1), 17:38:46.704 (-1), 17:39:00.104 (-11), 17:39:12.807 (-11), 17:43:40.760 (-11), 17:43:50.732 (-11), 17:44:00.740 (-11), 17:44:10.708 (-1)
 
 ## T29 Start (Schritte 1 bis 3)
 
 Soll: M04. Meldung der Testwerkzeuge "Einfahrtszeit um 50 Minuten zurückgesetzt. Gebühr für genau 0 h 50 min: CHF 2.00." Vor dem Bezahlen Parkdauer 0 h 50 min bis 0 h 59 min und M16 CHF 2.00, danach M18 CHF 2.00. Bezahlen innerhalb von 9 Minuten nach der Verschiebung.
 
-- Uhrzeit Einfahrt:
+- Uhrzeit Einfahrt: 17:58:25 (Log Pico 1)
 - Kennzeichen: SG 11122
-- Ausgangszustand (Reset gemacht):
-- Meldung nach der Einfahrt:
-- Uhrzeit der Verschiebung:
-- Meldung der Testwerkzeuge:
-- Parkdauer vor dem Bezahlen (P):
-- Offener Betrag vor dem Bezahlen:
-- Uhrzeit der Zahlung (Z):
-- Meldung nach dem Bezahlen:
-- Timer gestellt auf Z plus 14 Minuten:
-- Timer gestellt auf Z plus 16 Minuten:
+- Ausgangszustand (Reset gemacht): Reset um 17:45:54 (Eingangskriterien), danach kein Fahrzeug eingefahren. Pico 2 um 17:53:50 neu gestartet
+- Meldung nach der Einfahrt: Adam: grüne Meldung "SG 11122 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder.", Arm ging hoch und nach 5 s wieder runter
+- Uhrzeit der Verschiebung: 17:59:17 (Log Pico 1)
+- Meldung der Testwerkzeuge: Adam: "Einfahrtszeit um 50 Minuten zurückgesetzt. Gebühr für genau 0 h 50 min: CHF 2.00."
+- Parkdauer vor dem Bezahlen (P): Adam: "0 h 51 min"
+- Offener Betrag vor dem Bezahlen: Adam: orange Meldung "Offener Betrag: CHF 2.00"
+- Uhrzeit der Zahlung (Z): 18:01:01.778 (Log Pico 1, Zeile `[KASSE] Bezahlt`)
+- Meldung nach dem Bezahlen: Adam: "Bezahlung erfolgt. Betrag: CHF 2.00." Screenshot: Einfahrt "13.11.2026 17:09:16", Parkdauer "0 h 51 min", Gebühr "CHF 2.00", Status "bezahlt", Belegung "1 / 3", Uhr der Kasse "13.11.2026 18:01:04"
+- Timer gestellt auf Z plus 14 Minuten: 18:15:02 (Signalton und Meldungsfenster auf dem Laptop)
+- Timer gestellt auf Z plus 16 Minuten: 18:17:02 (Signalton und Meldungsfenster auf dem Laptop)
 - Monitorzeilen:
-- Nachweis:
-- Bemerkung:
+  - Pico 2: `17:58:25.593 > [SCHRANKE] Schranke oeffnet (0 Grad).`
+  - Pico 1: `17:58:25.593 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3`
+  - Pico 2: `17:58:30.626 > [SCHRANKE] Schranke schliesst (90 Grad).`
+  - Pico 1: `17:59:17.461 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -50 Minuten`
+  - Pico 1: `18:01:01.778 > [KASSE] Bezahlt: SG 11122 CHF 2.00`
+- Nachweis: T29_Z1_1.png (Kasse-Seite nach dem Bezahlen, von Adam gespeichert)
+- Bemerkung: Log Pico 2 vor der Einfahrt: `17:57:26.968 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
 
 ## T06 Leeres Kennzeichen
 
 Soll: M01 "Bitte ein Kennzeichen eingeben.", Arm bleibt zu, Monitor Pico 2 `[EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0`, Kasse unverändert.
 
-- Uhrzeit:
+- Uhrzeit: 18:04:52 (Log Pico 2)
 - Kennzeichen: leeres Feld
-- Ausgangszustand:
-- Meldungstext:
-- Servo:
-- Monitorzeile Pico 2:
-- Monitor Pico 1 (neue Zeile ja oder nein):
-- Kasse-Seite:
+- Ausgangszustand: SG 11122 aus T29 im Parkhaus, bezahlt, Belegung 1 / 3
+- Meldungstext: Adam: rote Meldung "Bitte ein Kennzeichen eingeben."
+- Servo: Adam: Arm hat sich nicht bewegt
+- Monitorzeile Pico 2: `18:04:52.745 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0`
+- Monitor Pico 1 (neue Zeile ja oder nein): nein, zwischen 18:01:02 und 18:07:16 keine Zeile
+- Kasse-Seite: Adam: nur SG 11122 unter "Fahrzeuge im Parkhaus", Belegung "1 / 3". Screenshot 18:06:56: Belegung 1 / 3, einzige Zeile SG 11122, Parkdauer 0 h 57 min, Status bezahlt
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: T06_Z1_2.png (Kasse-Seite 18:06:56). T06_Z1_1.png (Schranken-Seite mit Meldung) fehlt noch
+- Bemerkung: Log Pico 2: `18:03:55.372 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
 
 ## T07 Sonderzeichen
 
 Soll: M03 "Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345.", Arm bleibt zu, Monitor Pico 2 `... Laenge: 10`, Kasse unverändert.
 
-- Uhrzeit:
+Erster Versuch (Adam im Browser, vor 18:18, Uhrzeit nicht notiert): Adam hat die Eingabe aus der Zwischenablage eingefügt und sah danach die rote Meldung "Bitte ein Kennzeichen eingeben." Abklärung durch Claude:
+
+- Im Log von Pico 2 steht zwischen 18:07:00 und 18:18:47 keine Zeile `[EINGABE] ...` und keine Trennung.
+- Ein Klick auf "Einfahrt bestätigen" ersetzt die Meldung sofort durch "Anfrage läuft ..." und schickt die Eingabe an Pico 2 (src/barriers/web_page_barriers.h:137-161). Pico 2 schreibt jede abgelehnte Eingabe ins Log (src/barriers/main.cpp:127-141).
+- Ergebnis: Der erste Versuch hat Pico 2 nicht erreicht. Die rote Meldung war die stehen gebliebene Meldung aus T06 (18:04:52). Kein Befund zur Firmware.
+
+Zweiter Versuch, per HTTP-Abfrage durch Claude statt im Browser (Adam abwesend):
+
+- Uhrzeit: 18:18:47.878 (Aufruf)
 - Kennzeichen: `!@#$%^&*()`
-- Ausgangszustand:
-- Meldungstext:
-- Servo:
-- Monitorzeile Pico 2:
-- Kasse-Seite:
+- Ausgangszustand: SG 11122 aus T29 im Parkhaus, bezahlt. `/api/vehicles` um 18:18:47: `"occupied":1`, einziges Fahrzeug SG 11122
+- Meldungstext: Aufruf `http://192.168.137.212/api/entry?plate=!%40%23%24%25%5E%26*()` (gleiche Kodierung wie die Seite mit `encodeURIComponent`). Antwort HTTP 200 `{"ok":false,"message":"Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345."}`. Im Browser nicht beobachtet
+- Servo: nicht beobachtet (Adam abwesend). Im Log von Pico 2 keine Zeile `[SCHRANKE] Schranke oeffnet`. `/api/state` um 18:18:47: `"entryBarrierOpen":false`
+- Monitorzeile Pico 2: `18:18:47.988 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10`
+- Kasse-Seite: im Browser nicht beobachtet. `/api/vehicles` vor und nach dem Aufruf gleich: `"occupied":1`, einziges Fahrzeug SG 11122. Keine Zeile im Log von Pico 1
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: Monitor_Pico2_Z1.log, diese Notizen
+- Bemerkung: Ausführung und Ablesung durch Claude per HTTP
 
 ## T08 Überlange Eingabe
 
@@ -169,19 +224,27 @@ Soll: zweimal M05 "Dieses Fahrzeug steht bereits im Parkhaus.", Arm bleibt zu, B
 
 Soll: Bei Z plus 14 Minuten Parkdauer P plus 14 Minuten, Status "bezahlt", M17. Bei Z plus 16 Minuten Status "offen", M16 "Offener Betrag: CHF 2.00". Ausfahrt M10 mit CHF 2.00, Arm bleibt zu. Nachzahlung M18 CHF 2.00. Ausfahrt M11, Arm öffnet.
 
-- Uhrzeit Suche bei Z plus 14 Minuten:
-- Parkdauer, Status, Meldung:
-- Uhrzeit Suche bei Z plus 16 Minuten:
-- Parkdauer, Status, Meldung, Betrag:
-- Uhrzeit Ausfahrt:
-- Meldungstext Ausfahrt:
-- Servo:
+Adam war ab 18:15 abwesend. Die Schritte 5 bis 8 hat Claude per HTTP-Abfrage ausgeführt und abgelesen, nicht im Browser. Die Aufrufe sind dieselben, die die Seiten bei Suche, Ausfahrt und Bezahlung schicken.
+
+- Uhrzeit Suche bei Z plus 14 Minuten: nicht durchgeführt. Der Timer hat um 18:15:03 ausgelöst. Schritt 4 hätte bis Z plus 15 Minuten (18:16:01) laufen müssen. Adam: "Für den nächsten Schritt von T29 ist es zu spät."
+- Parkdauer, Status, Meldung: keine Beobachtung
+- Uhrzeit Suche bei Z plus 16 Minuten: 18:18:04 (Z plus 17 min 02 s), HTTP-Abfrage durch Claude
+- Parkdauer, Status, Meldung, Betrag: Aufruf `http://192.168.137.211/api/status?plate=SG%2011122`, Antwort HTTP 200 `{"plate":"SG 11122","status":"paid","entry":"13.11.2026 17:09:16","duration":"1 h 08 min","fee":"CHF 2.00","feeInCents":200}`. Die Meldung auf der Kasse-Seite wurde nicht beobachtet
+- Uhrzeit Ausfahrt: 18:18:55.726, HTTP-Abfrage durch Claude statt Klick auf "Ausfahrt bestätigen"
+- Meldungstext Ausfahrt: Aufruf `http://192.168.137.212/api/exit?plate=SG%2011122`, Antwort HTTP 200 `{"ok":true,"message":"Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für SG 11122."}`
+- Servo: nicht beobachtet (Adam abwesend). Log Pico 2: `18:18:55.953 > [SCHRANKE] Schranke oeffnet (0 Grad).` und `18:19:00.985 > [SCHRANKE] Schranke schliesst (90 Grad).` `/api/state` direkt nach dem Aufruf: `"entryBarrierOpen":true`, `"exitBarrierOpen":true`, `"exitBarrierMsLeft":4810`, `"occupied":0`
 - Monitorzeilen Pico 1 und Pico 2:
-- Nachzahlung: Meldung und Betrag:
-- Zweite Ausfahrt: Meldung und Servo:
+  - Pico 1: `18:18:55.837 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid`
+  - Pico 2: `18:18:55.897 > [AUSFAHRT] Kasse meldet fuer SG 11122: paid`
+  - Pico 1: `18:18:55.953 > [KASSE] Ausfahrt: SG 11122  Belegung: 0/3`
+  - Pico 2: `18:18:55.953 > [SCHRANKE] Schranke oeffnet (0 Grad).`
+  - Pico 2: `18:19:00.985 > [SCHRANKE] Schranke schliesst (90 Grad).`
+- Kasse nach der Ausfahrt: `/api/vehicles` um 18:18:56: `"occupied":0`, keine Fahrzeuge im Parkhaus, unter "history" SG 11122 mit `"status":"gone"`, `"exit":"13.11.2026 18:18:55"`, `"fee":"CHF 2.00"`
+- Nachzahlung: Meldung und Betrag: Suche um 18:19:03.569, Aufruf `http://192.168.137.211/api/status?plate=SG%2011122`, Antwort HTTP 200 `{"plate":"SG 11122","status":"unknown","entry":"-","duration":"-","fee":"-","feeInCents":0}`. Bei `"status":"unknown"` sperrt die Kasse-Seite den Knopf "Bezahlen" (src/cashdesk/web_page_cashdesk.h:191-198). `/api/pay` wurde deshalb nicht aufgerufen. Keine Nachzahlung
+- Zweite Ausfahrt: Meldung und Servo: 18:19:03.803, Aufruf `http://192.168.137.212/api/exit?plate=SG%2011122`, Antwort HTTP 200 `{"ok":false,"message":"Zu dem Kennzeichen SG 11122 ist keine Einfahrt bekannt. Die Schranke bleibt geschlossen."}`. Servo nicht beobachtet, im Log keine Zeile `Schranke oeffnet`, `/api/state` danach `"exitBarrierOpen":false`. Log: Pico 1 `18:19:04.031 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> unknown`, Pico 2 `18:19:04.031 > [AUSFAHRT] Kasse meldet fuer SG 11122: unknown` und `18:19:04.031 > [AUSFAHRT] Unbekanntes Kennzeichen: SG 11122`
 - Status:
-- Nachweis:
-- Bemerkung:
+- Nachweis: Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log, diese Notizen
+- Bemerkung: Schritt 4 zu spät, nicht durchgeführt. Schritte 5 bis 8 per HTTP-Abfrage durch Claude statt im Browser beobachtet. Der Servo-Arm wurde in den Schritten 6 und 8 von niemandem beobachtet
 
 ## T01 Gültiges Kennzeichen bei der Einfahrt
 
