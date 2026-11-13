@@ -35,7 +35,9 @@ Bei jedem Testfall steht, welche Beobachtung von wem stammt.
 
 Automatisierter Chrome ab 18:22: ein zweites Chrome-Fenster, Chrome 157.0.8103.79 mit eigenem leerem Profil und Debug-Port 9222, mit Kasse-Seite und Schranken-Seite. Gesteuert mit tools/browser_test.mjs über das Chrome-DevTools-Protokoll. Eingaben gehen als Tastatureingabe, Klicks als Mausereignis an die Mitte des Knopfs. Abgelesen wird erst, wenn die Anfrage der Seite an den Pico beantwortet ist. Jede Aktion steht mit Uhrzeit und Ergebnis in Browser_Z1.log. Probelauf um 18:23:09 (kein Testfall): Suche SG 11122 auf der Kasse-Seite, rote Meldung "Das Kennzeichen SG 11122 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt."
 
-Log Pico 2 kurz nach dem Start des zweiten Chrome-Fensters (kein Testfall): `18:23:04.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`, `18:23:13.983 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`, `18:23:26.965 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`.
+Die Meldungen von Pico 2 kurz nach dem Start des zweiten Chrome-Fensters stehen unter "Beobachtungen während Zyklus 1".
+
+Adam ist zurück, seine Nachricht kam vor 20:11:23. Adam: "meine Tabs sind geschlossen." Ab dann fragt nur noch das automatisierte Chrome-Fenster die Picos ab.
 
 ## Beobachtungen vor Zyklus 1
 
@@ -64,6 +66,29 @@ Prüfung durch Claude auf Adams Auftrag, 17:30 bis 17:34:
 - Kasse-Seite in einem zweiten Chrome 157.0.8103.79 im Hintergrundmodus mit leerem Profil um 17:31: Karte "Testwerkzeuge (nur im Test-Build)" sichtbar (`display: block`), Belegung "0 / 3", Uhr "13.11.2026 17:31:44".
 - Ergebnis der Prüfung: Auf Pico 1 läuft der Test-Build. Die Seite blendet die Karte erst ein, wenn sie /api/vehicles erfolgreich abgerufen hat (src/cashdesk/web_page_cashdesk.h:269-281). Warum die Karte in Adams Chrome-Tab fehlte, ist noch offen.
 - Die pio-Monitore wurden um 17:33 beendet. Ab 17:34:02 laufen die Monitore mit tools/serial_monitor.py (Abweichung von Testkonzept 1.1, Kapitel 4.3). Grund: `pio device monitor` lässt sich nicht im Hintergrund starten ("requires an interactive terminal on stdin") und verbindet sich nach einem Neustart des Picos nicht selbst wieder.
+
+## Beobachtungen während Zyklus 1
+
+Nur Beobachtungen, keine Bewertung. Auf Anweisung von Adam notiert.
+
+Drei Meldungen von Pico 2 kurz nach dem Start des zweiten, automatisierten Chrome-Fensters um 18:22 (Monitor_Pico2_Z1.log). Zu dieser Zeit waren laut Adam auch seine eigenen zwei Tabs mit Kasse-Seite und Schranken-Seite offen. Kein Testfall lief:
+
+- `18:23:04.311 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `18:23:13.983 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `18:23:26.965 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+
+Weitere Zeilen dieser Art im Log von Pico 2 nach 18:23:27 bis zur Rückkehr von Adam. In dieser Zeit hat Claude keinen Testschritt ausgeführt und das automatisierte Chrome-Fenster nicht bedient. Die Seiten in den offenen Tabs fragen die Picos laufend selbst ab:
+
+- `18:27:49.302 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `19:05:38.076 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `19:15:21.030 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `19:17:46.036 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `19:40:07.996 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+- `19:44:24.079 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `19:51:10.427 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11`
+- `20:06:02.061 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1`
+
+Im Log von Pico 1 steht zwischen 18:19:05 und 20:11 keine Zeile. Im Log von Pico 2 steht in dieser Zeit keine Trennung und kein Banner.
 
 ## Eingangskriterien
 

@@ -54,7 +54,7 @@ Grundlage ist Testkonzept 1.1. Es besteht aus Testkonzept 1.0 und einem Nachtrag
 | --- | --- |
 | AK | Akzeptanzkriterium einer User Story. AK 3.3 heisst User Story 3, Akzeptanzkriterium 3 |
 | Fehler-ID | Kennung eines gefundenen Fehlers, F-01 bis F-nn |
-| H-01 bis H-05 | Testhilfen in der Firmware, siehe Kapitel 7.1 |
+| H-01 bis H-07 | Testhilfen, siehe Kapitel 7.1. H-01 bis H-05 sind in der Firmware, H-06 und H-07 sind Werkzeuge auf dem Testlaptop |
 | Kasse-Seite | Weboberfläche von Pico 1 im Browser |
 | M01 bis M25 | Meldungen aus dem Meldungskatalog, Testkonzept 1.1, Kapitel 5.4 |
 | MK | Mängelklasse, entspricht der Fehlerklasse 1 bis 4 aus Testkonzept 1.0, Kapitel 6 |
@@ -73,7 +73,9 @@ Grundlage ist Testkonzept 1.1. Es besteht aus Testkonzept 1.0 und einem Nachtrag
 | --- | --- | --- |
 | Vorlage | HERMES-Ergebnisvorlage Testprotokoll | ohne Versionsangabe, 26.01.2026 |
 | Testgrundlage | Testkonzept Parksystem mit Schranken | Testkonzept 1.1 |
-| Entwicklungsumgebung und serieller Monitor | Visual Studio Code mit PlatformIO | PlatformIO Core 6.2.0 |
+| Entwicklungsumgebung | Visual Studio Code mit PlatformIO | PlatformIO Core 6.2.0 |
+| Serieller Monitor | tools/serial_monitor.py (H-06), Python und pyserial aus PlatformIO | Python 3.11.7, pyserial 3.5 |
+| Steuerung und Ablesung von Chrome | tools/browser_test.mjs (H-07) über das Chrome-DevTools-Protokoll | Node.js 26.13.0 |
 | Browser für alle Tests | Google Chrome | ‹OFFEN› |
 | Versionsverwaltung | Git | Branch Testprotokoll |
 | Zeitmessung | Stoppuhr auf dem Handy, Zeitstempel im seriellen Monitor | |
@@ -155,7 +157,8 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 | --- | --- |
 | Browser | Google Chrome ‹OFFEN› |
 | Entwicklungsumgebung | Visual Studio Code mit PlatformIO Core 6.2.0 |
-| Serieller Monitor | `pio device monitor --port COMx --filter time --filter log2file` |
+| Serieller Monitor | bis 13.11.2026 17:33 `pio device monitor --port COMx --filter time --filter log2file`, ab 17:34 tools/serial_monitor.py (H-06), Kapitel 4, A15 |
+| Steuerung von Chrome | tools/browser_test.mjs (H-07), Kapitel 4, A16 |
 | COM-Port Pico 1 | ‹OFFEN› |
 | COM-Port Pico 2 | ‹OFFEN› |
 
@@ -169,7 +172,9 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 | Entwicklung | Behebt Fehler, liefert neue Firmware-Versionen, erstellt die Build-Nachweise | Adam Mehila |
 | Auftraggeber | Entscheidet über die Inbetriebnahme | Parkhausbesitzer (fiktiv), vertreten durch die Lehrperson M450 (ELA) |
 
-Hilfsmittel: Die Testhilfen H-01 bis H-05 und die Entwürfe der Testdokumente sind mit Unterstützung von Claude Code (KI-Assistent) entstanden. Prüfung, Testdurchführung und Verantwortung liegen bei Adam Mehila.
+Hilfsmittel: Die Testhilfen H-01 bis H-07 und die Entwürfe der Testdokumente sind mit Unterstützung von Claude Code (KI-Assistent) entstanden. Prüfung und Verantwortung liegen bei Adam Mehila.
+
+Durchführung in Zyklus 1: Bis 13.11.2026 18:15 hat Adam Mehila alle Schritte in Chrome ausgeführt und beobachtet. Danach hat auf Anweisung von Adam Mehila Claude Code die Schritte ausgeführt und Meldungen, Zustände und Monitor-Logs abgelesen: in seiner Abwesenheit per HTTP-Abfrage, nach seiner Rückkehr mit H-07 in Chrome. Adam Mehila hat dabei den Servo-Arm beobachtet. Jedes Einzelprotokoll nennt, welche Beobachtung von wem stammt (Kapitel 4, A16).
 
 ### 3.6 Zeitpunkte der Durchführung
 
@@ -214,6 +219,8 @@ Grundsätzlich gelten Testumgebung, Rollen und Testfälle aus dem Testkonzept. D
 | A12 | Umfang | Akzeptanzkriterium 2.3 (Erkennung dauert zu lange) ohne Testfall | nicht anwendbar | Es gibt keine Kennzeichenerkennung | Kapitel 6 |
 | A13 | Testfälle | T01 bis T24 | T01 bis T24 präzisiert, T25 bis T30 neu | Bemerkungen aus der Bewertung, fehlende Akzeptanzkriterien, Abnahme des Produktivbuilds | Kapitel 8 |
 | A14 | Dokumentation | Das README sagt, im Produktivbuild seien die Testwerkzeuge "gar nicht mehr in der Firmware enthalten" | Die Endpunkte fehlen, die Karten der Testwerkzeuge sind nur ausgeblendet | Laut Code bleibt das HTML der Karten in der Seite | T30 prüft Sichtbarkeit und Endpunkte |
+| A15 | Serieller Monitor | Testkonzept 1.1, Kapitel 4.3: je Pico ein Terminal mit `pio device monitor --port COMx --filter time --filter log2file` | ab 13.11.2026 17:34 tools/serial_monitor.py (H-06) im Hintergrund, gleiches Zeilenformat, eine Logdatei je Pico und Zyklus | `pio device monitor` verlangt ein interaktives Terminal und hat sich nach dem Neustart der Picos nicht wieder verbunden. Banner und `[KASSE] Uhr gestellt` fehlten deshalb im ersten Durchgang der Eingangskriterien | keine, Abweichung nur in diesem Protokoll |
+| A16 | Durchführung | Tester Einfahrt und Ausfahrt und Tester Kasse bedienen die Seiten in Chrome und beobachten selbst | ab 13.11.2026 18:15 führt Claude Code die Schritte aus und liest Meldungen, Zustände und Monitor-Logs ab: per HTTP-Abfrage bis zur Rückkehr von Adam Mehila, danach mit H-07 in Chrome. Adam Mehila beobachtet den Servo-Arm | Entscheid der Testleitung während Zyklus 1. H-07 benutzt dieselbe Seite, dieselben Knöpfe und dieselben Anfragen an die Picos wie die Bedienung von Hand. Jede Aktion steht mit Uhrzeit, Eingabe und abgelesenem Ergebnis im Log | keine, Abweichung nur in diesem Protokoll |
 
 ## 5 Testdurchführung Zyklus 1
 
@@ -770,9 +777,9 @@ Jeder Fehler wird so beschrieben, dass eine andere Person ihn nachvollziehen kan
 
 ## 7 Erweiterungen und Anpassungen
 
-### 7.1 Testhilfen in der Firmware
+### 7.1 Testhilfen
 
-Die Testhilfen ändern keine Funktion des Parksystems. Sie machen Abläufe beobachtbar oder Testfälle durchführbar. Alle sind vor Zyklus 1 umgesetzt.
+Die Testhilfen ändern keine Funktion des Parksystems. Sie machen Abläufe beobachtbar oder Testfälle durchführbar. H-01 bis H-05 sind in der Firmware und vor Zyklus 1 umgesetzt. H-06 und H-07 sind Werkzeuge auf dem Testlaptop im Ordner tools. Sie sind am 13.11.2026 während Zyklus 1 entstanden und ändern die Firmware nicht. Darum gibt es für sie keinen Build-Nachweis.
 
 | ID | Änderung | Begründung | Commit | Build-Nachweis |
 | --- | --- | --- | --- | --- |
@@ -781,6 +788,8 @@ Die Testhilfen ändern keine Funktion des Parksystems. Sie machen Abläufe beoba
 | H-03 | Testwerkzeug zur Zeitverschiebung nennt die Gebühr für genau N Minuten | Nach der Verschiebung läuft die Uhr weiter, die Grenze bei genau 60 Minuten wäre sonst nicht prüfbar (T13) | a9377ce | alle Umgebungen SUCCESS, Anhang B |
 | H-04 | Kasse für N Sekunden stumm schalten, nur im Test-Build | Ausfall der Kasse simulieren, ohne den Laptop vom WLAN zu trennen und ohne Datenverlust (T23) | f708382 | alle Umgebungen SUCCESS, Anhang B |
 | H-05 | Zwei Build-Umgebungen für den Produktivbuild (TEST_BUILD=0) | Abnahmetest T30 mit demselben Commit wie Zyklus 2 | 867aed7 | alle sechs Umgebungen SUCCESS, Anhang B |
+| H-06 | Serieller Monitor tools/serial_monitor.py: Uhrzeit des Laptops mit Millisekunden vor jeder Zeile wie beim Filter `time`, eine Logdatei je Pico, verbindet nach einem Neustart des Picos selbst neu, vermerkt jede Verbindung und Trennung mit `---` | `pio device monitor` lässt sich nicht im Hintergrund starten und hat sich nach dem Neustart der Picos nicht wieder verbunden. Banner und `[KASSE] Uhr gestellt` fehlten deshalb im Log (Kapitel 4, A15) | 40cedb5 | keiner, Firmware unverändert |
+| H-07 | Steuerung von Chrome tools/browser_test.mjs: Eingabe als Tastatureingabe, Klick als Mausereignis auf den Knopf, Ablesen von Meldung, Belegung, Listen und Suchresultat nach der Antwort des Picos, Screenshot der ganzen Seite, Log jeder Aktion mit Uhrzeit | Neue Arbeitsweise nach Entscheid der Testleitung: Claude Code führt die Schritte im Browser aus und liest ab, Adam Mehila beobachtet den Servo-Arm. Das Log macht nachvollziehbar, was wann eingegeben und abgelesen wurde (Kapitel 4, A16) | a99ec18 | keiner, Firmware unverändert |
 
 ### 7.2 Korrekturen und Ergänzungen am Testkonzept
 
