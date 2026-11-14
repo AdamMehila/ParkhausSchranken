@@ -4,9 +4,9 @@
 | --- | --- |
 | Projekt | Parksystem mit Schranken, Modul M450, Auftrag A01-04 |
 | Dokument | Testprotokoll |
-| Version | Protokoll 0.1 |
-| Bearbeitungsdatum | 12.11.2026 |
-| Dokumentstatus | in Arbeit |
+| Version | Protokoll 1.0 |
+| Bearbeitungsdatum | 14.11.2026 |
+| Dokumentstatus | abgeschlossen, zur Abgabe |
 | Klassifizierung | nicht klassifiziert |
 | Autor | Adam Mehila |
 | Gruppe | Gruppe Mehila, Einzelarbeit. Mitgewirkt hat nur Adam Mehila |
@@ -1021,13 +1021,13 @@ Die Testleitung empfiehlt, der Auftraggeber entscheidet über die Inbetriebnahme
 
 | Version | Name | Datum | Bemerkungen |
 | --- | --- | --- | --- |
-| ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| Protokoll 1.0 | automatische Prüfung mit build_pdf.py und Markdown-Prüfung | 14.11.2026 | Seitenzahlen, Inhaltsverzeichnis, Anhang A vollständig, Markdown ohne Befund, kein WLAN-Passwort im Dokument |
 
 ### 10.3 Freigabe
 
 | Version | Name | Datum | Bemerkungen |
 | --- | --- | --- | --- |
-| Protokoll 1.0 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| Protokoll 1.0 | Adam Mehila | 14.11.2026 | Freigabe zur Abgabe |
 
 ## Anhänge
 

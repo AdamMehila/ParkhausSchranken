@@ -1,0 +1,44 @@
+22:45:29.412 --- Monitor gestartet am 14.11.2026 fuer COM6, 115200 Baud
+22:45:29.412 --- COM6 nicht verfuegbar, warte auf den Port
+22:45:36.353 --- verbunden mit COM6
+22:45:37.353 > 
+22:45:37.353 > === Parksystem M450 - Pico 1 (Kasse) - Firmware 1.4 ===
+22:45:37.353 > [WLAN] Suche Netze in der Umgebung ...
+22:45:38.814 >   --> nbkauzAM02 7335  Signal -62 dBm  Kanal 1  WPA2
+22:45:38.815 >       braendi  Signal -68 dBm  Kanal 6  WPA2
+22:45:38.815 >       braendi-devices  Signal -69 dBm  Kanal 6  WPA2
+22:45:38.815 >       braendi-public  Signal -67 dBm  Kanal 6  WPA2
+22:45:38.815 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -65 dBm  Kanal 11  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -60 dBm  Kanal 1  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -88 dBm  Kanal 11  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -72 dBm  Kanal 6  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -73 dBm  Kanal 6  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -66 dBm  Kanal 11  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -68 dBm  Kanal 11  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -55 dBm  Kanal 1  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -58 dBm  Kanal 1  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -44 dBm  Kanal 6  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -53 dBm  Kanal 11  WPA2
+22:45:38.835 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -76 dBm  Kanal 1  WPA2
+22:45:38.835 >         Signal -65 dBm  Kanal 11  WPA2
+22:45:38.835 >         Signal -90 dBm  Kanal 11  WPA2
+22:45:38.835 >         Signal -72 dBm  Kanal 6  WPA2
+22:45:38.835 >         Signal -75 dBm  Kanal 6  WPA2
+22:45:38.835 >         Signal -87 dBm  Kanal 6  WPA2
+22:45:38.835 >         Signal -64 dBm  Kanal 11  WPA2
+22:45:38.835 >         Signal -70 dBm  Kanal 11  WPA2
+22:45:38.835 >         Signal -50 dBm  Kanal 1  WPA2
+22:45:38.835 >         Signal -81 dBm  Kanal 6  WPA2
+22:45:38.886 >         Signal -46 dBm  Kanal 6  WPA2
+22:45:38.886 >         Signal -53 dBm  Kanal 11  WPA2
+22:45:38.886 >         Signal -85 dBm  Kanal 11  WPA2
+22:45:38.886 > [WLAN] Verbinde mit nbkauzAM02 7335
+22:45:39.009 > 
+22:45:39.009 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211
+22:45:39.009 > [KASSE] Webserver laeuft. Plaetze: 3
+22:45:39.009 > [WLAN] Energiesparmodus aus.
+22:47:50.830 > [KASSE] Uhr gestellt: 14.11.2026 22:47:50
+22:50:52.546 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+22:51:06.498 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+22:51:32.547 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:51:32.610 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3

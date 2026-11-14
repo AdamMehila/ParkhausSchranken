@@ -87,11 +87,11 @@ Die Bedeutung der Stellungen bleibt gleich: Arm waagrecht heisst zu, Arm senkrec
 
 | Angabe | Wert |
 | --- | --- |
-| WLAN-Name (2,4 GHz) | ‹OFFEN› |
+| WLAN-Name (2,4 GHz) | nbkauzAM02 7335, Windows-Hotspot des Testlaptops |
 | WLAN-Passwort | wird nicht dokumentiert |
-| Pico 1 (Kasse), Adresse IP-KASSE | ‹OFFEN› |
-| Pico 2 (Schranken), Adresse IP-SCHRANKE | ‹OFFEN› |
-| Gateway, Subnetzmaske | ‹OFFEN› |
+| Pico 1 (Kasse), Adresse IP-KASSE | 192.168.137.211 |
+| Pico 2 (Schranken), Adresse IP-SCHRANKE | 192.168.137.212 |
+| Gateway, Subnetzmaske | 192.168.137.1, 255.255.255.0 |
 | Testlaptop | im selben WLAN, Adresse vom Router |
 
 In diesem Dokument steht IP-KASSE für die Adresse von Pico 1 und IP-SCHRANKE für die Adresse von Pico 2. Die Kasse-Seite ist `http://IP-KASSE`, die Schranken-Seite ist `http://IP-SCHRANKE`.
@@ -102,9 +102,9 @@ In diesem Dokument steht IP-KASSE für die Adresse von Pico 1 und IP-SCHRANKE f�
 | --- | --- |
 | Firmware Test-Build | Firmware 1.0, Commit 867aed7, Umgebungen pico1_cashdesk und pico2_barriers, TEST_BUILD=1 |
 | Firmware Produktivbuild | gleicher Commit wie der Endstand, Umgebungen pico1_cashdesk_prod und pico2_barriers_prod, TEST_BUILD=0, nur für T30 |
-| Browser | Google Chrome, Version ‹OFFEN›. Alle Testfälle laufen in Chrome |
+| Browser | Google Chrome 157.0.8103.79. Alle Testfälle laufen in Chrome |
 | Entwicklungsumgebung | Visual Studio Code mit PlatformIO Core 6.2.0 |
-| Serieller Monitor | je Pico ein Terminal mit `pio device monitor --port COMx --filter time --filter log2file`. COM-Port Pico 1 ‹OFFEN›, COM-Port Pico 2 ‹OFFEN› |
+| Serieller Monitor | je Pico ein Terminal mit `pio device monitor --port COMx --filter time --filter log2file`. COM-Port Pico 1 COM6, COM-Port Pico 2 COM3 |
 | Betriebssystem Testlaptop | Windows 11 Pro 10.0.26300 |
 
 Der Filter `time` setzt vor jede Monitorzeile die Uhrzeit des Laptops mit Millisekunden. Der Filter `log2file` schreibt alle Zeilen zusätzlich in eine Logdatei.
@@ -280,10 +280,10 @@ Kein Nachweis zeigt das WLAN-Passwort. Screenshots von src/common/config.h sind 
 
 | Zyklus | Firmware | Inhalt | Termin |
 | --- | --- | --- | --- |
-| Zyklus 1 | Firmware 1.0, Test-Build | T01 bis T29 nach der Checkliste in Kapitel 7.5 | ‹OFFEN› |
-| Fehlerbehebung | Firmware 1.1 und höher | je ein Commit pro Fehler mit Fehler-ID, Build-Nachweis | ‹OFFEN› |
-| Zyklus 2 | Endstand, Test-Build | vollständiger Durchlauf T01 bis T29 mit einer Retest-Zeile je Fehler-ID | ‹OFFEN› |
-| Abnahme | Endstand, Produktivbuild | T30 | ‹OFFEN› |
+| Zyklus 1 | Firmware 1.0, Test-Build | T01 bis T29 nach der Checkliste in Kapitel 7.5 | 13.11.2026 und 14.11.2026 |
+| Fehlerbehebung | Firmware 1.1 und höher | je ein Commit pro Fehler mit Fehler-ID, Build-Nachweis | 14.11.2026 |
+| Zyklus 2 | Endstand, Test-Build | vollständiger Durchlauf T01 bis T29 mit einer Retest-Zeile je Fehler-ID | 14.11.2026 |
+| Abnahme | Endstand, Produktivbuild | T30 | 14.11.2026 |
 
 Die Ergebnisse von Zyklus 1 werden nie überschrieben. Zyklus 2 steht als eigener Eintrag mit Datum, Uhrzeit, Commit und Firmware-Version im Testprotokoll. Testkonzept 1.0 sah zwei Zyklen im Abstand von einer Woche vor. Wegen der Abgabe am 14.11.2026 liegen beide Zyklen in derselben Woche.
 

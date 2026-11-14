@@ -692,3 +692,4 @@ Vorarbeit: Reset, TG 44499 einfahren und bezahlen. Soll: Antwort der Testhilfe, 
 - Log Pico 1: `21:13:16.499 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211`. Log Pico 2: `21:13:21.867 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212`
 - Kasse-Seite zuerst geöffnet, Log Pico 1: `21:13:57.098 > [KASSE] Uhr gestellt: 14.11.2026 21:13:57`. Schranken-Seite danach geöffnet
 - 21:14:09: Die Schranken-Seite zeigt "Belegung 0 / 0" und "Kasse erreichbar" (Ablesung mit H-07, Browser_Z1_Teil2.log). Kasse-Seite um 21:14:08: "0 / 3"
+- Ab 21:23 stehen die Beobachtungen von Zyklus 1, Zyklus 2 und T30 direkt im Testprotokoll (Kapitel 5, 6 und 7.5). Rohdaten: Browser_Z1_Teil2.log, Browser_Z2.log, Browser_T30.log und die Monitor-Logs

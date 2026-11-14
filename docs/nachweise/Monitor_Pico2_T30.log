@@ -1,0 +1,55 @@
+22:46:08.984 --- Monitor gestartet am 14.11.2026 fuer COM3, 115200 Baud
+22:46:08.984 --- COM3 nicht verfuegbar, warte auf den Port
+22:46:16.235 --- verbunden mit COM3
+22:46:17.351 > 
+22:46:17.351 > === Parksystem M450 - Pico 2 (Schranken) - Firmware 1.4 ===
+22:46:17.351 > [SCHRANKE] Schranke bereit an GPIO 8
+22:46:17.351 > [SCHRANKE] Ein-Servo-Betrieb: Ein- und Ausfahrt teilen GP8
+22:46:17.351 > [WLAN] Suche Netze in der Umgebung ...
+22:46:18.840 >       braendi  Signal -65 dBm  Kanal 6  WPA2
+22:46:18.842 >       braendi-devices  Signal -65 dBm  Kanal 6  WPA2
+22:46:18.842 >       braendi-public  Signal -65 dBm  Kanal 6  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 11  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -54 dBm  Kanal 1  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -80 dBm  Kanal 1  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -69 dBm  Kanal 6  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -64 dBm  Kanal 6  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -65 dBm  Kanal 11  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 11  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -56 dBm  Kanal 1  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 1  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -57 dBm  Kanal 6  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -56 dBm  Kanal 11  WPA2
+22:46:18.852 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -79 dBm  Kanal 1  WPA2
+22:46:18.852 >         Signal -64 dBm  Kanal 11  WPA2
+22:46:18.852 >         Signal -56 dBm  Kanal 1  WPA2
+22:46:18.852 >         Signal -81 dBm  Kanal 1  WPA2
+22:46:18.852 >         Signal -67 dBm  Kanal 6  WPA2
+22:46:18.852 >         Signal -63 dBm  Kanal 6  WPA2
+22:46:18.852 >         Signal -64 dBm  Kanal 11  WPA2
+22:46:18.852 >         Signal -64 dBm  Kanal 11  WPA2
+22:46:18.852 >         Signal -57 dBm  Kanal 1  WPA2
+22:46:18.852 >         Signal -51 dBm  Kanal 6  WPA2
+22:46:18.852 >         Signal -59 dBm  Kanal 11  WPA2
+22:46:18.913 >         Signal -78 dBm  Kanal 1  WPA2
+22:46:18.913 >         Signal -78 dBm  Kanal 11  WPA2
+22:46:18.913 > [WLAN] ACHTUNG: nbkauzAM02 7335 ist nicht in der Liste. Der Router funkt vermutlich nur auf 5 GHz.
+22:46:18.913 > [WLAN] Verbinde mit nbkauzAM02 7335
+22:46:19.037 > 
+22:46:19.037 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212
+22:46:19.037 > [SCHRANKEN] Webserver laeuft. Kasse erwartet unter 192.168.137.211
+22:46:21.988 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+22:46:23.052 > [WLAN] Energiesparmodus aus.
+22:46:41.086 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:47:38.403 > [SCHRANKE] Uhr gestellt: 14.11.2026 22:47:38
+22:48:23.172 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:49:19.380 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -5
+22:50:23.105 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:50:52.546 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:50:57.553 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:51:23.077 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:51:32.547 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+22:51:32.610 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:51:37.605 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:53:14.704 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:54:02.687 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
