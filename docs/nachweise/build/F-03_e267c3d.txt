@@ -1,6 +1,6 @@
 Build-Nachweis F-03
 
-Commit: b812ed9df506ecf4feed155a0bf0ecd10561e253
+Commit: e267c3dbab1e0168ba519bec8c6ad3e91d9212e8
 Commit-Nachricht: F-03: Nachberechnung nach Ablauf des Zeitfensters von 15 Minuten (Firmware 1.3)
 Zeitpunkt des Builds: 14.11.2026 22:00:02
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod

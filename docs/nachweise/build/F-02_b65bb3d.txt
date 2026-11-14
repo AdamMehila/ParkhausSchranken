@@ -1,6 +1,6 @@
 Build-Nachweis F-02
 
-Commit: 5c01ce8031b4426b4d3522b97f029b82c34775f8
+Commit: b65bb3d5463601477403e056c6de7baca3e83a68
 Commit-Nachricht: F-02: Fehlversuche bei der Einfahrt mit Datum und Uhrzeit festhalten (Firmware 1.2)
 Zeitpunkt des Builds: 14.11.2026 21:58:52
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod

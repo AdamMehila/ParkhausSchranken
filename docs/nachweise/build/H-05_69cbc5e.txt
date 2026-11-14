@@ -1,6 +1,6 @@
 Build-Nachweis H-05
 
-Commit: 867aed752bac289e053cf296513dd973d46c1674
+Commit: 69cbc5e85a659318a8de269f8d44d105b01147f8
 Commit-Nachricht: H-05: Umgebungen fuer den Produktivbuild (TEST_BUILD=0)
 Zeitpunkt des Builds: 12.11.2026 18:42:24
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod

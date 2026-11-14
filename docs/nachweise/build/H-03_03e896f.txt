@@ -1,6 +1,6 @@
 Build-Nachweis H-03
 
-Commit: a9377ce005da96d2aed0100d3d37a2f7a0d1fdb7
+Commit: 03e896f511f115d5dab2944ab5102d16fc3c5994
 Commit-Nachricht: H-03: Debug-Zeit nennt Gebuehr fuer die exakte Dauer
 Zeitpunkt des Builds: 12.11.2026 18:35:48
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins

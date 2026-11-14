@@ -1,6 +1,6 @@
 Build-Nachweis H-04
 
-Commit: f708382dcfb2acda08721e08bb5f2f8f75d983d0
+Commit: c48ea8bb7a37413eb1efb15e04f711f1a2f83640
 Commit-Nachricht: H-04: Kasse per Test-Endpunkt fuer N Sekunden stumm schalten
 Zeitpunkt des Builds: 12.11.2026 18:38:08
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins

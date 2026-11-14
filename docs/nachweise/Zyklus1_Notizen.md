@@ -10,7 +10,7 @@ Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Screenshots nac
 - Ort: zuhause
 - Firmware-Version laut Banner Pico 1: Firmware 1.0 (Monitor_Pico1_Z1.log, 17:36:45)
 - Firmware-Version laut Banner Pico 2: Firmware 1.0 (Monitor_Pico2_Z1.log, 17:53:58)
-- Commit: 867aed7
+- Commit: 69cbc5e
 - Chrome-Version: 157.0.8103.79 (Dateiversion von chrome.exe)
 - COM-Port Pico 1: COM6
 - COM-Port Pico 2: COM3
@@ -218,7 +218,7 @@ Soll: M02 "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum 
 Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet von Adam. Vor der Durchführung zwei Versuche ohne Wirkung:
 
 - Klick geplant für 20:16:00. Adam hat die Frage zum Arm vor 20:16:00 beantwortet: "war nicht aufmerksam versuchs nochmal". Claude hat die geplante Aktion zwischen 20:15:38 und 20:15:49 abgebrochen. Sie ist nicht gelaufen: kein Eintrag in Browser_Z1.log, keine Logzeile in beiden Monitoren.
-- Versuch um 20:17:00: H-07 hat 30 mal A ins Feld "Einfahrt" geschrieben und um 20:17:05.101 auf "Einfahrt bestätigen" geklickt. Die Seite zeigte keine Meldung, es ging keine Anfrage an Pico 2, in beiden Monitoren steht keine Zeile. Ursache: Der Schranken-Tab lag im Chrome-Fenster im Hintergrund (`visibilityState` "hidden"). Chrome stellt einem verdeckten Tab keine Mausereignisse zu. Korrektur in H-07, Commit 84f99c7: Tab vor jeder Aktion in den Vordergrund holen. Adam wurde zu diesem Versuch nicht nach dem Arm gefragt.
+- Versuch um 20:17:00: H-07 hat 30 mal A ins Feld "Einfahrt" geschrieben und um 20:17:05.101 auf "Einfahrt bestätigen" geklickt. Die Seite zeigte keine Meldung, es ging keine Anfrage an Pico 2, in beiden Monitoren steht keine Zeile. Ursache: Der Schranken-Tab lag im Chrome-Fenster im Hintergrund (`visibilityState` "hidden"). Chrome stellt einem verdeckten Tab keine Mausereignisse zu. Korrektur in H-07, Commit 7ce37d4: Tab vor jeder Aktion in den Vordergrund holen. Adam wurde zu diesem Versuch nicht nach dem Arm gefragt.
 
 Durchführung:
 
@@ -409,7 +409,7 @@ Ausführung und Ablesung durch Claude mit H-07 in Chrome, Servo-Arm beobachtet v
 - Log: `20:54:18.218 --- Verbindung getrennt (SerialException)` (Pico 2, COM3), `20:54:19.067 --- Verbindung getrennt (SerialException)` (Pico 1, COM6)
 - Zustand bei der letzten Ablesung um 20:33:05: LU 12345 im Parkhaus (Einfahrt 20:32:49, offen), Belegung "1 / 3", unter "Abgeschlossene Vorgänge" LU 12345 aus T01 bis T03. Pico 1 hält die Parkvorgänge nur im Arbeitsspeicher
 - Beide Monitore um 20:55 beendet. Letzte Zeilen: `20:54:19.120 --- COM6 nicht verfuegbar, warte auf den Port` und `20:54:18.272 --- COM3 nicht verfuegbar, warte auf den Port`. Das Wachhalten des Laptops ist ebenfalls beendet
-- H-06 schreibt ab Commit 3bba959 das Datum in die Startzeile des Monitors, weil die Logzeilen nur die Uhrzeit tragen
+- H-06 schreibt ab Commit 0bcc5ed das Datum in die Startzeile des Monitors, weil die Logzeilen nur die Uhrzeit tragen
 - Offen für die Fortsetzung: Entscheid von Adam, wie in T04, T05 und T19 die Zeit am Arm gemessen wird
 - Vorschlag von Claude für die Fortsetzung am 14.11.2026: Picos einstecken, Monitore mit neuen Logdateien starten, Kasse-Seite zuerst öffnen, Eingangskriterien wiederholen, dann Reset und T04
 

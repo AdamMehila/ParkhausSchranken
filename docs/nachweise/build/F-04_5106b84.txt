@@ -1,6 +1,6 @@
 Build-Nachweis F-04
 
-Commit: bad02f7754e9b23b6dfcbfcd65bc722be3ce4c84
+Commit: 5106b848d751d768458af71ebae13133f786c230
 Commit-Nachricht: F-04: Antworten der Kasse an Pico 2 pruefen und verlorene Antworten abgleichen (Firmware 1.4)
 Zeitpunkt des Builds: 14.11.2026 22:01:47
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod

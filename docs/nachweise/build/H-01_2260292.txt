@@ -1,8 +1,8 @@
-Build-Nachweis H-02
+Build-Nachweis H-01
 
-Commit: 7334c5f641650f231f1b62a808c8f71a3bc6b7a0
-Commit-Nachricht: H-02: Firmware-Version 1.0 im Banner beider Picos
-Zeitpunkt des Builds: 12.11.2026 18:33:55
+Commit: 2260292b92ffdc4dae7373b025744e6a38fd3364
+Commit-Nachricht: H-01: Statusabfrage Pico 2 an Pico 1 im seriellen Monitor sichtbar
+Zeitpunkt des Builds: 12.11.2026 18:30:39
 Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins
 Werkzeug: PlatformIO Core, version 6.2.0
 Rückgabewert: 0
@@ -11,8 +11,8 @@ Hinweis: Der vollstaendige Kompilierlauf vor dem Commit zeigte 52 Warnungen, all
 
 Environment          Status    Duration
 -------------------  --------  ------------
-pico1_cashdesk       SUCCESS   00:00:12.670
-pico2_barriers       SUCCESS   00:00:13.576
-servo_test           SUCCESS   00:00:07.322
-servo_test_all_pins  SUCCESS   00:00:03.026
-========================= 4 succeeded in 00:00:36.593 =========================
+pico1_cashdesk       SUCCESS   00:00:13.003
+pico2_barriers       SUCCESS   00:00:13.233
+servo_test           SUCCESS   00:00:06.617
+servo_test_all_pins  SUCCESS   00:00:06.356
+========================= 4 succeeded in 00:00:39.210 =========================
