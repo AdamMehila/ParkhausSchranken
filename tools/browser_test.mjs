@@ -90,8 +90,10 @@ async function connect(name) {
   await cdp.open();
   // Ein verdeckter Tab bekommt keine Mausklicks und Tastatureingaben zugestellt.
   // Darum den Tab vor jeder Aktion in den Vordergrund holen und warten, bis er sichtbar ist.
+  // Ist das Chrome-Fenster von einem anderen Fenster verdeckt, bleibt visibilityState "hidden",
+  // obwohl der Tab vorne ist und Klicks ankommen. Darum nur kurz warten statt auf "visible".
   await cdp.send("Page.bringToFront");
-  for (let i = 0; i < 40 && (await cdp.eval("document.visibilityState")) !== "visible"; i++) await sleep(50);
+  await sleep(150);
   await cdp.eval(INSTALL_TRACKER);
   return cdp;
 }
