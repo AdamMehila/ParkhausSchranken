@@ -18,4 +18,4 @@
 // eingesetzt werden kann.
 // ===========================================================================
 
-#define FIRMWARE_VERSION "1.3"
+#define FIRMWARE_VERSION "1.4"

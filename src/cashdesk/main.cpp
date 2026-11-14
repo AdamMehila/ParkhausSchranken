@@ -232,6 +232,9 @@ static void handleStatusRequest() {
   response += plateIsUnknown ? String(F("-")) : formatMoney(info.feeInCents);
   response += F("\",\"feeInCents\":");
   response += info.feeInCents;
+  // Parkdauer in Sekunden, damit Pico 2 eine verlorene Antwort abgleichen kann (F-04)
+  response += F(",\"parkedSeconds\":");
+  response += info.parkedSeconds;
   // Zahlungszeitpunkt (F-01, User Story 6, Akzeptanzkriterium 2)
   response += F(",\"paidAt\":\"");
   response += (info.paidUptimeSecond < 0) ? String(F("-")) : formatDateAndTime(info.paidUptimeSecond);

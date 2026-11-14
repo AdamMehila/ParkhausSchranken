@@ -7,6 +7,11 @@
 
 namespace {
 
+  // Zeitlimit für eine Anfrage an die Kasse (F-04). Mit 2 s kamen Antworten
+  // der Kasse teils zu spät an. 3 s lassen bei T23 die Meldung innerhalb von
+  // 5 s erscheinen.
+  constexpr uint16_t CASHDESK_TIMEOUT_MS = 3000;
+
   // Schreibt Sonderzeichen so um, dass sie in einer Webadresse stehen dürfen.
   //
   // In einer Adresse haben Zeichen wie Leerzeichen, Fragezeichen oder
@@ -80,10 +85,10 @@ namespace {
     // Diese Obergrenze gilt auch für den Verbindungsaufbau. Ohne sie würde
     // ein Aufruf bei abgeschaltetem Router viele Sekunden hängen bleiben und
     // dabei den ganzen Pico blockieren.
-    client.setTimeout(HTTP_TIMEOUT_MS);
+    client.setTimeout(CASHDESK_TIMEOUT_MS);
 
     HTTPClient http;
-    http.setTimeout(HTTP_TIMEOUT_MS);
+    http.setTimeout(CASHDESK_TIMEOUT_MS);
 
     // Keine Verbindung offen halten. Auf einem Gerät mit so wenig Speicher
     // ist es sicherer, jede Verbindung sauber zu schliessen, als sie für den
@@ -104,8 +109,24 @@ namespace {
     String responseBody;
 
     if (statusCode > 0) {
-      responseBody     = http.getString();
-      reachableOut     = true;
+      responseBody = http.getString();
+      responseBody.trim();
+
+      // Nur eine vollständige JSON-Antwort mit Status 200 zählt (F-04).
+      // Vorher galt auch eine leere Antwort als gültig. Pico 2 las dann
+      // eine leere Meldung und eine Platzzahl von 0.
+      bool isComplete = (statusCode == 200)
+                     && responseBody.startsWith("{")
+                     && responseBody.endsWith("}");
+      if (isComplete) {
+        reachableOut = true;
+      } else {
+        Serial.print(F("[KASSE-CLIENT] Antwort unvollstaendig, Status "));
+        Serial.print(statusCode);
+        Serial.print(F(", Laenge "));
+        Serial.println(responseBody.length());
+        responseBody = String();
+      }
     } else {
       Serial.print(F("[KASSE-CLIENT] Kasse nicht erreichbar, Fehler "));
       Serial.println(statusCode);
@@ -217,9 +238,10 @@ StatusReply askCashDeskForStatus(const String& plate) {
     return reply;
   }
 
-  reply.paymentState = readJsonField(json, "status");
-  reply.plate        = readJsonField(json, "plate");
-  reply.fee          = readJsonField(json, "fee");
+  reply.paymentState  = readJsonField(json, "status");
+  reply.plate         = readJsonField(json, "plate");
+  reply.fee           = readJsonField(json, "fee");
+  reply.parkedSeconds = readJsonField(json, "parkedSeconds").toInt();
 
   return reply;
 }
@@ -246,6 +268,12 @@ OccupancyReply askCashDeskForOccupancy() {
   reply.totalSpots        = MAX_PARKING_SPOTS;
 
   String json = sendRequestToCashDesk(F("/api/vehicles"), reply.cashDeskReachable);
+
+  // Die Abfrage der Belegung ändert nichts an der Kasse und darf deshalb
+  // einmal wiederholt werden (F-04).
+  if (!reply.cashDeskReachable) {
+    json = sendRequestToCashDesk(F("/api/vehicles"), reply.cashDeskReachable);
+  }
 
   if (!reply.cashDeskReachable) {
     return reply;

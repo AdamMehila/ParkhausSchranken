@@ -266,8 +266,21 @@ static void handleEntryRequest() {
   // ohne Parkvorgang darf niemand hinein. Sonst stünde ein Fahrzeug im
   // Parkhaus, von dem niemand etwas weiss, und es käme nie wieder heraus.
   if (!reply.cashDeskReachable) {
-    sendSimpleReply(false, reply.message);
-    return;
+    // Die Antwort der Kasse fehlt. Die Kasse kann die Einfahrt trotzdem
+    // registriert haben (F-04). Eine Statusabfrage klaert das: Steht das
+    // Fahrzeug seit hoechstens 15 s offen im Parkhaus, war es diese Einfahrt.
+    StatusReply check = askCashDeskForStatus(plate);
+    if (check.cashDeskReachable && check.paymentState == "unpaid" && check.parkedSeconds <= 15) {
+      Serial.print(F("[EINFAHRT] Antwort der Kasse fehlte, Einfahrt laut Statusabfrage registriert: "));
+      Serial.println(plate);
+      reply.cashDeskReachable = true;
+      reply.accepted          = true;
+      reply.occupied          = g_occupiedSpots + 1;
+      reply.totalSpots        = MAX_PARKING_SPOTS;
+    } else {
+      sendSimpleReply(false, reply.message);
+      return;
+    }
   }
 
   // Ab hier wissen wir sicher, dass die Kasse erreichbar ist.
@@ -372,6 +385,21 @@ static void handleExitRequest() {
   // nicht rauskommt und es nochmal versuchen muss. Das ist unangenehm, aber
   // reparierbar. Ein für immer blockierter Platz wäre es nicht.
   if (!askCashDeskToFinishParking(plate)) {
+    // Die Antwort der Kasse fehlt oder ist negativ. Hat die Kasse den
+    // Vorgang trotzdem abgeschlossen, kennt sie das Kennzeichen nicht mehr
+    // als parkiert (F-04). Dann muss die Schranke oeffnen.
+    StatusReply check = askCashDeskForStatus(plate);
+    if (check.cashDeskReachable && check.paymentState == "unknown") {
+      Serial.print(F("[AUSFAHRT] Antwort der Kasse fehlte, Ausfahrt laut Statusabfrage abgeschlossen: "));
+      Serial.println(plate);
+      exitBarrier.open();
+      refreshOccupancyFromCashDesk(true);
+      String message = F("Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für ");
+      message += plate;
+      message += F(".");
+      sendSimpleReply(true, message);
+      return;
+    }
     sendSimpleReply(false, F("Die Kasse konnte den Parkvorgang nicht abschliessen. Die Schranke bleibt geschlossen."));
     return;
   }

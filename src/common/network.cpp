@@ -235,8 +235,22 @@ void startWifi(IPAddress ownIp, const char* hostname) {
 }
 
 
+// Der WLAN-Chip spart im Normalfall Strom und hört nur in Abständen auf
+// das Netz. Antworten der Kasse kamen dadurch teils erst nach mehr als
+// 2 s bei Pico 2 an (F-04). Bei bestehender Verbindung wird der
+// Energiesparmodus deshalb ausgeschaltet.
+static bool g_lowPowerIsOff = false;
+
 void keepWifiAlive() {
   bool isConnectedNow = hasRealWifiLink();
+
+  if (isConnectedNow && !g_lowPowerIsOff) {
+    WiFi.noLowPowerMode();
+    g_lowPowerIsOff = true;
+    Serial.println(F("[WLAN] Energiesparmodus aus."));
+  } else if (!isConnectedNow) {
+    g_lowPowerIsOff = false;
+  }
 
   logOnlyWhenStateChanges(isConnectedNow);
 

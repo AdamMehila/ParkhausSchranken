@@ -42,6 +42,7 @@ struct StatusReply {
   String paymentState;   // unknown, unpaid oder paid
   String plate;
   String fee;            // Gebühr als fertiger Text, zum Beispiel "CHF 4.00"
+  long   parkedSeconds = 0;   // Parkdauer in Sekunden (F-04)
 };
 
 
