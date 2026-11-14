@@ -25,6 +25,9 @@
 // verschwindet.
 constexpr uint8_t MAX_PARKING_RECORDS = 24;
 
+// Zeitfenster nach der Bezahlung in Sekunden (F-03, Testkonzept 1.1, Kapitel 5.3)
+constexpr uint32_t PAYMENT_WINDOW_SECONDS = 15 * 60;
+
 
 // Der Zustand eines einzelnen Eintrags.
 enum class RecordStatus : uint8_t {
@@ -154,6 +157,9 @@ uint32_t calculateFeeInCents(uint32_t parkedSeconds);
 //
 // Bei einem zu grossen index kommt nullptr zurück, also ein Zeiger, der auf
 // nichts zeigt. Der Aufrufer muss das prüfen.
+// Prüft bei allen Fahrzeugen, ob das Zeitfenster nach der Zahlung abgelaufen ist (F-03).
+void refreshPaymentWindows();
+
 const ParkingRecord* getParkingRecord(uint8_t index);
 
 

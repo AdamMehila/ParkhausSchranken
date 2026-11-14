@@ -104,9 +104,10 @@ static String buildActiveVehicleJson(const ParkingRecord& record) {
   // Bei einem bezahlten Fahrzeug wird der bezahlte Betrag angezeigt und
   // nicht neu gerechnet. Sonst stünde in der Liste plötzlich wieder eine
   // Schuld, obwohl der Kunde längst bezahlt hat.
+  // Offen: Gebühr ab Einfahrt minus bereits bezahlt (F-03)
   uint32_t feeInCents = (record.status == RecordStatus::PARKED_PAID)
                       ? record.paidCents
-                      : calculateFeeInCents(parkedSeconds);
+                      : calculateFeeInCents(parkedSeconds) - record.paidCents;
 
   String json = F("{\"plate\":\"");
   json += escapeForJson(record.plate);
@@ -142,6 +143,7 @@ static void handleHomePage() {
 // Die Antwort hat zwei getrennte Listen: vehicles enthält die Fahrzeuge, die
 // gerade im Parkhaus stehen, history die bereits ausgefahrenen.
 static void handleVehicleList() {
+  refreshPaymentWindows();   // F-03
   String activeVehicles;
   String history;
 

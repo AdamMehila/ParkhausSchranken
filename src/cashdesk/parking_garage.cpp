@@ -27,6 +27,32 @@ namespace {
   // Ergebnis also verändern. Sie ist deshalb absichtlich nur innerhalb
   // dieser Datei sichtbar. Nach aussen gibt es nur getParkingRecord, und
   // das gibt einen Zeiger auf const heraus.
+  uint32_t secondsSinceEntry(int64_t entryUptimeSecond);
+
+  // Zeitfenster nach der Bezahlung (F-03, User Story 7, Akzeptanzkriterium 3).
+  // Innerhalb von 15 Minuten nach der Zahlung wird nichts nachberechnet.
+  // Danach rechnet die Kasse die Gebühr ab der Einfahrt neu. Ist sie höher
+  // als der bezahlte Betrag, gilt der Vorgang wieder als offen, verlangt
+  // wird nur die Differenz.
+  void applyPaymentWindow(ParkingRecord& record) {
+    if (record.status != RecordStatus::PARKED_PAID || record.paidUptimeSecond < 0) {
+      return;
+    }
+    int64_t sincePayment = (int64_t)uptimeInSeconds() - record.paidUptimeSecond;
+    if (sincePayment <= (int64_t)PAYMENT_WINDOW_SECONDS) {
+      return;
+    }
+    uint32_t totalFee = calculateFeeInCents(secondsSinceEntry(record.entryUptimeSecond));
+    if (totalFee <= record.paidCents) {
+      return;
+    }
+    record.status = RecordStatus::PARKED_UNPAID;
+    Serial.print(F("[KASSE] Zeitfenster abgelaufen: "));
+    Serial.print(record.plate);
+    Serial.print(F(" offen "));
+    Serial.println(formatMoney(totalFee - record.paidCents));
+  }
+
   ParkingRecord* findActiveRecord(const String& plate) {
     for (uint8_t i = 0; i < MAX_PARKING_RECORDS; i++) {
       ParkingRecord& record = g_records[i];
@@ -34,6 +60,7 @@ namespace {
       // Die Klammern sind hier wichtig. Ohne sie würde C++ zuerst das &&
       // auswerten und die Bedingung bekäme eine völlig andere Bedeutung.
       if (isCurrentlyParked(record) && plate.equals(record.plate)) {
+        applyPaymentWindow(record);   // F-03
         return &record;
       }
     }
@@ -261,7 +288,8 @@ ParkingInfo lookupParkingInfo(const String& userInput) {
   if (record->status == RecordStatus::PARKED_PAID) {
     info.feeInCents = record->paidCents;
   } else {
-    info.feeInCents = calculateFeeInCents(info.parkedSeconds);
+    // offener Betrag: Gebühr ab Einfahrt minus bereits bezahlt (F-03)
+    info.feeInCents = calculateFeeInCents(info.parkedSeconds) - record->paidCents;
   }
 
   return info;
@@ -289,8 +317,10 @@ PaymentState payParkingFee(const String& userInput,
     return PaymentState::PAID;
   }
 
-  paidCentsOut       = calculateFeeInCents(secondsSinceEntry(record->entryUptimeSecond));
-  record->paidCents  = paidCentsOut;
+  // Bezahlt wird der offene Betrag. Nach Ablauf des Zeitfensters ist das
+  // die Differenz zum bereits bezahlten Betrag (F-03).
+  paidCentsOut       = calculateFeeInCents(secondsSinceEntry(record->entryUptimeSecond)) - record->paidCents;
+  record->paidCents += paidCentsOut;
   record->paidUptimeSecond = (int64_t)uptimeInSeconds();   // Zahlungszeitpunkt (F-01)
   record->status     = RecordStatus::PARKED_PAID;
 
@@ -321,6 +351,12 @@ bool finishParking(const String& userInput) {
   return true;
 }
 
+
+void refreshPaymentWindows() {
+  for (uint8_t i = 0; i < MAX_PARKING_RECORDS; i++) {
+    applyPaymentWindow(g_records[i]);
+  }
+}
 
 const ParkingRecord* getParkingRecord(uint8_t index) {
   if (index >= MAX_PARKING_RECORDS) {
