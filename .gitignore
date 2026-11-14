@@ -4,3 +4,15 @@
 .vscode/launch.json
 .vscode/ipch
 
+
+# Arbeitsdateien im Ordner docs, nur lokal (nicht Teil der Abgabe)
+docs/A01-03-umsetzung-parksystem.pdf
+docs/A01-04-testdurchfuehrung-parksystem.pdf
+docs/A01-04_Auftrag_und_Bewertung.md
+docs/Mehila_Adam (1).pdf
+docs/Testkonzept_Nachtrag_v1.1.md
+docs/Testkonzept_Parksystem_Adam (1) 1 (1).pdf
+docs/Testprotokoll.md
+docs/UserStories_Parksystem.pdf
+docs/pdf/
+docs/testprotokoll.dotx
