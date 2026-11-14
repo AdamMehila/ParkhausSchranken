@@ -231,7 +231,16 @@ async function act(cdp, { fill, button, path, force = false }) {
       result[`klickOhneWirkung${attempt}`] = c.clickTime;
       await cdp.send("Page.bringToFront");
       await sleep(300);
-      c = await click(cdp, button, force);
+      if (attempt === 2) {
+        // Kommen auch wiederholte Mausereignisse nicht an, wird der Knopf über das DOM
+        // ausgelöst (element.click()). Das ruft denselben Handler der Seite auf.
+        const t = await pageNow(cdp);
+        await cdp.eval(`document.querySelector(${JSON.stringify(button)}).click()`);
+        c = { clicked: true, t, clickTime: now(), disabled: false };
+        result.klickPerDom = true;
+      } else {
+        c = await click(cdp, button, force);
+      }
     }
   }
   result.klick = c.clicked ? c.clickTime : c.reason;
