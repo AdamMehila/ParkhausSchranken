@@ -26,6 +26,7 @@
 // Standard docs/nachweise/Browser_Z1.log).
 
 import { appendFileSync, writeFileSync } from "node:fs";
+import { spawn } from "node:child_process";
 
 const PORT = 9222;
 const HOSTS = { kasse: "192.168.137.211", schranke: "192.168.137.212" };
@@ -146,6 +147,11 @@ async function click(cdp, selector, force = false) {
     e.scrollIntoView({ block: "center" }); const r = e.getBoundingClientRect();
     return { x: r.x + r.width / 2, y: r.y + r.height / 2, disabled: !!e.disabled }; })()`);
   if (box.disabled && !force) return { clicked: false, reason: "Knopf gesperrt (disabled)" };
+  // Mit BEEP=1 piept der Laptop zweimal kurz vor dem Klick (Zeichen für den Beobachter des Arms).
+  if (process.env.BEEP === "1") {
+    spawn("powershell.exe", ["-NoProfile", "-Command", "[console]::beep(1000,200);[console]::beep(1000,200)"], { stdio: "ignore" });
+    await sleep(900);
+  }
   const t = await pageNow(cdp);
   for (const type of ["mouseMoved", "mousePressed", "mouseReleased"]) {
     await cdp.send("Input.dispatchMouseEvent", { type, x: box.x, y: box.y, button: "left", clickCount: 1 });
