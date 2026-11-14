@@ -1,0 +1,225 @@
+22:03:44.196 --- Monitor gestartet am 14.11.2026 fuer COM3, 115200 Baud
+22:03:44.196 --- COM3 nicht verfuegbar, warte auf den Port
+22:03:51.493 --- verbunden mit COM3
+22:03:52.628 > 
+22:03:52.629 > === Parksystem M450 - Pico 2 (Schranken) - Firmware 1.4 ===
+22:03:52.629 > [SCHRANKE] Schranke bereit an GPIO 8
+22:03:52.629 > [SCHRANKE] Ein-Servo-Betrieb: Ein- und Ausfahrt teilen GP8
+22:03:52.629 > [WLAN] Suche Netze in der Umgebung ...
+22:03:54.083 >   --> nbkauzAM02 7335  Signal -47 dBm  Kanal 1  WPA2
+22:03:54.083 >       braendi  Signal -66 dBm  Kanal 6  WPA2
+22:03:54.083 >       braendi-devices  Signal -65 dBm  Kanal 6  WPA2
+22:03:54.097 >       braendi-public  Signal -67 dBm  Kanal 6  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -62 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 1  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -90 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -85 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -66 dBm  Kanal 6  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -79 dBm  Kanal 6  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -67 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -62 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -72 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -58 dBm  Kanal 1  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -48 dBm  Kanal 6  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -53 dBm  Kanal 11  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -79 dBm  Kanal 1  WPA2
+22:03:54.102 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -81 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -63 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -69 dBm  Kanal 6  WPA2
+22:03:54.102 >         Signal -77 dBm  Kanal 6  WPA2
+22:03:54.102 >         Signal -90 dBm  Kanal 6  WPA2
+22:03:54.102 >         Signal -69 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -58 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -71 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -58 dBm  Kanal 1  WPA2
+22:03:54.102 >         Signal -71 dBm  Kanal 6  WPA2
+22:03:54.102 >         Signal -53 dBm  Kanal 6  WPA2
+22:03:54.102 >         Signal -52 dBm  Kanal 11  WPA2
+22:03:54.102 >         Signal -76 dBm  Kanal 1  WPA2
+22:03:54.161 >         Signal -80 dBm  Kanal 11  WPA2
+22:03:54.161 > [WLAN] Verbinde mit nbkauzAM02 7335
+22:03:54.261 > 
+22:03:54.261 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212
+22:03:54.261 > [SCHRANKEN] Webserver laeuft. Kasse erwartet unter 192.168.137.211
+22:03:57.250 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+22:03:58.212 > [WLAN] Energiesparmodus aus.
+22:03:58.278 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:04:07.215 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:04:30.277 > [SCHRANKE] Uhr gestellt: 14.11.2026 22:04:30
+22:05:58.332 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:06:03.357 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:06:16.256 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:06:16.311 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:07:32.267 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:07:35.272 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:07:36.269 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:07:41.274 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:07:53.217 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:07:56.294 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:07:56
+22:07:56.294 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0
+22:08:11.244 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:08:11
+22:08:11.244 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+22:08:28.877 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:08:28
+22:08:28.877 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30
+22:09:05.253 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:09:23.220 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:09:41.239 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:09:41
+22:09:41.239 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0
+22:09:56.428 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:09:56
+22:09:56.428 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30
+22:10:05.330 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:10:11.264 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:10:11
+22:10:11.264 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+22:10:29.296 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:11:21.424 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:11:26.395 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:12:44.250 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:12:56.726 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:13:00.038 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:13:03.355 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:13:03.418 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:13:25.256 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:13:55.246 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:14:31.252 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:14:40.244 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:15:19.283 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:15:19.467 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:15:29.319 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:17:50.272 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:18:41.232 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:18:59.197 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+22:19:32.293 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:20:17.292 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:20:38.319 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:20:38.382 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:22:46.295 > [AUSFAHRT] Kasse meldet fuer SG 11122: unpaid
+22:22:46.295 > [AUSFAHRT] Noch nicht bezahlt: SG 11122
+22:23:06.317 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:23:06.442 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:23:26.294 > [AUSFAHRT] Kasse meldet fuer SG 11122: paid
+22:23:26.419 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:23:31.414 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:23:47.395 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:23:56.414 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:24:29.388 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:24:29.513 > [EINFAHRT] Antwort der Kasse fehlte, Einfahrt laut Statusabfrage registriert: LU 12345
+22:24:29.513 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:24:34.520 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:24:38.581 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:24:41.590 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:24:47.542 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:24:48.613 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+22:24:48.738 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:24:53.740 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:25:37.111 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:25:42.112 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:26:09.358 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:26:13.226 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:26:14.352 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:27:40.123 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:28:05.041 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:28:10.041 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:28:13.187 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:28:21.000 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:28:26.005 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:28:38.651 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:28:38.651 > [AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.
+22:30:05.979 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+22:30:06.105 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:30:11.114 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:30:31.053 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:30:36.065 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:31:12.134 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:31:51.764 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:31:56.785 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:32:03.843 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:32:06.099 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:32:08.797 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:32:21.744 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:32:26.759 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:33:11.731 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+22:33:11.857 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:33:16.851 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:33:31.738 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:33:36.729 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:33:44.578 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:33:49.588 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:33:50.963 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:33:50.963 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:34:00.919 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:35:09.924 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:35:18.442 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:35:23.423 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:35:27.920 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:35:28.046 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:36:03.860 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:36:08.874 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:36:16.988 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:36:31.893 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:37:43.928 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:38:10.883 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:38:30.655 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:38:35.607 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:39:10.740 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+22:39:10.802 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:39:15.811 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:39:22.818 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:39:27.814 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:39:37.588 > [AUSFAHRT] Kasse meldet fuer ZH 98765: unpaid
+22:39:37.588 > [AUSFAHRT] Noch nicht bezahlt: ZH 98765
+22:39:57.700 > [AUSFAHRT] Kasse meldet fuer ZH 98765: paid
+22:39:57.762 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:40:02.760 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:40:09.755 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:40:14.762 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:40:30.746 > [AUSFAHRT] Kasse meldet fuer BE 55512: unknown
+22:40:30.746 > [AUSFAHRT] Unbekanntes Kennzeichen: BE 55512
+22:40:45.648 > [AUSFAHRT] Kasse meldet fuer BE 55511: paid
+22:40:45.710 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:40:50.704 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:40:57.825 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:41:09.899 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:41:24.795 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:41:33.557 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:41:38.557 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:03.749 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:42:05.747 > [AUSFAHRT] Kasse meldet fuer SG 11122: paid
+22:42:05.809 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:42:10.817 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:18.584 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:42:23.589 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:23.839 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:42:33.349 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:42:33.411 > [EINFAHRT] Antwort der Kasse fehlte, Einfahrt laut Statusabfrage registriert: LU 122
+22:42:33.411 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:42:38.414 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:39.161 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:42:44.172 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:44.989 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:42:49.996 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:42:50.808 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:42:50
+22:42:50.808 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 5
+22:42:56.636 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:42:56
+22:42:56.636 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 2
+22:43:02.497 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:43:02
+22:43:02.497 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 7
+22:43:05.886 > [KASSE-CLIENT] Antwort unvollstaendig, Status 200, Laenge 0
+22:43:08.352 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:43:08
+22:43:08.352 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 8
+22:43:14.219 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:43:14
+22:43:14.219 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+22:43:20.129 > [EINGABE] Fehlversuch gespeichert: 14.11.2026 22:43:19
+22:43:20.129 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 11
+22:43:33.486 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:43:38.450 > [SCHRANKE] Schranke schliesst (90 Grad).
+22:43:50.852 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:43:53.986 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:43:57.251 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:43:57.251 > [AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.
+22:44:00.843 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:44:03.910 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:44:10.857 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:44:13.924 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+22:44:25.770 > [AUSFAHRT] Kasse meldet fuer TG 44499: paid
+22:44:25.886 > [SCHRANKE] Schranke oeffnet (0 Grad).
+22:44:30.871 > [SCHRANKE] Schranke schliesst (90 Grad).

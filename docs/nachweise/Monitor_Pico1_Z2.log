@@ -1,0 +1,121 @@
+22:02:57.780 --- Monitor gestartet am 14.11.2026 fuer COM6, 115200 Baud
+22:02:57.780 --- COM6 nicht verfuegbar, warte auf den Port
+22:03:04.822 --- verbunden mit COM6
+22:03:05.732 > 
+22:03:05.732 > === Parksystem M450 - Pico 1 (Kasse) - Firmware 1.4 ===
+22:03:05.732 > [WLAN] Suche Netze in der Umgebung ...
+22:03:07.207 >   --> nbkauzAM02 7335  Signal -57 dBm  Kanal 1  WPA2
+22:03:07.210 >       braendi  Signal -68 dBm  Kanal 6  WPA2
+22:03:07.210 >       braendi-devices  Signal -69 dBm  Kanal 6  WPA2
+22:03:07.210 >       braendi-public  Signal -68 dBm  Kanal 6  WPA2
+22:03:07.210 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -72 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -92 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -85 dBm  Kanal 1  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -86 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -69 dBm  Kanal 6  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -70 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -71 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -44 dBm  Kanal 1  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -63 dBm  Kanal 1  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -47 dBm  Kanal 6  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -61 dBm  Kanal 11  WPA2
+22:03:07.231 >       SMFL-SCHWEIGHOF-2.4GHz  Signal -70 dBm  Kanal 1  WPA2
+22:03:07.231 >         Signal -72 dBm  Kanal 11  WPA2
+22:03:07.231 >         Signal -84 dBm  Kanal 1  WPA2
+22:03:07.231 >         Signal -69 dBm  Kanal 6  WPA2
+22:03:07.231 >         Signal -74 dBm  Kanal 6  WPA2
+22:03:07.231 >         Signal -84 dBm  Kanal 6  WPA2
+22:03:07.231 >         Signal -68 dBm  Kanal 11  WPA2
+22:03:07.231 >         Signal -66 dBm  Kanal 11  WPA2
+22:03:07.231 >         Signal -69 dBm  Kanal 11  WPA2
+22:03:07.231 >         Signal -45 dBm  Kanal 1  WPA2
+22:03:07.231 >         Signal -49 dBm  Kanal 6  WPA2
+22:03:07.231 >         Signal -61 dBm  Kanal 11  WPA2
+22:03:07.231 >         Signal -74 dBm  Kanal 1  WPA2
+22:03:07.231 >         Signal -90 dBm  Kanal 11  WPA2
+22:03:07.231 > [WLAN] Verbinde mit nbkauzAM02 7335
+22:03:07.347 > 
+22:03:07.398 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211
+22:03:07.398 > [KASSE] Webserver laeuft. Plaetze: 3
+22:03:07.398 > [WLAN] Energiesparmodus aus.
+22:04:26.860 > [KASSE] Uhr gestellt: 14.11.2026 22:04:26
+22:05:58.332 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+22:06:04.100 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -50 Minuten
+22:06:15.636 > [KASSE] Bezahlt: SG 11122 CHF 2.00
+22:11:21.424 > [KASSE] Einfahrt: LU 12345  Belegung: 2/3
+22:21:17.094 > [KASSE] Zeitfenster abgelaufen: SG 11122 offen CHF 2.00
+22:22:46.233 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> unpaid
+22:22:58.367 > [KASSE] Bezahlt: SG 11122 CHF 2.00
+22:23:26.294 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid
+22:23:26.357 > [KASSE] Ausfahrt: SG 11122  Belegung: 1/3
+22:24:18.365 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:24:29.388 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+22:24:29.513 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> unpaid
+22:24:42.908 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+22:24:48.613 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:24:48.675 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3
+22:25:37.049 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+22:25:43.736 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:26:09.358 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+22:27:56.026 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:28:05.041 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+22:28:21.000 > [KASSE] Einfahrt: LU 12345  Belegung: 2/3
+22:28:32.684 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+22:28:38.525 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:30:05.979 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:30:06.042 > [KASSE] Ausfahrt: LU 12345  Belegung: 1/3
+22:30:30.991 > [KASSE] Einfahrt: LU 12345  Belegung: 2/3
+22:31:45.755 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:31:51.764 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+22:32:03.781 > [KASSE] Einfahrt: ZH 98765  Belegung: 2/3
+22:32:21.682 > [KASSE] Einfahrt: SG 11122  Belegung: 3/3
+22:32:54.716 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+22:33:11.731 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:33:11.794 > [KASSE] Ausfahrt: LU 12345  Belegung: 2/3
+22:33:31.738 > [KASSE] Einfahrt: TG 44499  Belegung: 3/3
+22:33:38.646 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:33:44.512 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+22:35:12.325 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:35:18.379 > [KASSE] Einfahrt: BE 55511  Belegung: 1/3
+22:35:24.361 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -59 Minuten
+22:35:39.011 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -60 Minuten
+22:35:45.518 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -61 Minuten
+22:35:57.970 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:36:03.798 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+22:36:09.747 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -195 Minuten
+22:38:24.658 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:38:30.539 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+22:38:42.387 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+22:39:10.678 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+22:39:10.740 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3
+22:39:22.756 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+22:39:37.588 > [KASSE] Statusabfrage von Pico 2: ZH 98765 -> unpaid
+22:39:49.185 > [KASSE] Bezahlt: ZH 98765 CHF 2.00
+22:39:57.700 > [KASSE] Statusabfrage von Pico 2: ZH 98765 -> paid
+22:39:57.762 > [KASSE] Ausfahrt: ZH 98765  Belegung: 0/3
+22:40:09.755 > [KASSE] Einfahrt: BE 55511  Belegung: 1/3
+22:40:21.412 > [KASSE] Bezahlt: BE 55511 CHF 2.00
+22:40:30.684 > [KASSE] Statusabfrage von Pico 2: BE 55512 -> unknown
+22:40:45.585 > [KASSE] Statusabfrage von Pico 2: BE 55511 -> paid
+22:40:45.710 > [KASSE] Ausfahrt: BE 55511  Belegung: 0/3
+22:41:26.746 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:41:33.557 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+22:41:39.431 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -90 Minuten
+22:41:51.180 > [KASSE] Bezahlt: SG 11122 CHF 4.00
+22:42:05.747 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid
+22:42:05.809 > [KASSE] Ausfahrt: SG 11122  Belegung: 0/3
+22:42:13.378 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:42:18.584 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+22:42:27.530 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:42:33.349 > [KASSE] Einfahrt: LU 122  Belegung: 1/3
+22:42:33.411 > [KASSE] Statusabfrage von Pico 2: LU 122 -> unpaid
+22:42:39.161 > [KASSE] Einfahrt: LU 123456  Belegung: 2/3
+22:42:44.989 > [KASSE] Einfahrt: LU 1  Belegung: 3/3
+22:43:27.603 > [DEBUG] Alle Parkvorgaenge geloescht.
+22:43:33.419 > [KASSE] Einfahrt: TG 44499  Belegung: 1/3
+22:43:45.136 > [KASSE] Bezahlt: TG 44499 CHF 2.00
+22:43:45.820 > [DEBUG] Kasse antwortet 30 s lang nicht.
+22:44:15.800 > [DEBUG] Kasse antwortet wieder.
+22:44:25.770 > [KASSE] Statusabfrage von Pico 2: TG 44499 -> paid
+22:44:25.886 > [KASSE] Ausfahrt: TG 44499  Belegung: 0/3

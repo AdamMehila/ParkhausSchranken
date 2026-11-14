@@ -1,0 +1,4 @@
+22:48:09 http://192.168.137.211/api/debug/time?plate=LU%2012345&minutes=60 -> 404
+22:48:09 http://192.168.137.211/api/debug/reset -> 404
+22:48:09 http://192.168.137.211/api/debug/offline?seconds=30 -> 404
+22:48:09 http://192.168.137.212/api/servotest -> 404
