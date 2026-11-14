@@ -65,7 +65,7 @@ Die Rollen bleiben wie in Testkonzept 1.0. Neu ist die Spalte Person.
 | Tester Kasse | Bedient die Weboberfläche von Pico 1, prüft Gebühren und Listen, beobachtet den Monitor von Pico 1 | Adam Mehila |
 | Entwicklung | Behebt Fehler, liefert neue Firmware-Versionen, erstellt die Build-Nachweise | Adam Mehila |
 
-Hilfsmittel: Die Testhilfen H-01 bis H-05 und die Entwürfe der Testdokumente sind mit Unterstützung von Claude Code (KI-Assistent) entstanden. Prüfung, Testdurchführung und Verantwortung liegen bei Adam Mehila.
+Hilfsmittel: Als Hilfsmittel wurde Claude Code (KI-Assistent) eingesetzt. Die Verantwortung liegt bei Adam Mehila.
 
 ## 4 Angepasste Testumgebung (ersetzt Teile von Kapitel 2.1, 3.1, 3.2 und 3.3)
 

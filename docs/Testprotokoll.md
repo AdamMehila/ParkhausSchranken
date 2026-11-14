@@ -172,7 +172,7 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 | Entwicklung | Behebt Fehler, liefert neue Firmware-Versionen, erstellt die Build-Nachweise | Adam Mehila |
 | Auftraggeber | Entscheidet über die Inbetriebnahme | Parkhausbesitzer (fiktiv), vertreten durch die Lehrperson M450 (ELA) |
 
-Hilfsmittel: Die Testhilfen H-01 bis H-07 und die Entwürfe der Testdokumente sind mit Unterstützung von Claude Code (KI-Assistent) entstanden. Prüfung und Verantwortung liegen bei Adam Mehila.
+Hilfsmittel: Als Hilfsmittel wurde Claude Code (KI-Assistent) eingesetzt. Die Verantwortung liegt bei Adam Mehila.
 
 Durchführung: Bis 13.11.2026 18:15 hat Adam Mehila alle Schritte in Chrome ausgeführt und beobachtet. Danach wurden die Schritte auf Entscheid der Testleitung automatisiert ausgeführt und Meldungen, Zustände und Monitor-Logs automatisiert abgelesen: während der Abwesenheit von Adam Mehila per HTTP-Abfrage, danach mit H-07 in Chrome. Adam Mehila hat dabei den Servo-Arm beobachtet. Jedes Einzelprotokoll nennt, welche Beobachtung von wem stammt (Kapitel 4, A16).
 
