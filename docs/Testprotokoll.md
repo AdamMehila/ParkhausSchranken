@@ -78,7 +78,7 @@ Grundlage ist Testkonzept 1.1. Es besteht aus Testkonzept 1.0 und einem Nachtrag
 | Steuerung und Ablesung von Chrome | tools/browser_test.mjs (H-07) über das Chrome-DevTools-Protokoll | Node.js 26.13.0 |
 | Browser für alle Tests | Google Chrome | Chrome 157.0.8103.79 |
 | Versionsverwaltung | Git | Branch Testprotokoll |
-| Zeitmessung | Stoppuhr auf dem Handy, Zeitstempel im seriellen Monitor | |
+| Zeitmessung | Zeitstempel im seriellen Monitor. Eine Stoppuhr wurde nicht verwendet (Kapitel 4, A17) | |
 | Erzeugung des PDF | Python mit Modul markdown, Microsoft Edge im Hintergrundmodus | Edge 157.0.4341.46 |
 
 ## 1 Zusammenfassung und Empfehlung
@@ -139,7 +139,7 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 | Servo | ein SG90 an GP8 (Pin 11), VBUS (Pin 40), GND (Pin 8). Einfahrt und Ausfahrt teilen sich den Arm |
 | Stellungen | zu: 90 Grad, Arm waagrecht. Offen: 0 Grad, Arm senkrecht |
 | Testlaptop | Windows 11 Pro 10.0.26300 |
-| Stoppuhr | Handy |
+| Stoppuhr | nicht verwendet, Zeiten aus den Zeitstempeln im Monitor (Kapitel 4, A17) |
 
 ### 3.3 Netzwerk
 
@@ -215,7 +215,7 @@ Grundsätzlich gelten Testumgebung, Rollen und Testfälle aus dem Testkonzept. D
 | A08 | Ablauf | alle Testfälle in der Reihenfolge der ID | T29 zuerst, die Wartezeit von 16 Minuten wird für andere Testfälle genutzt. Reset vor jedem Block | T29 braucht echte Wartezeit. Die Vorbedingungen der Testfälle passen nicht zur Reihenfolge der ID | Kapitel 7.4 und 7.5 |
 | A09 | Zeitplan | zwei Zyklen im Abstand einer Woche, jeweils Donnerstag 14:05 bis 15:50 | beide Zyklen bis zur Abgabe am 14.11.2026 | Abgabetermin | Kapitel 7.1 |
 | A10 | Zyklus 2 | Retest der fehlerhaften Testfälle und Regression über alle Testfälle mit Priorität Hoch | vollständiger Durchlauf T01 bis T29, danach T30 | Die Regression für die geplanten Behebungen umfasst ohnehin fast alle Testfälle (Kapitel 7.4) | Kapitel 7.1 |
-| A11 | Messmethode T05 | Stoppuhr | Stoppuhr und Zeitstempel im seriellen Monitor | genauer als die Reaktionszeit beim Stoppen | T05 |
+| A11 | Messmethode T05 | Stoppuhr | Zeitstempel im seriellen Monitor, ohne Stoppuhr (A17) | genauer als die Reaktionszeit beim Stoppen | T05 |
 | A12 | Umfang | Akzeptanzkriterium 2.3 (Erkennung dauert zu lange) ohne Testfall | nicht anwendbar | Es gibt keine Kennzeichenerkennung | Kapitel 6 |
 | A13 | Testfälle | T01 bis T24 | T01 bis T24 präzisiert, T25 bis T30 neu | Bemerkungen aus der Bewertung, fehlende Akzeptanzkriterien, Abnahme des Produktivbuilds | Kapitel 8 |
 | A14 | Dokumentation | Das README sagt, im Produktivbuild seien die Testwerkzeuge "gar nicht mehr in der Firmware enthalten" | Die Endpunkte fehlen, die Karten der Testwerkzeuge sind nur ausgeblendet | Laut Code bleibt das HTML der Karten in der Seite | T30 prüft Sichtbarkeit und Endpunkte |
@@ -991,7 +991,7 @@ Diese Einschränkungen sind aus Umsetzung und Dokumentation bekannt. Sie hängen
 - Die Kasse speichert 24 Parkvorgänge. Danach wird der älteste abgeschlossene Vorgang überschrieben.
 - Antwortet die Kasse nicht, wartet Pico 2 bis zu 3 s je Anfrage (Firmware 1.4) und reagiert in dieser Zeit nicht. Bei der Abfrage der Belegung mit einer Wiederholung bis zu 6 s.
 - Die Liste der Fehlversuche und die Uhr von Pico 2 liegen im Arbeitsspeicher und sind nach einem Neustart von Pico 2 leer, bis die Schranken-Seite wieder geöffnet wird.
-- Die Testschritte wurden ab dem 13.11.2026, 18:15 mit H-07 ausgelöst und abgelesen, der Arm wurde von Adam Mehila beobachtet (A16). Zeiten am Arm stammen aus den Zeitstempeln der Befehle, nicht aus einer Stoppuhr (A17).
+- Die Testschritte wurden ab dem 13.11.2026, 18:15 automatisiert ausgeführt und abgelesen, zuerst per HTTP-Abfrage, danach mit H-07. Den Arm hat Adam Mehila beobachtet (A16). Zeiten am Arm stammen aus den Zeitstempeln der Befehle, nicht aus einer Stoppuhr (A17).
 
 Weitere Restrisiken aus offenen Fehlern: F-05 (Klasse 3). Eine bezahlte Ausfahrt kann mit "Kasse nicht erreichbar" scheitern und muss wiederholt werden. Die Daten bleiben dabei stimmig.
 
