@@ -173,7 +173,7 @@ async function readKasse(cdp) {
       belegung: t("occupancy"), uhr: t("clockText"),
       suchMeldung: msg("searchMessage"),
       suchresultatSichtbar: getComputedStyle(grid).display !== "none",
-      suchresultat: { kennzeichen: t("infoPlate"), einfahrt: t("infoEntry"), parkdauer: t("infoDuration"), gebuehr: t("infoFee"), status: t("infoStatus") },
+      suchresultat: { kennzeichen: t("infoPlate"), einfahrt: t("infoEntry"), parkdauer: t("infoDuration"), gebuehr: t("infoFee"), status: t("infoStatus"), bezahltAm: t("infoPaidAt") },
       bezahlenGesperrt: document.getElementById("payButton").disabled,
       fahrzeugeImParkhaus: rows("activeList"), abgeschlosseneVorgaenge: rows("historyList"),
       testwerkzeugeSichtbar: getComputedStyle(document.getElementById("debugCard")).display !== "none",
