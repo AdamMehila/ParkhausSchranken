@@ -230,7 +230,10 @@ static void handleStatusRequest() {
   response += plateIsUnknown ? String(F("-")) : formatMoney(info.feeInCents);
   response += F("\",\"feeInCents\":");
   response += info.feeInCents;
-  response += F("}");
+  // Zahlungszeitpunkt (F-01, User Story 6, Akzeptanzkriterium 2)
+  response += F(",\"paidAt\":\"");
+  response += (info.paidUptimeSecond < 0) ? String(F("-")) : formatDateAndTime(info.paidUptimeSecond);
+  response += F("\"}");
 
   sendJsonResponse(200, response);
 }
@@ -301,6 +304,10 @@ static void handlePaymentRequest() {
   response += wasAlreadyPaid ? F("true") : F("false");
   response += F(",\"amount\":\"");
   response += formatMoney(paidCents);
+  // Zahlungszeitpunkt (F-01)
+  ParkingInfo afterPayment = lookupParkingInfo(server.arg("plate"));
+  response += F("\",\"paidAt\":\"");
+  response += (afterPayment.paidUptimeSecond < 0) ? String(F("-")) : formatDateAndTime(afterPayment.paidUptimeSecond);
   response += F("\",\"message\":\"");
   response += escapeForJson(message);
   response += F("\"}");

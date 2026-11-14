@@ -101,6 +101,7 @@ static const char CASHDESK_WEB_PAGE[] PROGMEM = R"HTML(<!doctype html>
       <div class="field"><span>Parkdauer</span><b id="infoDuration">&ndash;</b></div>
       <div class="field"><span>Geb&uuml;hr</span><b id="infoFee">&ndash;</b></div>
       <div class="field"><span>Status</span><b id="infoStatus">&ndash;</b></div>
+      <div class="field"><span>Bezahlt am</span><b id="infoPaidAt">&ndash;</b></div>
     </div>
   </div>
 
@@ -205,6 +206,7 @@ function displayParkingInfo(reply) {
   document.getElementById("infoDuration").textContent = reply.duration;
   document.getElementById("infoFee").textContent      = reply.fee;
   document.getElementById("infoStatus").textContent   = (reply.status === "paid") ? "bezahlt" : "offen";
+  document.getElementById("infoPaidAt").textContent   = reply.paidAt || "-";
 
   if (reply.status === "paid") {
     payButton.disabled = true;
@@ -230,6 +232,7 @@ async function payFee() {
     document.getElementById("payButton").disabled    = true;
     document.getElementById("infoStatus").textContent = "bezahlt";
     document.getElementById("infoFee").textContent    = reply.amount;
+    document.getElementById("infoPaidAt").textContent = reply.paidAt || "-";
   }
 
   refreshPage();

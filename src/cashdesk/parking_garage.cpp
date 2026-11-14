@@ -126,6 +126,7 @@ void resetAllParkingRecords() {
     g_records[i].entryUptimeSecond = 0;
     g_records[i].exitUptimeSecond  = 0;
     g_records[i].paidCents         = 0;
+    g_records[i].paidUptimeSecond  = -1;
     g_records[i].status            = RecordStatus::UNUSED;
   }
 }
@@ -217,6 +218,7 @@ EntryResult registerEntry(const String& userInput,
   record->entryUptimeSecond = (int64_t)uptimeInSeconds();
   record->exitUptimeSecond  = 0;
   record->paidCents         = 0;
+  record->paidUptimeSecond  = -1;
   record->status            = RecordStatus::PARKED_UNPAID;
 
   logWithOccupancy(F("Einfahrt: "), *record);
@@ -234,6 +236,7 @@ ParkingInfo lookupParkingInfo(const String& userInput) {
   info.entryUptimeSecond = 0;
   info.parkedSeconds     = 0;
   info.feeInCents        = 0;
+  info.paidUptimeSecond  = -1;
 
   ParkingRecord* record = findActiveRecord(info.plate);
   if (record == nullptr) {
@@ -245,6 +248,7 @@ ParkingInfo lookupParkingInfo(const String& userInput) {
              : PaymentState::NOT_PAID_YET;
 
   info.entryUptimeSecond = record->entryUptimeSecond;
+  info.paidUptimeSecond  = record->paidUptimeSecond;
   info.parkedSeconds     = secondsSinceEntry(record->entryUptimeSecond);
 
   // Hier steckt eine wichtige Regel drin.
@@ -287,6 +291,7 @@ PaymentState payParkingFee(const String& userInput,
 
   paidCentsOut       = calculateFeeInCents(secondsSinceEntry(record->entryUptimeSecond));
   record->paidCents  = paidCentsOut;
+  record->paidUptimeSecond = (int64_t)uptimeInSeconds();   // Zahlungszeitpunkt (F-01)
   record->status     = RecordStatus::PARKED_PAID;
 
   Serial.print(F("[KASSE] Bezahlt: "));
@@ -345,6 +350,7 @@ bool debugMoveEntryTimeBack(const String& userInput, uint32_t minutes) {
   if (record->status == RecordStatus::PARKED_PAID) {
     record->status    = RecordStatus::PARKED_UNPAID;
     record->paidCents = 0;
+    record->paidUptimeSecond = -1;
   }
 
   Serial.print(F("[DEBUG] Einfahrtszeit verschoben: "));

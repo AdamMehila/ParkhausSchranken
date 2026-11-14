@@ -57,6 +57,7 @@ struct ParkingRecord {
   int64_t  entryUptimeSecond;   // Laufzeitsekunde der Einfahrt
   int64_t  exitUptimeSecond;    // Laufzeitsekunde der Ausfahrt
   uint32_t paidCents;           // tatsächlich bezahlter Betrag in Rappen
+  int64_t  paidUptimeSecond;    // Laufzeitsekunde der letzten Zahlung, -1 = noch nie bezahlt (F-01)
   RecordStatus status;
 };
 
@@ -88,6 +89,7 @@ struct ParkingInfo {
   int64_t      entryUptimeSecond;
   uint32_t     parkedSeconds;
   uint32_t     feeInCents;
+  int64_t      paidUptimeSecond;   // Laufzeitsekunde der letzten Zahlung, -1 = noch nie bezahlt (F-01)
 };
 
 
