@@ -76,7 +76,7 @@ Grundlage ist Testkonzept 1.1. Es besteht aus Testkonzept 1.0 und einem Nachtrag
 | Entwicklungsumgebung | Visual Studio Code mit PlatformIO | PlatformIO Core 6.2.0 |
 | Serieller Monitor | tools/serial_monitor.py (H-06), Python und pyserial aus PlatformIO | Python 3.11.7, pyserial 3.5 |
 | Steuerung und Ablesung von Chrome | tools/browser_test.mjs (H-07) über das Chrome-DevTools-Protokoll | Node.js 26.13.0 |
-| Browser für alle Tests | Google Chrome | ‹OFFEN› |
+| Browser für alle Tests | Google Chrome | Chrome 157.0.8103.79 |
 | Versionsverwaltung | Git | Branch Testprotokoll |
 | Zeitmessung | Stoppuhr auf dem Handy, Zeitstempel im seriellen Monitor | |
 | Erzeugung des PDF | Python mit Modul markdown, Microsoft Edge im Hintergrundmodus | Edge 157.0.4341.46 |
@@ -111,8 +111,8 @@ Beide Picos haben eine Weboberfläche, die im Browser des Testlaptops geöffnet 
 
 | Einsatz | Firmware | Commit | Build | Umgebungen | Geflasht am |
 | --- | --- | --- | --- | --- | --- |
-| Zyklus 1 | Firmware 1.0 | 867aed7 | Test-Build (TEST_BUILD=1) | pico1_cashdesk, pico2_barriers | ‹OFFEN› |
-| Zyklus 2 | ‹OFFEN› | ‹OFFEN› | Test-Build (TEST_BUILD=1) | pico1_cashdesk, pico2_barriers | ‹OFFEN› |
+| Zyklus 1 | Firmware 1.0 | 867aed7 | Test-Build (TEST_BUILD=1) | pico1_cashdesk, pico2_barriers | 13.11.2026, Banner nach dem Flashen um 17:06:53 (Pico 1) und 17:07:33 (Pico 2) |
+| Zyklus 2 | Firmware 1.4 | bad02f7 | Test-Build (TEST_BUILD=1) | pico1_cashdesk, pico2_barriers | 14.11.2026, Banner nach dem Flashen um 22:03:05 (Pico 1) und 22:03:52 (Pico 2) |
 | T30 | ‹OFFEN› | ‹OFFEN› | Produktivbuild (TEST_BUILD=0) | pico1_cashdesk_prod, pico2_barriers_prod | ‹OFFEN› |
 
 Die Netzwerkwerte (WLAN-Name, Adressen) stehen nur lokal in der Konfigurationsdatei und sind nicht Teil der Commits. Das WLAN-Passwort wird nirgends dokumentiert.
@@ -127,8 +127,8 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 
 | Zyklus | Ort |
 | --- | --- |
-| Zyklus 1 | ‹OFFEN› |
-| Zyklus 2 | ‹OFFEN› |
+| Zyklus 1 | zuhause bei Adam Mehila |
+| Zyklus 2 | zuhause bei Adam Mehila |
 
 ### 3.2 Hardware
 
@@ -145,22 +145,22 @@ Getestet wird gegen Testkonzept 1.1 (Anhang A). Es übernimmt Testziele, Teststu
 
 | Angabe | Ist |
 | --- | --- |
-| WLAN-Name (2,4 GHz) | ‹OFFEN› |
-| Pico 1 (Kasse) | ‹OFFEN› |
-| Pico 2 (Schranken) | ‹OFFEN› |
-| Gateway, Subnetzmaske | ‹OFFEN› |
+| WLAN-Name (2,4 GHz) | nbkauzAM02 7335, Windows-Hotspot des Testlaptops, Kanal 1, WPA2. Das automatische Ausschalten des Hotspots war abgeschaltet |
+| Pico 1 (Kasse) | 192.168.137.211 |
+| Pico 2 (Schranken) | 192.168.137.212 |
+| Gateway, Subnetzmaske | 192.168.137.1, 255.255.255.0 |
 | Testlaptop | im selben WLAN |
 
 ### 3.4 Software
 
 | Software | Ist |
 | --- | --- |
-| Browser | Google Chrome ‹OFFEN› |
+| Browser | Google Chrome 157.0.8103.79 |
 | Entwicklungsumgebung | Visual Studio Code mit PlatformIO Core 6.2.0 |
 | Serieller Monitor | bis 13.11.2026 17:33 `pio device monitor --port COMx --filter time --filter log2file`, ab 17:34 tools/serial_monitor.py (H-06), Kapitel 4, A15 |
 | Steuerung von Chrome | tools/browser_test.mjs (H-07), Kapitel 4, A16 |
-| COM-Port Pico 1 | ‹OFFEN› |
-| COM-Port Pico 2 | ‹OFFEN› |
+| COM-Port Pico 1 | COM6 |
+| COM-Port Pico 2 | COM3 |
 
 ### 3.5 Rollen und Personen
 
@@ -180,7 +180,7 @@ Durchführung in Zyklus 1: Bis 13.11.2026 18:15 hat Adam Mehila alle Schritte in
 
 | Zyklus | Datum | Beginn | Ende |
 | --- | --- | --- | --- |
-| Zyklus 1 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| Zyklus 1 | 13.11.2026 und 14.11.2026 | 13.11.2026 17:18 | 14.11.2026 21:53, Unterbruch von 13.11.2026 20:54 bis 14.11.2026 21:13 |
 | Zyklus 2 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
 | T30 (Abnahme) | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
 
@@ -188,12 +188,12 @@ Durchführung in Zyklus 1: Bis 13.11.2026 18:15 hat Adam Mehila alle Schritte in
 
 | Kriterium (Testkonzept 1.1, Kapitel 7.5) | Zyklus 1 | Zyklus 2 |
 | --- | --- | --- |
-| Beide Picos mit dem getesteten Stand geflasht, Banner zeigt die Firmware-Version | ‹OFFEN› | ‹OFFEN› |
-| Monitor für jeden Pico mit Zeitstempel und Logdatei offen | ‹OFFEN› | ‹OFFEN› |
-| Kasse-Seite zuerst geöffnet, Monitor zeigt `[KASSE] Uhr gestellt: ...`, danach Schranken-Seite geöffnet | ‹OFFEN› | ‹OFFEN› |
-| Beide Seiten laden in Chrome innerhalb von 3 s | ‹OFFEN› | ‹OFFEN› |
-| Servo-Test: Meldung M23, Arm geht hoch und nach 5 s wieder runter | ‹OFFEN› | ‹OFFEN› |
-| Reset: Meldung M22, Belegung "0 / 3" auf beiden Seiten | ‹OFFEN› | ‹OFFEN› |
+| Beide Picos mit dem getesteten Stand geflasht, Banner zeigt die Firmware-Version | erfüllt: "Firmware 1.0" um 17:36:45 (Pico 1) und 17:53:58 (Pico 2) | ‹OFFEN› |
+| Monitor für jeden Pico mit Zeitstempel und Logdatei offen | erfüllt ab 17:34:02 mit H-06 (Kapitel 4, A15) | ‹OFFEN› |
+| Kasse-Seite zuerst geöffnet, Monitor zeigt `[KASSE] Uhr gestellt: ...`, danach Schranken-Seite geöffnet | erfüllt: `17:39:16.943 > [KASSE] Uhr gestellt: 13.11.2026 17:39:16` | ‹OFFEN› |
+| Beide Seiten laden in Chrome innerhalb von 3 s | erfüllt: Kasse 0,121 s, 0,085 s, 0,026 s, Schranke 0,040 s, 0,084 s, 0,030 s (HTML ohne JavaScript, PowerShell) | ‹OFFEN› |
+| Servo-Test: Meldung M23, Arm geht hoch und nach 5 s wieder runter | erfüllt: M23, Arm hoch und nach 5 s runter (Adam), 17:42:10 | ‹OFFEN› |
+| Reset: Meldung M22, Belegung "0 / 3" auf beiden Seiten | erfüllt: "Alle Parkvorgänge gelöscht." um 17:45:54, "0 / 3" auf beiden Seiten | ‹OFFEN› |
 
 ### 3.8 Testwerkzeuge und Beobachtung
 
@@ -208,7 +208,7 @@ Grundsätzlich gelten Testumgebung, Rollen und Testfälle aus dem Testkonzept. D
 | A01 | Hardware | zwei Servos, Einfahrt an GPIO 15, Ausfahrt an GPIO 16 | ein Servo an GP8 für Einfahrt und Ausfahrt | Umsetzung mit einem Servo nach dem Verkabelungsbeispiel aus Auftrag A01-03. Einfahrt und Ausfahrt sind nur über die Meldungen unterscheidbar | Kapitel 4.1, Soll-Werte der Testfälle angepasst |
 | A02 | Hardware | zu bei 0 Grad, offen bei 90 Grad | zu bei 90 Grad, offen bei 0 Grad | Der Arm sitzt anders auf der Achse. Waagrecht bleibt zu, senkrecht bleibt offen | Kapitel 4.1 |
 | A03 | Hardware | Kartonstreifen als Schrankenarm | mitgelieferter Arm des SG90 | Arm war vorhanden | Kapitel 4.1 |
-| A04 | Netzwerk | WLAN PARK-TEST-NET, Pico 1 auf 192.168.4.11, Pico 2 auf 192.168.4.12 | ‹OFFEN› | ‹OFFEN› | Kapitel 4.2 |
+| A04 | Netzwerk | WLAN PARK-TEST-NET, Pico 1 auf 192.168.4.11, Pico 2 auf 192.168.4.12 | Windows-Hotspot des Testlaptops nbkauzAM02 7335, Pico 1 auf 192.168.137.211, Pico 2 auf 192.168.137.212 | Kein eigener Router vorhanden, der Hotspot liefert ein 2,4-GHz-Netz | Kapitel 4.2 |
 | A05 | Software | "Version 1.0 des Test-Builds", ohne Kennung im Gerät | Firmware 1.0 mit den Testhilfen H-01 bis H-05, Commit 867aed7, Version im Banner | Der getestete Stand muss eindeutig erkennbar sein | Kapitel 4.3 |
 | A06 | Testwerkzeuge | nur der Endpunkt zur Zeitmanipulation, ohne Aufruf | zusätzlich Reset, Kasse stumm schalten, Servo-Test, Gebühr für exakte Dauer, jeweils mit Aufruf und Antwort | Ausgangszustand, T13 und T23 brauchen sie | Kapitel 4.4 |
 | A07 | T23 | WLAN-Router für 30 s ausschalten | Pico 1 beantwortet 30 s lang keine Anfragen (Testhilfe H-04) | Ein ausgeschalteter Router trennt auch den Laptop, die Ausfahrt liesse sich nicht auslösen | T23, Kapitel 6 |
@@ -221,6 +221,8 @@ Grundsätzlich gelten Testumgebung, Rollen und Testfälle aus dem Testkonzept. D
 | A14 | Dokumentation | Das README sagt, im Produktivbuild seien die Testwerkzeuge "gar nicht mehr in der Firmware enthalten" | Die Endpunkte fehlen, die Karten der Testwerkzeuge sind nur ausgeblendet | Laut Code bleibt das HTML der Karten in der Seite | T30 prüft Sichtbarkeit und Endpunkte |
 | A15 | Serieller Monitor | Testkonzept 1.1, Kapitel 4.3: je Pico ein Terminal mit `pio device monitor --port COMx --filter time --filter log2file` | ab 13.11.2026 17:34 tools/serial_monitor.py (H-06) im Hintergrund, gleiches Zeilenformat, eine Logdatei je Pico und Zyklus | `pio device monitor` verlangt ein interaktives Terminal und hat sich nach dem Neustart der Picos nicht wieder verbunden. Banner und `[KASSE] Uhr gestellt` fehlten deshalb im ersten Durchgang der Eingangskriterien | keine, Abweichung nur in diesem Protokoll |
 | A16 | Durchführung | Tester Einfahrt und Ausfahrt und Tester Kasse bedienen die Seiten in Chrome und beobachten selbst | ab 13.11.2026 18:15 führt Claude Code die Schritte aus und liest Meldungen, Zustände und Monitor-Logs ab: per HTTP-Abfrage bis zur Rückkehr von Adam Mehila, danach mit H-07 in Chrome. Adam Mehila beobachtet den Servo-Arm | Entscheid der Testleitung während Zyklus 1. H-07 benutzt dieselbe Seite, dieselben Knöpfe und dieselben Anfragen an die Picos wie die Bedienung von Hand. Jede Aktion steht mit Uhrzeit, Eingabe und abgelesenem Ergebnis im Log | keine, Abweichung nur in diesem Protokoll |
+| A17 | Messmethode T04, T05, T19 | Stoppuhr am Arm | Zeitstempel im Monitor von Pico 2 (Befehl zum Öffnen und Schliessen) und Beobachtung des Arms mit "Arm bewegt: ja/nein" | Die Schritte wurden mit H-07 ausgelöst, eine Stoppuhrmessung durch den Beobachter fand nicht statt | keine, Abweichung nur in diesem Protokoll |
+| A18 | T24 | Kennzeichen auf der Schranken-Seite eingeben | Aufruf `/api/entry` von Pico 2 per HTTP (dieselbe Anfrage wie die Seite), Ablesung der Kasse-Seite alle 100 ms | Zeit bis zur Anzeige auf 0,1 s genau messbar, ohne Wechsel zwischen den Tabs | keine, Abweichung nur in diesem Protokoll |
 
 ## 5 Testdurchführung Zyklus 1
 
@@ -825,7 +827,7 @@ Die Testhilfen ändern keine Funktion des Parksystems. Sie machen Abläufe beoba
 | H-04 | Kasse für N Sekunden stumm schalten, nur im Test-Build | Ausfall der Kasse simulieren, ohne den Laptop vom WLAN zu trennen und ohne Datenverlust (T23) | f708382 | alle Umgebungen SUCCESS, Anhang B |
 | H-05 | Zwei Build-Umgebungen für den Produktivbuild (TEST_BUILD=0) | Abnahmetest T30 mit demselben Commit wie Zyklus 2 | 867aed7 | alle sechs Umgebungen SUCCESS, Anhang B |
 | H-06 | Serieller Monitor tools/serial_monitor.py: Uhrzeit des Laptops mit Millisekunden vor jeder Zeile wie beim Filter `time`, eine Logdatei je Pico, verbindet nach einem Neustart des Picos selbst neu, vermerkt jede Verbindung und Trennung mit `---` | `pio device monitor` lässt sich nicht im Hintergrund starten und hat sich nach dem Neustart der Picos nicht wieder verbunden. Banner und `[KASSE] Uhr gestellt` fehlten deshalb im Log (Kapitel 4, A15) | 40cedb5, 3bba959 | keiner, Firmware unverändert |
-| H-07 | Steuerung von Chrome tools/browser_test.mjs: Eingabe als Tastatureingabe, Klick als Mausereignis auf den Knopf, Ablesen von Meldung, Belegung, Listen und Suchresultat nach der Antwort des Picos, Screenshot der ganzen Seite, Log jeder Aktion mit Uhrzeit | Neue Arbeitsweise nach Entscheid der Testleitung: Claude Code führt die Schritte im Browser aus und liest ab, Adam Mehila beobachtet den Servo-Arm. Das Log macht nachvollziehbar, was wann eingegeben und abgelesen wurde (Kapitel 4, A16) | a99ec18, 84f99c7, 3228aa1 | keiner, Firmware unverändert |
+| H-07 | Steuerung von Chrome tools/browser_test.mjs: Eingabe als Tastatureingabe, Klick als Mausereignis auf den Knopf, Ablesen von Meldung, Belegung, Listen und Suchresultat nach der Antwort des Picos, Screenshot der ganzen Seite, Log jeder Aktion mit Uhrzeit | Neue Arbeitsweise nach Entscheid der Testleitung: Claude Code führt die Schritte im Browser aus und liest ab, Adam Mehila beobachtet den Servo-Arm. Das Log macht nachvollziehbar, was wann eingegeben und abgelesen wurde (Kapitel 4, A16) | a99ec18, 84f99c7, 3228aa1, e9f4e37, e83749b, a1eb046 | keiner, Firmware unverändert |
 
 ### 7.2 Korrekturen und Ergänzungen am Testkonzept
 
