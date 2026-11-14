@@ -60,6 +60,9 @@ static const char BARRIERS_WEB_PAGE[] PROGMEM = R"HTML(<!doctype html>
   .state.closed { color:var(--gray); }
   .debug { margin-top:18px; border-style:dashed; }
   .debug h2 { color:var(--gray); }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { text-align:left; padding:9px 8px; border-bottom:1px solid #eef1f5; }
+  th { font-weight:600; font-size:12px; text-transform:uppercase; }
 </style>
 </head>
 <body>
@@ -98,6 +101,16 @@ static const char BARRIERS_WEB_PAGE[] PROGMEM = R"HTML(<!doctype html>
         <div class="bar"><div id="exitBar"></div></div>
       </div>
     </div>
+  </div>
+
+  <div class="card">
+    <h2>Fehlversuche</h2>
+    <p class="hint">Abgelehnte Eingaben bei der Einfahrt, der neueste zuoberst.</p>
+    <table>
+      <thead><tr><th>Datum</th><th>Uhrzeit</th><th>Eingabe</th><th>Grund</th></tr></thead>
+      <tbody id="failedList"></tbody>
+    </table>
+    <p class="hint" id="failedEmpty">Bisher keine Fehlversuche.</p>
   </div>
 
   <div class="card debug" id="debugCard" style="display:none">
@@ -261,6 +274,32 @@ async function refreshPage() {
   labelBarriers(data);
 
   document.getElementById("debugCard").style.display = data.testBuild ? "block" : "none";
+
+  // Fehlversuche (F-02). Die Eingabe wird als Text eingesetzt, nie als HTML.
+  const attempts = data.failedAttempts || [];
+  const body = document.getElementById("failedList");
+  body.textContent = "";
+  for (const attempt of attempts) {
+    const row = document.createElement("tr");
+    for (const value of [attempt.date, attempt.time, attempt.input === "" ? "(leer)" : attempt.input, attempt.reason]) {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      row.appendChild(cell);
+    }
+    body.appendChild(row);
+  }
+  document.getElementById("failedEmpty").style.display = attempts.length ? "none" : "block";
+}
+
+
+// Übergibt die Uhrzeit des Browsers an Pico 2 (F-02), gleich wie die Kasse-Seite.
+async function sendBrowserClockToPico() {
+  const localUnixTime = Math.floor(Date.now() / 1000) - new Date().getTimezoneOffset() * 60;
+  try {
+    await fetch("/api/setclock?epoch=" + localUnixTime);
+  } catch (error) {
+    // Ohne gestellte Uhr zeigt die Liste "--" statt Datum und Uhrzeit.
+  }
 }
 
 
@@ -278,6 +317,7 @@ document.getElementById("exitPlate").addEventListener("keydown", event => {
 
 // Einmal sofort füllen, danach jede Sekunde auffrischen. Eine Sekunde ist
 // hier nötig, weil der ablaufende Balken flüssig aussehen soll.
+sendBrowserClockToPico();
 refreshPage();
 setInterval(refreshPage, 1000);
 </script>

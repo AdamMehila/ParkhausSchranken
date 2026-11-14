@@ -25,6 +25,7 @@
 #include "../common/license_plate.h"
 #include "../common/network.h"
 #include "../common/version.h"
+#include "../common/clock_time.h"
 #include "cashdesk_client.h"
 #include "barrier.h"
 #include "web_page_barriers.h"
@@ -124,11 +125,77 @@ static void sendSimpleReply(bool wasSuccessful, const String& message) {
 // am Anfang brauchen. Einmal geschrieben statt zweimal bedeutet auch: Eine
 // spätere Änderung an der Prüfung kann nicht an einer der beiden Stellen
 // vergessen werden.
-static bool readAndCheckPlate(String& plateOut) {
+// Fehlversuche bei der Einfahrt (F-02, User Story 3, Akzeptanzkriterium 3).
+// Die Liste liegt im Arbeitsspeicher und ist nach einem Neustart leer.
+constexpr uint8_t FAILED_ATTEMPTS_MAX    = 10;
+constexpr uint8_t FAILED_INPUT_MAX_CHARS = 32;
+
+struct FailedAttempt {
+  int64_t uptimeSecond;
+  char    input[FAILED_INPUT_MAX_CHARS + 1];
+  PlateCheckResult reason;
+};
+
+static FailedAttempt g_failedAttempts[FAILED_ATTEMPTS_MAX];
+static uint8_t g_failedCount = 0;   // so viele Einträge sind gültig
+static uint8_t g_failedNext  = 0;   // hier kommt der nächste Eintrag hin
+
+static void rememberFailedAttempt(const String& input, PlateCheckResult reason) {
+  FailedAttempt& attempt = g_failedAttempts[g_failedNext];
+  attempt.uptimeSecond = (int64_t)uptimeInSeconds();
+  strncpy(attempt.input, input.c_str(), FAILED_INPUT_MAX_CHARS);
+  attempt.input[FAILED_INPUT_MAX_CHARS] = '\0';
+  attempt.reason = reason;
+  g_failedNext = (g_failedNext + 1) % FAILED_ATTEMPTS_MAX;
+  if (g_failedCount < FAILED_ATTEMPTS_MAX) {
+    g_failedCount++;
+  }
+  Serial.print(F("[EINGABE] Fehlversuch gespeichert: "));
+  Serial.println(formatDateAndTime(attempt.uptimeSecond));
+}
+
+static const __FlashStringHelper* reasonToText(PlateCheckResult reason) {
+  switch (reason) {
+    case PlateCheckResult::EMPTY:    return F("leer");
+    case PlateCheckResult::TOO_LONG: return F("zu lang");
+    default:                         return F("falsches Format");
+  }
+}
+
+// Liste als JSON, der neueste Eintrag zuerst.
+static String buildFailedAttemptsJson() {
+  String json = F("[");
+  for (uint8_t n = 0; n < g_failedCount; n++) {
+    uint8_t index = (g_failedNext + FAILED_ATTEMPTS_MAX - 1 - n) % FAILED_ATTEMPTS_MAX;
+    const FailedAttempt& attempt = g_failedAttempts[index];
+    String dateAndTime = formatDateAndTime(attempt.uptimeSecond);
+    int space = dateAndTime.indexOf(' ');
+    if (n > 0) {
+      json += ',';
+    }
+    json += F("{\"date\":\"");
+    json += (space > 0) ? dateAndTime.substring(0, space) : dateAndTime;
+    json += F("\",\"time\":\"");
+    json += (space > 0) ? dateAndTime.substring(space + 1) : dateAndTime;
+    json += F("\",\"input\":\"");
+    json += escapeForJson(String(attempt.input));
+    json += F("\",\"reason\":\"");
+    json += reasonToText(attempt.reason);
+    json += F("\"}");
+  }
+  json += ']';
+  return json;
+}
+
+static bool readAndCheckPlate(String& plateOut, bool isEntry) {
   PlateCheckResult checkResult = checkPlate(server.arg("plate"), plateOut);
 
   if (checkResult == PlateCheckResult::VALID) {
     return true;
+  }
+
+  if (isEntry) {
+    rememberFailedAttempt(server.arg("plate"), checkResult);
   }
 
   // Eine ungültige Eingabe erreicht die Kasse gar nicht erst, und der Servo
@@ -189,7 +256,7 @@ static void handleEntryRequest() {
   String plate;
 
   // Grund 1: Das Kennzeichen ist ungültig.
-  if (!readAndCheckPlate(plate)) {
+  if (!readAndCheckPlate(plate, true)) {
     return;
   }
 
@@ -233,7 +300,7 @@ static void handleExitRequest() {
   String plate;
 
   // Prüfung 1: Ist das Kennzeichen gültig.
-  if (!readAndCheckPlate(plate)) {
+  if (!readAndCheckPlate(plate, false)) {
     return;
   }
 
@@ -362,6 +429,10 @@ static void handleStateRequest() {
 #else
   response += F("false");
 #endif
+  response += F(",\"clockIsSet\":");
+  response += isWallClockSet() ? F("true") : F("false");
+  response += F(",\"failedAttempts\":");
+  response += buildFailedAttemptsJson();
   response += F("}");
 
   sendJsonResponse(200, response);
@@ -405,6 +476,26 @@ static void handleServoTest() {
 
 
 // Antwortet auf jede Adresse, für die es keinen Endpunkt gibt.
+// Stellt die Uhr von Pico 2 mit der Uhr des Browsers (F-02). Gleiches
+// Verfahren wie bei der Kasse: nur einmal pro Start.
+static void handleSetClock() {
+  if (!server.hasArg("epoch")) {
+    sendJsonResponse(400, F("{\"ok\":false,\"message\":\"Parameter epoch fehlt.\"}"));
+    return;
+  }
+  uint32_t epochSeconds = (uint32_t)strtoul(server.arg("epoch").c_str(), nullptr, 10);
+  if (epochSeconds < 1600000000UL) {
+    sendJsonResponse(400, F("{\"ok\":false,\"message\":\"Unplausible Zeitangabe.\"}"));
+    return;
+  }
+  if (!isWallClockSet()) {
+    setWallClock(epochSeconds);
+    Serial.print(F("[SCHRANKE] Uhr gestellt: "));
+    Serial.println(formatDateAndTime((int64_t)uptimeInSeconds()));
+  }
+  sendJsonResponse(200, F("{\"ok\":true}"));
+}
+
 static void handleUnknownEndpoint() {
   sendJsonResponse(404, F("{\"ok\":false,\"message\":\"Unbekannter Endpunkt.\"}"));
 }
@@ -440,6 +531,7 @@ void setup() {
   server.on("/api/entry", handleEntryRequest);
   server.on("/api/exit",  handleExitRequest);
   server.on("/api/state", handleStateRequest);
+  server.on("/api/setclock", handleSetClock);
 #if TEST_BUILD
   server.on("/api/servotest", handleServoTest);
 #endif
@@ -475,6 +567,7 @@ void loop() {
   // Die Belegung im Hintergrund auffrischen. Das false bedeutet: nur, wenn
   // das Intervall abgelaufen ist.
   refreshOccupancyFromCashDesk(false);
+  uptimeInSeconds();   // hält die Laufzeitsekunden auch nach dem Überlauf von millis() richtig
 
   // Die eingebaute LED zeigt den WLAN-Zustand.
   digitalWrite(LED_BUILTIN, isWifiConnected() ? HIGH : LOW);
