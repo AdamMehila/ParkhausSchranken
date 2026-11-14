@@ -1,0 +1,19 @@
+Build-Nachweis F-03
+
+Commit: b812ed9df506ecf4feed155a0bf0ecd10561e253
+Commit-Nachricht: F-03: Nachberechnung nach Ablauf des Zeitfensters von 15 Minuten (Firmware 1.3)
+Zeitpunkt des Builds: 14.11.2026 22:00:02
+Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod
+Werkzeug: PlatformIO Core, version 6.2.0
+Rückgabewert: 0
+Warnungen in diesem Lauf: 6, davon mit Fundort in src/: 6
+
+Environment          Status    Duration
+-------------------  --------  ------------
+pico1_cashdesk       SUCCESS   00:00:03.460
+pico2_barriers       SUCCESS   00:00:04.710
+pico1_cashdesk_prod  SUCCESS   00:00:05.323
+pico2_barriers_prod  SUCCESS   00:00:05.218
+servo_test           SUCCESS   00:00:02.187
+servo_test_all_pins  SUCCESS   00:00:02.196
+========================= 6 succeeded in 00:00:23.094 =========================

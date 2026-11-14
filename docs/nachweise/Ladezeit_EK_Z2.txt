@@ -1,0 +1,6 @@
+http://192.168.137.211/ Messung 1: 0.097 s, HTTP 200, 13257 Bytes, Start 22:04:33
+http://192.168.137.211/ Messung 2: 0.080 s, HTTP 200, 13257 Bytes, Start 22:04:34
+http://192.168.137.211/ Messung 3: 0.036 s, HTTP 200, 13257 Bytes, Start 22:04:34
+http://192.168.137.212/ Messung 1: 0.078 s, HTTP 200, 12809 Bytes, Start 22:04:35
+http://192.168.137.212/ Messung 2: 0.036 s, HTTP 200, 12809 Bytes, Start 22:04:35
+http://192.168.137.212/ Messung 3: 0.067 s, HTTP 200, 12809 Bytes, Start 22:04:36

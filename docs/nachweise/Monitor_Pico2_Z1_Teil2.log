@@ -1,0 +1,82 @@
+21:13:07.337 --- Monitor gestartet am 14.11.2026 fuer COM3, 115200 Baud
+21:13:07.361 --- verbunden mit COM3
+21:13:07.881 > [WLAN] Verbindung verloren. Grund: Netz nicht gefunden. Funkt der Router nur auf 5 GHz? Der Pico kann nur 2,4 GHz.
+21:13:11.649 > [KASSE-CLIENT] Kein WLAN, Aufruf uebersprungen.
+21:13:21.650 > [KASSE-CLIENT] Kein WLAN, Aufruf uebersprungen.
+21:13:21.816 > [WLAN] Neuer Verbindungsversuch. Letzter Stand: Netz nicht gefunden. Funkt der Router nur auf 5 GHz? Der Pico kann nur 2,4 GHz.
+21:13:21.867 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212
+21:24:47.660 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:24:52.694 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:25:17.659 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:25:22.660 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:25:32.693 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:25:37.726 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:25:52.807 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:25:57.775 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:28:27.630 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+21:36:51.428 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:36:56.412 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:37:03.412 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:37:08.410 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:37:20.426 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:37:25.443 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:38:05.376 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+21:38:05.489 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:38:10.476 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:38:25.357 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:38:28.802 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:38:30.358 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:39:56.103 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:40:01.102 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:41:17.615 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:41:22.619 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:41:35.560 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:42:00.486 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:42:05.483 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:42:18.498 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+21:43:32.357 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:43:37.343 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:44:27.346 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid
+21:44:27.346 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:44:32.352 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:44:46.361 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:44:51.416 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:45:12.309 > [AUSFAHRT] Kasse meldet fuer ZH 98765: unpaid
+21:45:12.309 > [AUSFAHRT] Noch nicht bezahlt: ZH 98765
+21:45:42.308 > [AUSFAHRT] Kasse meldet fuer ZH 98765: paid
+21:45:42.370 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:45:47.418 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:45:53.429 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+21:46:01.381 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:46:06.379 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:46:30.289 > [AUSFAHRT] Kasse meldet fuer BE 55512: unknown
+21:46:30.289 > [AUSFAHRT] Unbekanntes Kennzeichen: BE 55512
+21:46:50.325 > [AUSFAHRT] Kasse meldet fuer BE 55511: paid
+21:49:15.328 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:49:20.343 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:49:52.316 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:49:52.316 > [AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.
+21:50:18.036 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:50:23.042 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:50:23.918 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:50:28.926 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:50:29.742 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:50:34.744 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:50:35.618 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 5
+21:50:41.292 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 2
+21:50:47.075 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 7
+21:50:52.892 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 8
+21:50:58.592 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10
+21:51:04.325 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 11
+21:52:00.144 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:52:05.172 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:52:22.388 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:52:30.304 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:52:30.304 > [AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.
+21:52:32.451 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:52:42.405 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11
+21:53:10.368 > [AUSFAHRT] Kasse meldet fuer TG 44499: paid
+21:53:10.419 > [SCHRANKE] Schranke oeffnet (0 Grad).
+21:53:15.431 > [SCHRANKE] Schranke schliesst (90 Grad).
+21:59:57.405 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1
+22:00:13.436 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -1

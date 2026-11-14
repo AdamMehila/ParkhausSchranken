@@ -1,0 +1,19 @@
+Build-Nachweis F-01
+
+Commit: 6c3877dae1735e25e47423f6526256d94404f022
+Commit-Nachricht: F-01: Zahlungszeitpunkt speichern und anzeigen (Firmware 1.1)
+Zeitpunkt des Builds: 14.11.2026 21:56:56
+Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod
+Werkzeug: PlatformIO Core, version 6.2.0
+Rückgabewert: 0
+Warnungen in diesem Lauf: 12, davon mit Fundort in src/: 12
+
+Environment          Status    Duration
+-------------------  --------  ------------
+pico1_cashdesk       SUCCESS   00:00:03.109
+pico2_barriers       SUCCESS   00:00:04.621
+pico1_cashdesk_prod  SUCCESS   00:00:05.485
+pico2_barriers_prod  SUCCESS   00:00:05.971
+servo_test           SUCCESS   00:00:02.520
+servo_test_all_pins  SUCCESS   00:00:02.372
+========================= 6 succeeded in 00:00:24.078 =========================

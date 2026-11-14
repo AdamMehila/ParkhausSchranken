@@ -224,7 +224,7 @@ Grundsätzlich gelten Testumgebung, Rollen und Testfälle aus dem Testkonzept. D
 
 ## 5 Testdurchführung Zyklus 1
 
-Stand: Firmware 1.0, Test-Build, Commit 867aed7. Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Alle Testfälle führt Adam Mehila aus.
+Stand: Firmware 1.0, Test-Build, Commit 867aed7. Reihenfolge nach der Checkliste in Testkonzept 1.1, Kapitel 7.5. Durchgeführt am 13.11.2026 von 17:18 bis 20:54 und am 14.11.2026 von 21:13 bis 21:53, dazwischen waren beide Picos ausgesteckt. Wer welchen Schritt ausgeführt und beobachtet hat, steht in jedem Einzelprotokoll in der Zeile Tester (Kapitel 3.5 und Kapitel 4, A16).
 
 <!-- QUERFORMAT-ANFANG -->
 
@@ -232,37 +232,39 @@ Stand: Firmware 1.0, Test-Build, Commit 867aed7. Reihenfolge nach der Checkliste
 
 | ID | Bezeichnung | Datum, Uhrzeit | Erwartet (kurz) | Tatsächlich (kurz) | Status | MK |
 | --- | --- | --- | --- | --- | --- | --- |
-| T01 | Gültiges Kennzeichen bei der Einfahrt | ‹OFFEN› | M04, Arm offen in höchstens 3 s, zu nach 5 s ± 1 s, Belegung 1 / 3 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T02 | Einfahrtszeit stimmt mit der Laptop-Uhr | ‹OFFEN› | Abweichung höchstens 1 Minute | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T03 | Erneute Einfahrt nach Abschluss | ‹OFFEN› | neuer Eintrag, alter Eintrag bleibt erhalten | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T04 | Einfahrtsschranke öffnet in 3 s | ‹OFFEN› | Arm senkrecht in höchstens 3,0 s | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T05 | Einfahrtsschranke schliesst nach 5 s | ‹OFFEN› | 5,0 s ± 1,0 s | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T06 | Leeres Kennzeichen | ‹OFFEN› | M01, Arm bleibt zu | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T07 | Sonderzeichen | ‹OFFEN› | M03, Arm bleibt zu | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T08 | Überlange Eingabe | ‹OFFEN› | M02, kein Neustart | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T09 | Letzter freier Platz | ‹OFFEN› | M04, Belegung 3 / 3 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T10 | Parkhaus voll | ‹OFFEN› | M06, Arm bleibt zu | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T11 | Platz nach Ausfahrt frei | ‹OFFEN› | M11, Belegung 2 / 3, dann 3 / 3 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T12 | Gebühr nach 1 Minute | ‹OFFEN› | "0 h 01 min", CHF 2.00 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T13 | Gebühr an der Stundengrenze | ‹OFFEN› | 59 min und genau 60 min CHF 2.00, 61 min CHF 4.00 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T14 | Gebühr nach 3 h 15 min | ‹OFFEN› | CHF 8.00 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T15 | Unbekanntes Kennzeichen an der Kasse | ‹OFFEN› | M15, Bezahlen ausgegraut | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T16 | Bezahlung erfolgreich | ‹OFFEN› | M16 CHF 2.00, M18 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T17 | Doppelte Bezahlung verhindert | ‹OFFEN› | M17, Bezahlen ausgegraut, M19 ohne zweite Buchung | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T18 | Bezahlung unbekanntes Kennzeichen | ‹OFFEN› | M15, Bezahlen ausgegraut, M20 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T19 | Ausfahrt nach Bezahlung | ‹OFFEN› | Statusabfrage paid, M11, Arm offen in höchstens 3 s | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T20 | Ausfahrt ohne Bezahlung | ‹OFFEN› | M10, Arm bleibt zu, nach Bezahlung M11 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T21 | Bezahlt, Kennzeichen anders | ‹OFFEN› | M09 für BE 55512, M11 für BE 55511 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T22 | Kompletter Durchlauf | ‹OFFEN› | CHF 4.00, M18, M11, Belegung 0 / 3 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T23 | Kasse fällt kurz aus | ‹OFFEN› | M08 in höchstens 5 s, kein Neustart, danach M11 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T24 | Kennzeichen erscheint an der Kasse | ‹OFFEN› | Eintrag in höchstens 3 s, Status offen | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T25 | Doppelte Einfahrt | ‹OFFEN› | M05, Belegung unverändert | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T26 | Kennzeichenformat | ‹OFFEN› | 3 mal M04, 5 mal M03, 1 mal M02 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T27 | Fehlversuch mit Datum und Uhrzeit | ‹OFFEN› | Liste "Fehlversuche" mit 3 Zeilen | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T28 | Zahlungszeitpunkt | ‹OFFEN› | "Bezahlt am", Abweichung höchstens 1 Minute | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
-| T29 | Nachberechnung nach Zeitfenster | ‹OFFEN› | nach 14 min bezahlt, nach 16 min offen CHF 2.00, M10, nach Nachzahlung M11 | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| T01 | Gültiges Kennzeichen bei der Einfahrt | 13.11.2026 20:31 | M04, Arm offen in höchstens 3 s, zu nach 5 s ± 1 s, Belegung 1 / 3 | M04, Arm bewegt: ja, Öffnen 0,134 s und Schliessen 5,012 s laut Monitor, Belegung 1 / 3 | bestanden | – |
+| T02 | Einfahrtszeit stimmt mit der Laptop-Uhr | 13.11.2026 20:31 | Abweichung höchstens 1 Minute | Einfahrt 20:30:59, Klick 20:31:00, Abweichung 1 s | bestanden | – |
+| T03 | Erneute Einfahrt nach Abschluss | 13.11.2026 20:32 | neuer Eintrag, alter Eintrag bleibt erhalten | neuer Eintrag 20:32:49 offen, alter Eintrag unverändert ausgefahren | bestanden | – |
+| T04 | Einfahrtsschranke öffnet in 3 s | 14.11.2026 21:24 | Arm senkrecht in höchstens 3,0 s | M04, Öffnen 0,109 s laut Monitor, Beobachtung des Arms nicht verwertbar, keine Stoppuhr | nicht durchgeführt | – |
+| T05 | Einfahrtsschranke schliesst nach 5 s | 14.11.2026 21:24 | 5,0 s ± 1,0 s | 5,034 s laut Monitor, keine Stoppuhr, keine verwertbare Beobachtung | nicht durchgeführt | – |
+| T06 | Leeres Kennzeichen | 13.11.2026 18:04 | M01, Arm bleibt zu | M01, Arm bewegt: nein, Laenge 0 | bestanden | – |
+| T07 | Sonderzeichen | 13.11.2026 18:18 | M03, Arm bleibt zu | M03 per HTTP, Laenge 10, Schranke zu laut Zustand | bestanden | – |
+| T08 | Überlange Eingabe | 13.11.2026 20:19 | M02, kein Neustart | M02, Arm bewegt: nein, Laenge 30, kein Neustart | bestanden | – |
+| T09 | Letzter freier Platz | 14.11.2026 21:37 | M04, Belegung 3 / 3 | M04, Arm bewegt: ja, Belegung 3 / 3 | bestanden | – |
+| T10 | Parkhaus voll | 14.11.2026 21:26 und 21:37 | M06, Arm bleibt zu | erster Durchgang ohne Meldung und Belegung 0 / 0, zweiter Durchgang M06, Arm bewegt: nein | nicht bestanden | 2 (F-04) |
+| T11 | Platz nach Ausfahrt frei | 14.11.2026 21:38 | M11, Belegung 2 / 3, dann 3 / 3 | M11, Arm bewegt: ja, Belegung 2 / 3, dann M04 und 3 / 3 | bestanden | – |
+| T12 | Gebühr nach 1 Minute | 14.11.2026 21:41 | "0 h 01 min", CHF 2.00 | nach 69 s "0 h 01 min", CHF 2.00, offen | bestanden | – |
+| T13 | Gebühr an der Stundengrenze | 14.11.2026 21:41 | 59 min und genau 60 min CHF 2.00, 61 min CHF 4.00 | 59 min CHF 2.00, genau 60 min CHF 2.00, 61 min CHF 4.00 | bestanden | – |
+| T14 | Gebühr nach 3 h 15 min | 14.11.2026 21:42 | CHF 8.00 | "3 h 15 min", CHF 8.00 | bestanden | – |
+| T15 | Unbekanntes Kennzeichen an der Kasse | 13.11.2026 20:24 | M15, Bezahlen ausgegraut | M15, kein Suchresultat, Bezahlen gesperrt | bestanden | – |
+| T16 | Bezahlung erfolgreich | 14.11.2026 21:43 | M16 CHF 2.00, M18 | M16 CHF 2.00, M18 CHF 2.00, Status bezahlt | bestanden | – |
+| T17 | Doppelte Bezahlung verhindert | 14.11.2026 21:43 | M17, Bezahlen ausgegraut, M19 ohne zweite Buchung | M17, Bezahlen gesperrt, M19 mit `"alreadyPaid":true`, keine zweite Buchung | bestanden | – |
+| T18 | Bezahlung unbekanntes Kennzeichen | 13.11.2026 20:24 | M15, Bezahlen ausgegraut, M20 | M15, Bezahlen gesperrt, M20 mit `"ok":false` | bestanden | – |
+| T19 | Ausfahrt nach Bezahlung | 14.11.2026 21:44 | Statusabfrage paid, M11, Arm offen in höchstens 3 s | Statusabfrage paid, M11, Arm bewegt: ja, Öffnen 0,149 s laut Monitor | bestanden | – |
+| T20 | Ausfahrt ohne Bezahlung | 14.11.2026 21:45 | M10, Arm bleibt zu, nach Bezahlung M11 | M10 CHF 2.00, Arm bewegt: nein, nach Bezahlung M11 und Arm bewegt: ja | bestanden | – |
+| T21 | Bezahlt, Kennzeichen anders | 14.11.2026 21:46 | M09 für BE 55512, M11 für BE 55511 | M09 für BE 55512. BE 55511: Kasse verbucht die Ausfahrt, Schranke bleibt zu | nicht bestanden | 2 (F-04) |
+| T22 | Kompletter Durchlauf | 14.11.2026 21:49 | CHF 4.00, M18, M11, Belegung 0 / 3 | CHF 4.00 und M18, Ausfahrt mit M08 statt M11, Arm bewegt: nein | nicht bestanden | 2 (F-04) |
+| T23 | Kasse fällt kurz aus | 14.11.2026 21:52 | M08 in höchstens 5 s, kein Neustart, danach M11 | M08 nach 2,1 s, Arm bewegt: nein, kein Neustart, danach M11 und Arm bewegt: ja | bestanden | – |
+| T24 | Kennzeichen erscheint an der Kasse | 14.11.2026 21:50 | Eintrag in höchstens 3 s, Status offen | Eintrag nach 0,3 s, Status offen. Nebenbefund F-04 | bestanden | – |
+| T25 | Doppelte Einfahrt | 13.11.2026 20:26 | M05, Belegung unverändert | zweimal M05, Belegung unverändert, eine Zeile LU 12345 | bestanden | – |
+| T26 | Kennzeichenformat | 14.11.2026 21:50 | 3 mal M04, 5 mal M03, 1 mal M02 | 3 mal M04, 5 mal M03, 1 mal M02, Belegung 3 / 3 | bestanden | – |
+| T27 | Fehlversuch mit Datum und Uhrzeit | 13.11.2026 20:22 | Liste "Fehlversuche" mit 3 Zeilen | M01, M02, M03, keine Liste "Fehlversuche" | nicht bestanden | 3 (F-02) |
+| T28 | Zahlungszeitpunkt | 14.11.2026 21:43 | "Bezahlt am", Abweichung höchstens 1 Minute | kein Feld "Bezahlt am" | nicht bestanden | 3 (F-01) |
+| T29 | Nachberechnung nach Zeitfenster | 13.11.2026 18:01 bis 18:19 | nach 14 min bezahlt, nach 16 min offen CHF 2.00, M10, nach Nachzahlung M11 | bei Z plus 17 min Status "bezahlt", Schritt 4 nicht durchgeführt | nicht bestanden | 2 (F-03) |
 
 <!-- QUERFORMAT-ENDE -->
+
+Zusammenfassung Zyklus 1: 29 Testfälle, 21 bestanden, 6 nicht bestanden (T10, T21, T22, T27, T28, T29), 2 nicht durchgeführt (T04, T05). Gefunden: F-01 bis F-04.
 
 ### 5.2 Einzelprotokolle Zyklus 1
 
@@ -272,15 +274,15 @@ Jedes Einzelprotokoll nennt das erwartete Ergebnis aus Testkonzept 1.1 in Kurzfo
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse, Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 17:58:25 bis 18:01:02 |
+| Tester | Adam Mehila, Ausführung und Beobachtung in Chrome |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 17:45:54 bei den Eingangskriterien, danach kein Fahrzeug eingefahren |
 | Eingaben | SG 11122, Einfahrtszeit um 50 Minuten verschoben |
 | Erwartet | Schritte 1 bis 3: M04, Meldung der Testwerkzeuge mit CHF 2.00, Parkdauer 0 h 50 min bis 0 h 59 min, M16 CHF 2.00, M18 CHF 2.00 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Zahlungszeit Z ‹OFFEN›, Parkdauer P ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Einfahrt: grüne Meldung M04 mit SG 11122, Arm ging hoch und nach 5 s wieder runter (Adam). Testwerkzeuge: "Einfahrtszeit um 50 Minuten zurückgesetzt. Gebühr für genau 0 h 50 min: CHF 2.00." Vor dem Bezahlen Parkdauer "0 h 51 min" und orange Meldung "Offener Betrag: CHF 2.00". Nach dem Bezahlen "Bezahlung erfolgt. Betrag: CHF 2.00.", Status "bezahlt", Belegung "1 / 3". Monitor Pico 1: `[KASSE] Einfahrt: SG 11122  Belegung: 1/3`, `[DEBUG] Einfahrtszeit verschoben: SG 11122 -50 Minuten`, `[KASSE] Bezahlt: SG 11122 CHF 2.00` |
+| Messwerte | Zahlungszeit Z 18:01:01.778 (Monitor Pico 1), Parkdauer P "0 h 51 min" |
+| Nachweise | T29_Z1_1.png, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log |
 
 Die Bewertung von T29 steht beim zweiten Teil weiter unten.
 
@@ -288,465 +290,465 @@ Die Bewertung von T29 steht beim zweiten Teil weiter unten.
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: beliebig. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 18:04:52 |
+| Tester | Adam Mehila, Ausführung und Beobachtung in Chrome |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: beliebig. Ist: SG 11122 aus T29 im Parkhaus und bezahlt, Belegung "1 / 3" |
 | Eingaben | leeres Feld |
 | Erwartet | M01, Arm bleibt zu, Monitor Pico 2 `[EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0`, Kasse unverändert |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Rote Meldung "Bitte ein Kennzeichen eingeben." (Adam). Arm bewegte sich nicht (Adam). Monitor Pico 2: `18:04:52.745 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 0`. Monitor Pico 1 ohne neue Zeile. Kasse-Seite unverändert mit SG 11122 und Belegung "1 / 3" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T06_Z1_2.png, Monitor_Pico2_Z1.log |
 
 #### T07 Kennzeichen mit Sonderzeichen wird abgelehnt (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: beliebig. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 18:18:47 |
+| Tester | Erster Versuch Adam Mehila in Chrome, die Eingabe erreichte Pico 2 nicht (keine Logzeile, angezeigt blieb die Meldung aus T06). Zweiter Versuch: Ausführung und Ablesung per HTTP-Abfrage (Kapitel 4, A16). Servo-Arm nicht beobachtet |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: beliebig. Ist: SG 11122 aus T29 im Parkhaus und bezahlt, `/api/vehicles` mit `"occupied":1` |
 | Eingaben | `!@#$%^&*()` |
 | Erwartet | M03, Arm bleibt zu, Monitor Pico 2 `[EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10`, Kasse unverändert |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Antwort von `/api/entry` (gleiche Kodierung wie die Seite): `{"ok":false,"message":"Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345."}`. Monitor Pico 2: `18:18:47.988 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 10`. `/api/state` mit `"entryBarrierOpen":false`, keine Zeile `Schranke oeffnet`. Kasse unverändert, keine Zeile im Monitor Pico 1 |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | Monitor_Pico2_Z1.log, Notizen Zyklus 1 |
 
 #### T08 Überlange Eingabe wird abgelehnt (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: beliebig. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:19:00 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: beliebig. Ist: Belegung "0 / 3", keine Fahrzeuge, kein Reset seit 17:45:54 |
 | Eingaben | 30 mal A |
 | Erwartet | M02, Arm bleibt zu, Monitor Pico 2 `[EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30`, kein neues Banner |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Rote Meldung "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345." Arm bewegt: nein (Adam), Anzeige Schrankenarm "geschlossen". Monitor Pico 2: `20:19:00.177 > [EINGABE] Abgelehnt, ungueltiges Kennzeichen. Laenge: 30`. Kein neues Banner, die Seite erhielt danach 21 Antworten auf `/api/state` in 20 s. Ein erster Klick um 20:17:05 kam nicht bei der Seite an (verdeckter Tab, Korrektur in H-07), ohne Anfrage an Pico 2 |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine. Nebenbefund: 20:19:32 Belegung "0 / 0", siehe F-04 |
+| Nachweise | T08_Z1_1.png, T08_Z1_2.png, Browser_Z1.log, Monitor_Pico2_Z1.log |
 
 #### T27 Fehlversuch wird mit Datum und Uhrzeit festgehalten (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Schranken-Seite seit dem Start von Pico 2 geöffnet. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:22:00 bis 20:23:00 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Schranken-Seite seit dem Start von Pico 2 geöffnet. Ist: Pico 2 seit 17:53:58 gestartet, Schranken-Seite seither geöffnet |
 | Eingaben | leeres Feld, 30 mal A, `!@#$%^&*()` |
 | Erwartet | M01, M02, M03. Liste "Fehlversuche" mit Datum, Uhrzeit, Eingabe und Grund, drei Zeilen, neueste oben, Uhrzeit höchstens 1 Minute Abweichung |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | notierte Uhrzeiten der drei Klicks ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Meldungen: "Bitte ein Kennzeichen eingeben.", "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345.", "Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345." Arm bewegt: dreimal nein (Adam). Monitor Pico 2 mit `Laenge: 0`, `Laenge: 30`, `Laenge: 10`. Die Schranken-Seite enthält keinen Bereich "Fehlversuche" und keine Liste mit Datum, Uhrzeit, Eingabe und Grund |
+| Messwerte | Klicks um 20:22:00.111, 20:22:20.109, 20:22:40.122 |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-02, Klasse 3 |
+| Nachweise | T27_Z1_1.png, Browser_Z1.log, Monitor_Pico2_Z1.log |
 
 #### T15 Unbekanntes Kennzeichen an der Kasse (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: UR 99988 nicht im Parkhaus. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:24:08 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: UR 99988 nicht im Parkhaus. Ist: Keine Fahrzeuge im Parkhaus (`/api/vehicles` um 20:24:07) |
 | Eingaben | UR 99988 |
 | Erwartet | M15 mit UR 99988, keine Angaben zu Einfahrt, Parkdauer und Gebühr, Bezahlen ausgegraut |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Rote Meldung "Das Kennzeichen UR 99988 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt." Suchresultat mit Einfahrt, Parkdauer und Gebühr ausgeblendet. Knopf "Bezahlen" gesperrt und grau. Ein Mausklick auf den gesperrten Knopf schickte keine Anfrage an `/api/pay` |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T15_Z1_1.png, Browser_Z1.log |
 
 #### T18 Bezahlung für unbekanntes Kennzeichen (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: ZG 77766 nicht im Parkhaus. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:24:24 bis 20:24:30 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: ZG 77766 nicht im Parkhaus. Ist: Keine Fahrzeuge im Parkhaus |
 | Eingaben | ZG 77766, Aufruf /api/pay?plate=ZG%2077766 |
 | Erwartet | M15 mit ZG 77766, Bezahlen ausgegraut, Antwort mit M20 und `"ok":false`, keine Zeile `[KASSE] Bezahlt` |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Rote Meldung "Das Kennzeichen ZG 77766 wurde im System nicht gefunden. Es ist keine Einfahrt bekannt." "Bezahlen" gesperrt, ein Mausklick darauf schickte keine Anfrage. Aufruf `/api/pay?plate=ZG%2077766` in einem neuen Tab: `{"ok":false,"status":"unknown","alreadyPaid":false,"amount":"CHF 0.00","message":"Dieses Kennzeichen ist nicht im System. Eine Bezahlung ist nicht möglich."}`. Monitor Pico 1 ohne Zeile `[KASSE] Bezahlt` |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T18_Z1_1.png, T18_Z1_2.png, Browser_Z1.log, Monitor_Pico1_Z1.log |
 
 #### T25 Kennzeichen fährt ein, obwohl es schon im Parkhaus steht (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: LU 12345 im Parkhaus, zusätzlich SG 11122 aus T29. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:26:50 und 20:27:10, Wiederholung 20:28:30 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: LU 12345 im Parkhaus, zusätzlich SG 11122 aus T29. Ist: LU 12345 um 20:26:30 eingefahren (M04), Belegung "1 / 3". SG 11122 aus T29 war schon ausgefahren |
 | Eingaben | LU 12345, lu12345 |
 | Erwartet | zweimal M05, Arm bleibt zu, Belegung unverändert, eine Zeile LU 12345, keine neue Zeile `[KASSE] Einfahrt: LU 12345` |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Beide Versuche: rote Meldung "Dieses Fahrzeug steht bereits im Parkhaus." Arm: Versuch "LU 12345" Adam "ja", Versuch "lu12345" Adam "nein". Monitor Pico 2 ohne Zeile `Schranke oeffnet` nach 20:26:35, Anzeige "geschlossen". Wiederholung "LU 12345" um 20:28:30: gleiche Meldung, Adam "nein", `/api/state` sechsmal `"entryBarrierOpen":false`. Belegung "1 / 3", genau eine Zeile LU 12345 mit Einfahrt 20:26:29, keine neue Zeile `[KASSE] Einfahrt: LU 12345` |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine. Die Beobachtung "ja" beim ersten Versuch ist weder im Log noch im Zustand von Pico 2 zu sehen, die Wiederholung ergab "nein" |
+| Nachweise | T25_Z1_1.png, T25_Z1_2.png, T25_Z1_3.png, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log |
 
 #### T29 Gebühr wird nach Ablauf des Zeitfensters nachberechnet (Zyklus 1, Fortsetzung)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse, Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: SG 11122 bezahlt um Z, kein Reset und kein Neustart von Pico 1 seither. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 18:18:04 bis 18:19:04 |
+| Tester | Ausführung und Ablesung per HTTP-Abfrage (Kapitel 4, A16). Servo-Arm nicht beobachtet. Adam Mehila war abwesend |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: SG 11122 bezahlt um Z, kein Reset und kein Neustart von Pico 1 seither. Ist: SG 11122 bezahlt um Z 18:01:01, kein Reset und kein Neustart von Pico 1 seither |
 | Eingaben | SG 11122 |
 | Erwartet | Bei Z plus 14 Minuten: Parkdauer P plus 14 Minuten, Status "bezahlt", M17. Bei Z plus 16 Minuten: Status "offen", M16 CHF 2.00. Ausfahrt: M10 mit CHF 2.00. Nach Nachzahlung (M18 CHF 2.00): M11 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Uhrzeiten der Suchen ‹OFFEN›, angezeigte Parkdauern ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Schritt 4 (Z plus 14) nicht durchgeführt, der Zeitpunkt war verpasst. Schritt 5 um 18:18:04 (Z plus 17 min 02 s): `/api/status` mit `"status":"paid"`, `"duration":"1 h 08 min"`, `"fee":"CHF 2.00"`. Erwartet war Status offen mit CHF 2.00. Schritt 6 um 18:18:55: `{"ok":true,"message":"Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für SG 11122."}`, Monitor Pico 2 `Schranke oeffnet` und nach 5,032 s `schliesst`. Schritt 7: Status "unknown", eine Nachzahlung war nicht möglich. Schritt 8: "Zu dem Kennzeichen SG 11122 ist keine Einfahrt bekannt. Die Schranke bleibt geschlossen." |
+| Messwerte | Suche bei Z plus 17 min 02 s, Parkdauer "1 h 08 min" |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-03, Klasse 2 |
+| Nachweise | Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log, Notizen Zyklus 1 |
 
 #### T01 Gültiges Kennzeichen bei der Einfahrt eintippen (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:31:00 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 20:29:40 (M22), Belegung "0 / 3" auf beiden Seiten |
 | Eingaben | LU 12345 |
 | Erwartet | M04, Arm offen in höchstens 3 s und zu nach 5 s ± 1 s, Monitorzeilen `[SCHRANKE] ...` und `[KASSE] Einfahrt: LU 12345  Belegung: 1/3`, Eintrag mit Datum und Uhrzeit, Belegung 1 / 3 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Uhrzeit des Klicks ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Grüne Meldung "LU 12345 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder." Arm bewegt: ja (Adam). Monitor Pico 2: `20:31:00.257 > [SCHRANKE] Schranke oeffnet (0 Grad).`, `20:31:05.269 > [SCHRANKE] Schranke schliesst (90 Grad).` Monitor Pico 1: `20:31:00.257 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3`. Kasse-Seite: "LU 12345, 13.11.2026 20:30:59, 0 h 00 min, CHF 2.00, offen". Belegung "1 / 3" auf beiden Seiten |
+| Messwerte | Befehl zum Öffnen 0,134 s nach dem Klick, Schliessen 5,012 s nach dem Öffnen (Zeitstempel im Monitor). Keine Stoppuhr |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T01_Z1_1.png, T01_Z1_2.png, Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log |
 
 #### T02 Einfahrtszeit stimmt mit der Uhrzeit des Laptops überein (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: nach T01. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:31:12 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: nach T01. Ist: direkt nach T01 |
 | Eingaben | LU 12345, Uhrzeit des Klicks aus T01 |
 | Erwartet | gleiches Datum, Uhrzeit höchstens 1 Minute Abweichung |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | angezeigte Einfahrt ‹OFFEN›, Abweichung ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Angezeigte Einfahrt "13.11.2026 20:30:59" (Kasse-Seite und `/api/vehicles`). Klick in T01 um 13.11.2026 20:31:00.123 (Uhr des Laptops) |
+| Messwerte | Abweichung 1 s, Datum gleich |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T01_Z1_2.png, Browser_Z1.log |
 
 #### T03 Gleiches Kennzeichen fährt nach abgeschlossenem Vorgang erneut ein (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: LU 12345 bezahlt und ausgefahren, Belegung 0 / 3. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 13.11.2026, 20:32:50 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: LU 12345 bezahlt und ausgefahren, Belegung 0 / 3. Hergestellt: LU 12345 um 20:31:29 bezahlt (M18 CHF 2.00) und um 20:32:30 ausgefahren (M11), Belegung "0 / 3" |
 | Eingaben | LU 12345 |
 | Erwartet | M04, neue Zeile unter "Fahrzeuge im Parkhaus", alte Zeile unverändert unter "Abgeschlossene Vorgänge", Belegung 1 / 3 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Grüne Meldung M04 mit LU 12345. Arm bewegt: ja (Adam). Monitor Pico 1: `20:32:50.215 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3`. "Fahrzeuge im Parkhaus": "LU 12345, 13.11.2026 20:32:49, 0 h 00 min, CHF 2.00, offen". "Abgeschlossene Vorgänge": "LU 12345, 13.11.2026 20:30:59, 13.11.2026 20:32:29, CHF 2.00, ausgefahren". Belegung "1 / 3" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T03_Z1_1.png, T03_Z1_2.png, Browser_Z1.log, Monitor_Pico1_Z1.log, Monitor_Pico2_Z1.log |
 
 #### T04 Einfahrtsschranke öffnet innerhalb von 3 Sekunden (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:24:47 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila. Die Beobachtung war nicht verwertbar, siehe Tatsächlich |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 21:23:18 (M22), Belegung "0 / 3" |
 | Eingaben | ZH 98765 |
 | Erwartet | Arm senkrecht höchstens 3,0 s nach dem Klick, M04, `[SCHRANKE] Schranke oeffnet (0 Grad).` |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | gemessene Zeit ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Grüne Meldung "ZH 98765 ist registriert. Die Einfahrtsschranke öffnet und schliesst nach 5 Sekunden wieder." Monitor Pico 2: `21:24:47.660 > [SCHRANKE] Schranke oeffnet (0 Grad).` Der Piepton für den Beobachter kam 7,5 s vor dem Klick, die Antwort von Adam zum Arm ist deshalb nicht verwertbar. Keine Stoppuhrmessung |
+| Messwerte | Befehl zum Öffnen 0,109 s nach dem Klick (21:24:47.551 bis 21:24:47.660) |
+| Status | nicht durchgeführt |
+| Fehler-ID, Klasse | keine. Grund: Beobachtung des Arms und Stoppuhr fehlen. Wiederholt in Zyklus 2 |
+| Nachweise | T04_Z1_1.png, T04_Z1_2.png, Browser_Z1_Teil2.log, Monitor_Pico2_Z1_Teil2.log |
 
 #### T05 Einfahrtsschranke schliesst nach 5 Sekunden (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: direkt nach T04, Arm offen. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:24:47 bis 21:24:53 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila. Die Beobachtung war nicht verwertbar |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: direkt nach T04, Arm offen. Ist: direkt nach T04 |
 | Eingaben | keine |
 | Erwartet | Differenz der Zeitstempel und Stoppuhr je 5,0 s ± 1,0 s, Arm danach waagrecht, Anzeige "geschlossen" |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Zeitstempel öffnen und schliessen ‹OFFEN›, Stoppuhr ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Monitor Pico 2: `21:24:47.660 > [SCHRANKE] Schranke oeffnet (0 Grad).`, `21:24:52.694 > [SCHRANKE] Schranke schliesst (90 Grad).` Keine Stoppuhr, keine verwertbare Beobachtung des Arms |
+| Messwerte | Differenz der Zeitstempel 5,034 s |
+| Status | nicht durchgeführt |
+| Fehler-ID, Klasse | keine. Grund: Stoppuhr und Beobachtung des Arms fehlen. Wiederholt in Zyklus 2 |
+| Nachweise | Monitor_Pico2_Z1_Teil2.log |
 
 #### T09 Letzter freier Platz wird belegt (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: LU 12345 und ZH 98765 im Parkhaus, Belegung 2 / 3. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:37:20 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: LU 12345 und ZH 98765 im Parkhaus, Belegung 2 / 3. Hergestellt: Reset um 21:36:45, LU 12345 (21:36:51) und ZH 98765 (21:37:03) eingefahren, Belegung "2 / 3" |
 | Eingaben | SG 11122 |
 | Erwartet | M04, `[KASSE] Einfahrt: SG 11122  Belegung: 3/3`, Belegung 3 / 3 auf beiden Seiten |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Grüne Meldung M04 mit SG 11122. Arm bewegt: ja (Adam). Monitor Pico 1: `21:37:20.426 > [KASSE] Einfahrt: SG 11122  Belegung: 3/3`. Belegung "3 / 3" auf beiden Seiten. Ein erster Durchgang um 21:25:52 ergab dieselben Meldungen, die Beobachtung des Arms war dort nicht verwertbar |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T09_Z1_1.png, Browser_Z1_Teil2.log, Monitor_Pico1_Z1_Teil2.log |
 
 #### T10 Einfahrt wird bei vollem Parkhaus verweigert (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: direkt nach T09, Belegung 3 / 3. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:26:12 und 21:37:40 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: direkt nach T09, Belegung 3 / 3. Ist: Belegung "3 / 3" mit LU 12345, ZH 98765 und SG 11122 |
 | Eingaben | TG 44499 |
 | Erwartet | M06, Arm bleibt zu, keine Zeile `[KASSE] Einfahrt: TG 44499`, TG 44499 nicht in der Liste |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Erster Durchgang 21:26:12: Die Schranken-Seite zeigte keine Meldung und die Belegung "0 / 0". Pico 2 schrieb keine Zeile, Pico 1 trug TG 44499 nicht ein. Zweiter Durchgang 21:37:40: rote Meldung "Das Parkhaus ist voll. Keine weitere Einfahrt möglich.", Arm bewegt: nein (Adam), keine Zeile `[KASSE] Einfahrt: TG 44499`, TG 44499 nicht in der Liste, Belegung "3 / 3" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-04, Klasse 2 |
+| Nachweise | T10_Z1_1.png, T10_Z1_2.png, Browser_Z1_Teil2.log, Monitor-Logs Teil 2 |
 
 #### T11 Platz wird nach einer Ausfahrt wieder frei (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Belegung 3 / 3, LU 12345 bezahlt. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:37:53 bis 21:38:25 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Belegung 3 / 3, LU 12345 bezahlt. Hergestellt: direkt nach T10, Belegung "3 / 3" |
 | Eingaben | LU 12345 (Ausfahrt), TG 44499 (Einfahrt) |
 | Erwartet | M11, Monitorzeilen mit `paid`, Belegung 2 / 3, danach M04 für TG 44499 und Belegung 3 / 3 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | LU 12345 bezahlt um 21:37:53 (M18 CHF 2.00). Ausfahrt 21:38:05: "Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für LU 12345.", Arm bewegt: ja (Adam). Monitor: `[KASSE] Statusabfrage von Pico 2: LU 12345 -> paid`, `[AUSFAHRT] Kasse meldet fuer LU 12345: paid`, `[KASSE] Ausfahrt: LU 12345  Belegung: 2/3`. Belegung "2 / 3". Einfahrt TG 44499 um 21:38:25: M04, Arm bewegt: ja (Adam), Belegung "3 / 3" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T11_Z1_1.png, T11_Z1_2.png, Browser_Z1_Teil2.log, Monitor-Logs Teil 2 |
 
 #### T12 Gebühr nach 1 Minute Parkdauer (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:39:56 bis 21:41:05 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt (Einfahrt als Vorbereitung) |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 21:39:50, ZH 98765 eingefahren um 21:39:56 |
 | Eingaben | ZH 98765 |
 | Erwartet | Suche zwischen 60 s und 119 s: Parkdauer "0 h 01 min", M16 "Offener Betrag: CHF 2.00" |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Stoppuhrzeit der Suche ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Suche nach 69 s: Parkdauer "0 h 01 min", Gebühr "CHF 2.00", Status "offen", orange Meldung "Offener Betrag: CHF 2.00" |
+| Messwerte | Suche 69 s nach der Einfahrt (Uhr des Laptops) |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T12_Z1_1.png, Browser_Z1_Teil2.log |
 
 #### T13 Gebühr genau am Übergang zur zweiten Stunde (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Reset, BE 55511 eingefahren. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:41:17 bis 21:41:48 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Reset, BE 55511 eingefahren. Hergestellt: Reset um 21:41:11, BE 55511 eingefahren um 21:41:17 |
 | Eingaben | BE 55511, Verschiebung 59, 60 und 61 Minuten |
 | Erwartet | 59 min: "0 h 59 min", CHF 2.00. Genau 60 min (Meldung der Testwerkzeuge): CHF 2.00. 61 min: "1 h 01 min", CHF 4.00 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | 59 min: "Einfahrtszeit um 59 Minuten zurückgesetzt. Gebühr für genau 0 h 59 min: CHF 2.00.", Suche "0 h 59 min", "Offener Betrag: CHF 2.00". 60 min: "Gebühr für genau 1 h 00 min: CHF 2.00." 61 min: "Gebühr für genau 1 h 01 min: CHF 4.00.", Suche "1 h 01 min", "Offener Betrag: CHF 4.00". Monitor Pico 1: `Einfahrtszeit verschoben: BE 55511 -59`, `-60`, `-61 Minuten` |
+| Messwerte | Suchen 6 s nach der jeweiligen Verschiebung |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T13_Z1_1.png, T13_Z1_2.png, T13_Z1_3.png, Monitor_Pico1_Z1_Teil2.log |
 
 #### T14 Gebühr für eine längere Parkdauer (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Reset, SG 11122 eingefahren. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:42:06 bis 21:42:12 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Reset, SG 11122 eingefahren. Hergestellt: Reset um 21:41:54, SG 11122 eingefahren um 21:42:00 |
 | Eingaben | SG 11122, Verschiebung 195 Minuten |
 | Erwartet | Meldung mit "Gebühr für genau 3 h 15 min: CHF 8.00", Suche: "3 h 15 min", M16 CHF 8.00 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | "Einfahrtszeit um 195 Minuten zurückgesetzt. Gebühr für genau 3 h 15 min: CHF 8.00." Suche: Parkdauer "3 h 15 min", "Offener Betrag: CHF 8.00" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T14_Z1_1.png, Monitor_Pico1_Z1_Teil2.log |
 
 #### T16 Bezahlung erfolgreich durchführen (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Reset, LU 12345 eingefahren, Parkdauer unter 60 Minuten. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:43:40 bis 21:43:41 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Reset, LU 12345 eingefahren, Parkdauer unter 60 Minuten. Hergestellt: Reset um 21:43:26, LU 12345 eingefahren um 21:43:32 |
 | Eingaben | LU 12345 |
 | Erwartet | M16 CHF 2.00, nach dem Klick M18 "Bezahlung erfolgt. Betrag: CHF 2.00.", Status "bezahlt", Bezahlen ausgegraut, `[KASSE] Bezahlt: LU 12345 CHF 2.00` |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Uhrzeit des Klicks auf "Bezahlen" ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Vor dem Bezahlen: "0 h 00 min", "CHF 2.00", Status "offen", "Offener Betrag: CHF 2.00". Nach dem Klick: "Bezahlung erfolgt. Betrag: CHF 2.00.", Status "bezahlt", "Bezahlen" gesperrt. Monitor Pico 1: `21:43:41.062 > [KASSE] Bezahlt: LU 12345 CHF 2.00` |
+| Messwerte | Klick auf "Bezahlen" um 21:43:41.008 |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T16_Z1_1.png, Monitor_Pico1_Z1_Teil2.log |
 
 #### T28 Zahlungszeitpunkt wird gespeichert und angezeigt (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: direkt nach T16. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:43:41 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: direkt nach T16. Ist: direkt nach T16 |
 | Eingaben | LU 12345 |
 | Erwartet | Feld "Bezahlt am" mit Datum und Uhrzeit, höchstens 1 Minute Abweichung zur Uhrzeit des Klicks in T16 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | angezeigter Zeitpunkt ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Das Suchresultat zeigt Kennzeichen, Einfahrt, Parkdauer, Gebühr und Status. Ein Feld "Bezahlt am" fehlt, `/api/status` enthält keinen Zahlungszeitpunkt |
+| Messwerte | keine Messung |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-01, Klasse 3 |
+| Nachweise | T16_Z1_1.png, Browser_Z1_Teil2.log |
 
 #### T17 Doppelte Bezahlung wird verhindert (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: LU 12345 bezahlt. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:43:41 bis 21:43:44 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: LU 12345 bezahlt. Ist: direkt nach T28, LU 12345 bezahlt |
 | Eingaben | LU 12345, Aufruf /api/pay?plate=LU%2012345 |
 | Erwartet | M17, Bezahlen ausgegraut, Antwort mit M19 und `"alreadyPaid":true`, keine neue Zeile `[KASSE] Bezahlt`, Gebühr weiterhin CHF 2.00 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Grüne Meldung "Für dieses Kennzeichen wurde bereits bezahlt. Eine weitere Zahlung ist nicht nötig.", "Bezahlen" gesperrt, ein Mausklick darauf schickte keine Anfrage. Aufruf `/api/pay?plate=LU%2012345`: `{"ok":true,"status":"paid","alreadyPaid":true,"amount":"CHF 2.00","message":"Für dieses Kennzeichen wurde bereits bezahlt (CHF 2.00)."}`. Keine zweite Zeile `[KASSE] Bezahlt`. Gebühr weiterhin "CHF 2.00" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T17_Z1_1.png, Monitor_Pico1_Z1_Teil2.log |
 
 #### T19 Ausfahrt nach erfolgreicher Bezahlung (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: LU 12345 bezahlt und im Parkhaus. Ist: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:44:27 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: LU 12345 bezahlt und im Parkhaus. Ist: direkt nach T17, LU 12345 bezahlt |
 | Eingaben | LU 12345 |
 | Erwartet | `[KASSE] Statusabfrage von Pico 2: LU 12345 -> paid`, `[AUSFAHRT] Kasse meldet fuer LU 12345: paid`, M11, Arm offen in höchstens 3,0 s und zu nach 5 s ± 1 s, Eintrag unter "Abgeschlossene Vorgänge", Belegung 0 / 3 |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | gemessene Zeit bis zum Öffnen ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | "Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für LU 12345." Arm bewegt: ja (Adam). Monitor Pico 1: `21:44:27.253 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid`, `21:44:27.316 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3`. Monitor Pico 2: `21:44:27.346 > [AUSFAHRT] Kasse meldet fuer LU 12345: paid`, `Schranke oeffnet` 21:44:27.346, `schliesst` 21:44:32.352. LU 12345 unter "Abgeschlossene Vorgänge", Belegung "0 / 3" |
+| Messwerte | Befehl zum Öffnen 0,149 s nach dem Klick, Schliessen nach 5,006 s (Zeitstempel). Keine Stoppuhr |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T19_Z1_1.png, T19_Z1_2.png, Monitor-Logs Teil 2 |
 
 #### T20 Ausfahrt ohne Bezahlung wird verweigert (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: ZH 98765 eingefahren, nicht bezahlt. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:45:12 bis 21:45:42 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: ZH 98765 eingefahren, nicht bezahlt. Hergestellt: ZH 98765 eingefahren um 21:44:46, nicht bezahlt |
 | Eingaben | ZH 98765 |
 | Erwartet | M10 mit CHF 2.00, Arm bleibt zu, Monitorzeilen mit `unpaid`, nach Bezahlung (M18) M11 und Arm öffnet |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Erste Ausfahrt: rote Meldung "Die Parkgebühr für ZH 98765 ist noch offen (CHF 2.00). Bitte zuerst an der Kasse bezahlen. Die Schranke bleibt geschlossen." Arm bewegt: nein (Adam). Monitor: `[KASSE] Statusabfrage von Pico 2: ZH 98765 -> unpaid`, `[AUSFAHRT] Kasse meldet fuer ZH 98765: unpaid`. Bezahlung: "Bezahlung erfolgt. Betrag: CHF 2.00." Zweite Ausfahrt: "Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für ZH 98765.", Arm bewegt: ja (Adam) |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T20_Z1_1.png, T20_Z1_2.png, Monitor-Logs Teil 2 |
 
 #### T21 Grenzfall bezahlt, aber Kennzeichen bei der Ausfahrt anders (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: BE 55511 eingefahren und bezahlt. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:46:30 und 21:46:50 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: BE 55511 eingefahren und bezahlt. Hergestellt: BE 55511 eingefahren um 21:46:01 und bezahlt um 21:46:12 |
 | Eingaben | BE 55512, danach BE 55511 |
 | Erwartet | M09 für BE 55512, Arm bleibt zu, Monitorzeilen mit `unknown`, danach M11 für BE 55511 und Arm öffnet |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | BE 55512: "Zu dem Kennzeichen BE 55512 ist keine Einfahrt bekannt. Die Schranke bleibt geschlossen.", Arm bewegt: nein (Adam), Monitor `BE 55512 -> unknown`. BE 55511: rote Meldung "Die Kasse konnte den Parkvorgang nicht abschliessen. Die Schranke bleibt geschlossen.", Arm bewegt: nein (Adam). Monitor Pico 1: `21:46:50.263 > [KASSE] Statusabfrage von Pico 2: BE 55511 -> paid`, `21:46:50.325 > [KASSE] Ausfahrt: BE 55511  Belegung: 0/3`. Die Kasse hat die Ausfahrt verbucht, die Schranke blieb zu |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-04, Klasse 2 |
+| Nachweise | T21_Z1_1.png, T21_Z1_2.png, T21_Z1_3.png, Monitor-Logs Teil 2 |
 
 #### T22 Kompletter Durchlauf von der Einfahrt bis zur Ausfahrt (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:49:15 bis 21:49:52 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 21:49:04 |
 | Eingaben | SG 11122, Verschiebung 90 Minuten |
 | Erwartet | M04, Meldung mit "Gebühr für genau 1 h 30 min: CHF 4.00", Suche "1 h 30 min" und M16 CHF 4.00, M18 CHF 4.00, M11, Eintrag mit Bezahlt CHF 4.00, Belegung 0 / 3 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | Einfahrt M04, Arm bewegt: ja (Adam). "Einfahrtszeit um 90 Minuten zurückgesetzt. Gebühr für genau 1 h 30 min: CHF 4.00." Suche "1 h 30 min", "Offener Betrag: CHF 4.00". "Bezahlung erfolgt. Betrag: CHF 4.00." Ausfahrt 21:49:50: "Die Kasse ist zurzeit nicht erreichbar. Der Bezahlstatus kann nicht geprüft werden, die Schranke bleibt geschlossen.", Arm bewegt: nein (Adam). Monitor Pico 1: `21:49:50.314 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid`. Monitor Pico 2: `21:49:52.316 > [KASSE-CLIENT] Kasse nicht erreichbar, Fehler -11` |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | nicht bestanden |
+| Fehler-ID, Klasse | F-04, Klasse 2 |
+| Nachweise | T22_Z1_1.png, T22_Z1_2.png, T22_Z1_3.png, Monitor-Logs Teil 2 |
 
 #### T24 Kennzeichen bei Pico 2 eingegeben taucht bei Pico 1 auf (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:50:05 |
+| Tester | Ausführung per HTTP-Abfrage an `/api/entry` von Pico 2 (gleiche Anfrage wie die Schranken-Seite), Ablesung der Kasse-Seite mit H-07 alle 100 ms (Kapitel 4, A16) |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 21:49:59 |
 | Eingaben | ZH 98765 |
 | Erwartet | Eintrag unter "Fahrzeuge im Parkhaus" höchstens 3 s nach dem Wechsel, Einfahrt höchstens 1 Minute Abweichung, Status "offen", `[KASSE] Einfahrt: ZH 98765  Belegung: 1/3` |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Zeit bis zur Anzeige ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Die Kasse-Seite zeigte "ZH 98765, 14.11.2026 21:50:06, 0 h 00 min, CHF 2.00, offen" um 21:50:06.150. Monitor Pico 1: `21:50:05.962 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3`. Antwort von Pico 2: `{"ok":false,"message":""}`, kein `Schranke oeffnet` im Log |
+| Messwerte | 0,3 s vom Aufruf bis zur Anzeige |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine für die Anzeige. Nebenbefund: Pico 2 meldete eine leere Ablehnung und öffnete nicht, siehe F-04 |
+| Nachweise | Browser_Z1_Teil2.log, Monitor_Pico1_Z1_Teil2.log |
 
 #### T26 Kennzeichenformat an den Grenzen (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: leer nach Reset. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:50:17 bis 21:51:04 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm nicht beteiligt |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: leer nach Reset. Hergestellt: Reset um 21:50:12 |
 | Eingaben | LU 122, LU 123456, lu1, 12345, LU, L 12345, LU 12A45, LU 1234567, LU 12345678 |
 | Erwartet | M04 für LU 122, LU 123456 und LU 1, M03 für die nächsten fünf Eingaben, M02 für LU 12345678, Belegung 3 / 3 |
-| Tatsächlich | ‹OFFEN› |
+| Tatsächlich | "LU 122", "LU 123456" und "lu1" (als "LU 1"): M04. "12345", "LU", "L 12345", "LU 12A45", "LU 1234567": "Das ist kein gültiges Kennzeichen. Erwartet wird zum Beispiel LU 12345." "LU 12345678": "Das Kennzeichen ist zu lang. Erlaubt sind höchstens 10 Zeichen, zum Beispiel LU 12345." Monitor Pico 2: Laenge 5, 2, 7, 8, 10, 11. Liste LU 122, LU 123456, LU 1, Belegung "3 / 3" |
 | Messwerte | keine Messung |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine. Nebenbefund: um 21:50:58 Belegung "0 / 0", siehe F-04 |
+| Nachweise | T26_Z1_1.png, T26_Z1_2.png, Monitor-Logs Teil 2 |
 
 #### T23 Verbindung zur Kasse fällt kurz aus (Zyklus 1)
 
 | Feld | Eintrag |
 | --- | --- |
-| Datum, Uhrzeit | ‹OFFEN› |
-| Tester | Adam Mehila (Tester Einfahrt und Ausfahrt, Tester Kasse) |
-| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome ‹OFFEN› |
-| Ausgangszustand | Soll: Reset, TG 44499 eingefahren und bezahlt. Hergestellt: ‹OFFEN› |
+| Datum, Uhrzeit | 14.11.2026, 21:52:19 bis 21:53:10 |
+| Tester | Ausführung und Ablesung mit H-07 in Chrome (Kapitel 4, A16). Servo-Arm beobachtet von Adam Mehila |
+| Stand, Browser | Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79 |
+| Ausgangszustand | Soll: Reset, TG 44499 eingefahren und bezahlt. Hergestellt: Reset um 21:51:54, TG 44499 eingefahren um 21:52:00 und bezahlt um 21:52:11 |
 | Eingaben | TG 44499, Aufruf /api/debug/offline?seconds=30 |
 | Erwartet | Antwort der Testhilfe, M08 höchstens 5 s nach dem Klick, Arm bleibt zu, `[AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.`, kein neues Banner, nach Ablauf M11 und Arm öffnet |
-| Tatsächlich | ‹OFFEN› |
-| Messwerte | Zeit bis zur Meldung M08 ‹OFFEN› |
-| Status | ‹OFFEN› |
-| Fehler-ID, Klasse | ‹OFFEN› |
-| Nachweise | ‹OFFEN› |
+| Tatsächlich | Antwort der Testhilfe: `{"ok":true,"seconds":30,"message":"Die Kasse beantwortet 30 Sekunden lang keine Anfragen."}`, Monitor Pico 1 `21:52:19.173 > [DEBUG] Kasse antwortet 30 s lang nicht.` Ausfahrt 21:52:28: "Die Kasse ist zurzeit nicht erreichbar. Der Bezahlstatus kann nicht geprüft werden, die Schranke bleibt geschlossen.", Arm bewegt: nein (Adam), Anzeige "Kasse nicht erreichbar", Monitor Pico 2 `21:52:30.304 > [AUSFAHRT] Kasse nicht erreichbar, Schranke bleibt zu.` Kein neues Banner. `21:52:49.220 > [DEBUG] Kasse antwortet wieder.` Zweite Ausfahrt 21:53:10: "Bezahlung bestätigt. Die Ausfahrtsschranke öffnet für TG 44499.", Arm bewegt: ja (Adam) |
+| Messwerte | Meldung 2,1 s nach dem Klick (Zeitstempel) |
+| Status | bestanden |
+| Fehler-ID, Klasse | keine |
+| Nachweise | T23_Z1_1.png, T23_Z1_2.png, T23_Z1_3.png, Monitor-Logs Teil 2 |
 
 ## 6 Gefundene Abweichungen und Fehlerklassifizierung
 
@@ -763,17 +765,51 @@ Die Klassen stammen aus Testkonzept 1.0, Kapitel 6. Zu jedem Fehler wird der Ort
 
 ### 6.2 Fehlertabelle
 
-Die Tabelle wird nach Zyklus 1 gefüllt.
+Die Klassen sind ein Vorschlag nach Testkonzept 1.0, Kapitel 6, mit Begründung in Kapitel 6.3. Die Testleitung bestätigt sie mit der Freigabe des Protokolls.
 
 | Fehler-ID | Testfall | Ort | Klasse | Kurzbeschreibung | Status | Behoben in |
 | --- | --- | --- | --- | --- | --- | --- |
-| ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| F-01 | T28 | Kasse | 3 | Der Zahlungszeitpunkt wird nicht gespeichert und nicht angezeigt | behoben, Retest siehe Kapitel 7.5 | Firmware 1.1, Commit 6c3877d |
+| F-02 | T27 | Schranken | 3 | Fehlversuche bei der Einfahrt werden nicht mit Datum und Uhrzeit festgehalten | behoben, Retest siehe Kapitel 7.5 | Firmware 1.2, Commit 5c01ce8 |
+| F-03 | T29 | Kasse | 2 | Nach der Bezahlung wird nie nachberechnet, auch nicht nach Ablauf des Zeitfensters | behoben, Retest siehe Kapitel 7.5 | Firmware 1.3, Commit b812ed9 |
+| F-04 | T10, T21, T22, T24 | Kommunikation | 2 | Pico 2 wertet fehlende oder leere Antworten der Kasse falsch aus. Die Kasse verbucht Einfahrt oder Ausfahrt, die Schranke bleibt zu | behoben, Retest siehe Kapitel 7.5 | Firmware 1.4, Commit bad02f7 |
 
 ### 6.3 Beschreibung der Fehler
 
-Jeder Fehler wird so beschrieben, dass eine andere Person ihn nachvollziehen kann: Schritte, Eingaben mit Kennzeichen, Uhrzeit, Browser mit Version, erwartetes und tatsächliches Ergebnis, Begründung der Klasse.
+Jeder Fehler wird so beschrieben, dass eine andere Person ihn nachvollziehen kann: Schritte, Eingaben mit Kennzeichen, Uhrzeit, Browser mit Version, erwartetes und tatsächliches Ergebnis, Begründung der Klasse. Stand bei allen Fehlern: Firmware 1.0, Test-Build, Commit 867aed7, Chrome 157.0.8103.79.
 
-‹OFFEN›
+#### F-01 Zahlungszeitpunkt fehlt (T28)
+
+- Schritte: Reset, LU 12345 einfahren, auf der Kasse-Seite LU 12345 suchen und "Bezahlen" klicken, danach LU 12345 erneut suchen. Durchgeführt am 14.11.2026, Klick auf "Bezahlen" um 21:43:41.
+- Erwartet: Das Suchresultat zeigt das Feld "Bezahlt am" mit Datum und Uhrzeit der Zahlung (User Story 6, Akzeptanzkriterium 2).
+- Tatsächlich: Das Suchresultat zeigt nur Kennzeichen, Einfahrt, Parkdauer, Gebühr und Status. `/api/status` liefert keinen Zahlungszeitpunkt. Die Kasse speichert ihn nicht.
+- Klasse 3: Die Bezahlung selbst funktioniert, der Betrieb bleibt möglich. Es fehlt eine verlangte Angabe für die Nachvollziehbarkeit.
+
+#### F-02 Fehlversuche werden nicht festgehalten (T27)
+
+- Schritte: Auf der Schranken-Seite im Feld "Einfahrt" nacheinander nichts, 30 mal A und `!@#$%^&*()` eingeben und je "Einfahrt bestätigen" klicken. Durchgeführt am 13.11.2026 um 20:22:00, 20:22:20 und 20:22:40.
+- Erwartet: Die Schranken-Seite zeigt eine Liste "Fehlversuche" mit Datum, Uhrzeit, Eingabe und Grund (User Story 3, Akzeptanzkriterium 3).
+- Tatsächlich: Die Meldungen M01, M02 und M03 erscheinen, der Arm bleibt unten. Eine Liste gibt es nicht, und Pico 2 hat keine Uhr.
+- Klasse 3: Die Ablehnung ungültiger Eingaben funktioniert. Es fehlt das verlangte Protokoll der Fehlversuche.
+
+#### F-03 Keine Nachberechnung nach Ablauf des Zeitfensters (T29)
+
+- Schritte: Reset, SG 11122 einfahren, Einfahrtszeit um 50 Minuten zurücksetzen, bezahlen (Z), bei Z plus 16 Minuten suchen, dann ausfahren. Durchgeführt am 13.11.2026, Z um 18:01:01, Suche um 18:18:04.
+- Erwartet: Nach 15 Minuten ohne Ausfahrt rechnet die Kasse neu. Bei Z plus 16 Minuten Status "offen" und "Offener Betrag: CHF 2.00", Ausfahrt mit M10 (User Story 7, Akzeptanzkriterium 3, Testkonzept 1.1, Kapitel 5.3).
+- Tatsächlich: Bei Z plus 17 min 02 s Status "paid", Parkdauer "1 h 08 min", Gebühr "CHF 2.00". Die Ausfahrt öffnete die Schranke ohne Nachzahlung.
+- Klasse 2: Eine wichtige Funktion arbeitet nicht wie verlangt. Ein bezahltes Fahrzeug kann unbegrenzt stehen bleiben, die Gebühr für die weitere Zeit geht verloren. Umweg: Kontrolle durch Personal.
+
+#### F-04 Antwort der Kasse fehlt oder ist leer (T10, T21, T22, T24)
+
+- Schritte und Beobachtungen am 14.11.2026:
+  - T10 um 21:26:12: Einfahrt TG 44499 bei Belegung 3 / 3. Keine Meldung, Belegung "0 / 0", keine Logzeile.
+  - T21 um 21:46:50: Ausfahrt BE 55511 nach Bezahlung. Die Kasse meldet `paid` und verbucht die Ausfahrt (`[KASSE] Ausfahrt: BE 55511  Belegung: 0/3`). Pico 2 zeigt "Die Kasse konnte den Parkvorgang nicht abschliessen. Die Schranke bleibt geschlossen."
+  - T22 um 21:49:50: Ausfahrt SG 11122 nach Bezahlung. Die Kasse meldet `paid` (21:49:50.314), Pico 2 erhält keine Antwort (`Fehler -11` um 21:49:52.316) und zeigt M08.
+  - T24 um 21:50:05: Die Kasse verbucht die Einfahrt ZH 98765, Pico 2 antwortet `{"ok":false,"message":""}` und öffnet nicht.
+  - Dazu am 13.11.2026 um 20:19:32 und am 14.11.2026 um 21:14:09 und 21:50:58 die Belegung "0 / 0" auf der Schranken-Seite.
+- Erwartet: Pico 2 öffnet genau dann, wenn die Kasse den Vorgang verbucht hat. Die Belegung zeigt nie "0 / 0".
+- Tatsächlich: Pico 2 wertet eine leere Antwort mit HTTP-Status 200 als gültig (Platzzahl 0, leere Meldung) und bricht nach 2 s ohne Abgleich ab, auch wenn die Kasse den Vorgang schon verbucht hat. Die Kasse und die Schranke sind danach nicht mehr im gleichen Zustand.
+- Klasse 2: Kernfunktionen Einfahrt und Ausfahrt arbeiten zeitweise nicht wie verlangt, ein bezahltes Fahrzeug kommt nicht hinaus und gilt an der Kasse als ausgefahren. Umweg: Personal öffnet die Schranke. Klasse 1 trifft nicht zu, weil das System in den meisten Durchgängen arbeitet.
 
 ## 7 Erweiterungen und Anpassungen
 
@@ -803,13 +839,18 @@ Beim Abgleich des Testkonzepts mit der Umsetzung und mit der Bewertung zeigten s
 
 ### 7.3 Fehlerbehebungen
 
+Alle vier Fehler sind direkt nach Zyklus 1 behoben, je ein Commit mit eigener Firmware-Version. Die Reihenfolge F-01 vor F-03 ist zwingend, weil die Nachberechnung den Zahlungszeitpunkt braucht.
+
 | Fehler-ID | Änderung | Commit | Firmware | Betroffene Funktionen | Build-Nachweis |
 | --- | --- | --- | --- | --- | --- |
-| ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› | ‹OFFEN› |
+| F-01 | Jeder Parkvorgang speichert den Zahlungszeitpunkt. `/api/status` und `/api/pay` liefern `paidAt`, die Kasse-Seite zeigt "Bezahlt am" | 6c3877d | Firmware 1.1 | Bezahlung, Statusabfrage, Suchresultat, Zeitverschiebung, Reset (T03, T11, T13 bis T22, T28) | 6 von 6 SUCCESS, Anhang B |
+| F-02 | Pico 2 speichert die letzten zehn abgelehnten Eingaben bei der Einfahrt. Die Schranken-Seite stellt die Uhr von Pico 2 und zeigt die Liste "Fehlversuche" | 5c01ce8 | Firmware 1.2 | Kennzeichenprüfung bei Ein- und Ausfahrt, Zustand und Seite von Pico 2 (T01, T04 bis T10, T19 bis T21, T24 bis T27) | 6 von 6 SUCCESS, Anhang B |
+| F-03 | Zeitfenster 15 Minuten nach der Zahlung. Danach Neuberechnung ab Einfahrt, offen ist die Differenz zum bezahlten Betrag | b812ed9 | Firmware 1.3 | Bezahlung, Statusabfrage, Ausfahrt, Fahrzeugliste (T11, T13 bis T22, T28, T29) | 6 von 6 SUCCESS, Anhang B |
+| F-04 | Nur vollständige JSON-Antworten mit Status 200 gelten. Zeitlimit 3 s. WLAN-Energiesparmodus aus. Fehlt die Antwort auf Einfahrt oder Ausfahrt, gleicht Pico 2 mit `/api/status` ab. Abfrage der Belegung mit einer Wiederholung | bad02f7 | Firmware 1.4 | Alle Anfragen von Pico 2 an die Kasse: Einfahrt, Ausfahrt, Belegung, Statusabfrage, WLAN beider Picos (T01, T03, T09 bis T11, T19 bis T26, T29) | 6 von 6 SUCCESS, Anhang B |
 
 ### 7.4 Begründung von Zyklus 2
 
-Zyklus 2 ist ein vollständiger Durchlauf von T01 bis T29 auf dem Endstand, danach folgt T30. Die Analyse der betroffenen Funktionen je Fehler: ‹OFFEN›
+Zyklus 2 ist ein vollständiger Durchlauf von T01 bis T29 auf dem Endstand (Firmware 1.4, Commit bad02f7), danach folgt T30. Die betroffenen Funktionen je Fehler stehen in Kapitel 7.3. Zusammen decken sie fast alle Testfälle ab, F-04 betrifft jede Anfrage von Pico 2 an die Kasse. Dazu kommen die Fälle mit Priorität Hoch. Ein vollständiger Durchlauf testet deshalb genau den Stand, der ausgeliefert wird. Retest der Fehler: F-01 mit T28, F-02 mit T27, F-03 mit T29, F-04 mit T10, T21, T22 und T24.
 
 ### 7.5 Zyklus 2
 

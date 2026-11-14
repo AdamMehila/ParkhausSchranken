@@ -1,0 +1,19 @@
+Build-Nachweis F-02
+
+Commit: 5c01ce8031b4426b4d3522b97f029b82c34775f8
+Commit-Nachricht: F-02: Fehlversuche bei der Einfahrt mit Datum und Uhrzeit festhalten (Firmware 1.2)
+Zeitpunkt des Builds: 14.11.2026 21:58:52
+Befehl: pio run -e pico1_cashdesk -e pico2_barriers -e servo_test -e servo_test_all_pins -e pico1_cashdesk_prod -e pico2_barriers_prod
+Werkzeug: PlatformIO Core, version 6.2.0
+Rückgabewert: 0
+Warnungen in diesem Lauf: 6, davon mit Fundort in src/: 6
+
+Environment          Status    Duration
+-------------------  --------  ------------
+pico1_cashdesk       SUCCESS   00:00:04.191
+pico2_barriers       SUCCESS   00:00:03.914
+pico1_cashdesk_prod  SUCCESS   00:00:04.706
+pico2_barriers_prod  SUCCESS   00:00:04.805
+servo_test           SUCCESS   00:00:02.366
+servo_test_all_pins  SUCCESS   00:00:02.259
+========================= 6 succeeded in 00:00:22.242 =========================

@@ -684,3 +684,11 @@ Vorarbeit: Reset, TG 44499 einfahren und bezahlen. Soll: Antwort der Testhilfe, 
 - Status:
 - Nachweis:
 - Bemerkung:
+
+## Fortsetzung am 14.11.2026
+
+- Monitore ab 21:13:07 mit tools/serial_monitor.py (H-06), Logdateien Monitor_Pico1_Z1_Teil2.log (COM6) und Monitor_Pico2_Z1_Teil2.log (COM3)
+- Hotspot war aus und wurde um 21:13 eingeschaltet. Das automatische Ausschalten ist abgeschaltet
+- Log Pico 1: `21:13:16.499 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211`. Log Pico 2: `21:13:21.867 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.212`
+- Kasse-Seite zuerst geöffnet, Log Pico 1: `21:13:57.098 > [KASSE] Uhr gestellt: 14.11.2026 21:13:57`. Schranken-Seite danach geöffnet
+- 21:14:09: Die Schranken-Seite zeigt "Belegung 0 / 0" und "Kasse erreichbar" (Ablesung mit H-07, Browser_Z1_Teil2.log). Kasse-Seite um 21:14:08: "0 / 3"

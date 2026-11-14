@@ -1,0 +1,63 @@
+21:13:07.337 --- Monitor gestartet am 14.11.2026 fuer COM6, 115200 Baud
+21:13:07.361 --- verbunden mit COM6
+21:13:16.048 > [WLAN] Neuer Verbindungsversuch. Letzter Stand: Netz nicht gefunden. Funkt der Router nur auf 5 GHz? Der Pico kann nur 2,4 GHz.
+21:13:16.499 > [WLAN] Verbunden. Weboberflaeche: http://192.168.137.211
+21:13:57.098 > [KASSE] Uhr gestellt: 14.11.2026 21:13:57
+21:23:18.603 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:24:47.660 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+21:25:08.827 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:25:17.595 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+21:25:32.641 > [KASSE] Einfahrt: ZH 98765  Belegung: 2/3
+21:25:52.742 > [KASSE] Einfahrt: SG 11122  Belegung: 3/3
+21:26:34.539 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+21:36:45.313 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:36:51.365 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+21:37:03.412 > [KASSE] Einfahrt: ZH 98765  Belegung: 2/3
+21:37:20.426 > [KASSE] Einfahrt: SG 11122  Belegung: 3/3
+21:37:53.809 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+21:38:05.376 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+21:38:05.489 > [KASSE] Ausfahrt: LU 12345  Belegung: 2/3
+21:38:25.377 > [KASSE] Einfahrt: TG 44499  Belegung: 3/3
+21:39:50.342 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:39:56.053 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+21:41:11.816 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:41:17.615 > [KASSE] Einfahrt: BE 55511  Belegung: 1/3
+21:41:23.315 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -59 Minuten
+21:41:35.716 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -60 Minuten
+21:41:42.256 > [DEBUG] Einfahrtszeit verschoben: BE 55511 -61 Minuten
+21:41:54.645 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:42:00.517 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+21:42:06.332 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -195 Minuten
+21:43:26.946 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:43:32.328 > [KASSE] Einfahrt: LU 12345  Belegung: 1/3
+21:43:41.062 > [KASSE] Bezahlt: LU 12345 CHF 2.00
+21:44:27.253 > [KASSE] Statusabfrage von Pico 2: LU 12345 -> paid
+21:44:27.316 > [KASSE] Ausfahrt: LU 12345  Belegung: 0/3
+21:44:46.392 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+21:45:12.278 > [KASSE] Statusabfrage von Pico 2: ZH 98765 -> unpaid
+21:45:24.404 > [KASSE] Bezahlt: ZH 98765 CHF 2.00
+21:45:42.277 > [KASSE] Statusabfrage von Pico 2: ZH 98765 -> paid
+21:45:42.401 > [KASSE] Ausfahrt: ZH 98765  Belegung: 0/3
+21:46:01.351 > [KASSE] Einfahrt: BE 55511  Belegung: 1/3
+21:46:12.704 > [KASSE] Bezahlt: BE 55511 CHF 2.00
+21:46:30.220 > [KASSE] Statusabfrage von Pico 2: BE 55512 -> unknown
+21:46:50.263 > [KASSE] Statusabfrage von Pico 2: BE 55511 -> paid
+21:46:50.325 > [KASSE] Ausfahrt: BE 55511  Belegung: 0/3
+21:49:04.363 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:49:15.328 > [KASSE] Einfahrt: SG 11122  Belegung: 1/3
+21:49:21.127 > [DEBUG] Einfahrtszeit verschoben: SG 11122 -90 Minuten
+21:49:32.559 > [KASSE] Bezahlt: SG 11122 CHF 4.00
+21:49:50.314 > [KASSE] Statusabfrage von Pico 2: SG 11122 -> paid
+21:49:59.698 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:50:05.962 > [KASSE] Einfahrt: ZH 98765  Belegung: 1/3
+21:50:12.265 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:50:17.957 > [KASSE] Einfahrt: LU 122  Belegung: 1/3
+21:50:23.902 > [KASSE] Einfahrt: LU 123456  Belegung: 2/3
+21:50:29.726 > [KASSE] Einfahrt: LU 1  Belegung: 3/3
+21:51:54.306 > [DEBUG] Alle Parkvorgaenge geloescht.
+21:52:00.144 > [KASSE] Einfahrt: TG 44499  Belegung: 1/3
+21:52:11.638 > [KASSE] Bezahlt: TG 44499 CHF 2.00
+21:52:19.173 > [DEBUG] Kasse antwortet 30 s lang nicht.
+21:52:49.220 > [DEBUG] Kasse antwortet wieder.
+21:53:10.303 > [KASSE] Statusabfrage von Pico 2: TG 44499 -> paid
+21:53:10.419 > [KASSE] Ausfahrt: TG 44499  Belegung: 0/3
