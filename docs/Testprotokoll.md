@@ -1037,7 +1037,7 @@ Testkonzept Parksystem mit Schranken, Nachtrag, Testkonzept 1.1 vom 12.11.2026. 
 
 ### Anhang B Build-Nachweise
 
-Jeder Build-Nachweis ist nach dem Commit entstanden. Befehl: `pio run` mit allen genannten Umgebungen, PlatformIO Core 6.2.0. Die Kompilierläufe zeigten Warnungen, alle aus der Datei WiFiClient.h:71 des Frameworks (`-Woverloaded-virtual`), keine aus dem Code des Projekts.
+Jeder Build-Nachweis ist nach dem Commit entstanden. Befehl: `pio run` mit allen genannten Umgebungen, PlatformIO Core 6.2.0. Bei H-01 bis H-05 zeigten die Kompilierläufe Warnungen, alle aus der Datei WiFiClient.h:71 des Frameworks (`-Woverloaded-virtual`), keine aus dem Code des Projekts. Bei F-01 bis F-04 endete der Build in allen sechs Umgebungen mit Rückgabewert 0.
 
 | ID | Commit | Zeitpunkt des Builds | Umgebungen | Ergebnis |
 | --- | --- | --- | --- | --- |
@@ -1046,6 +1046,10 @@ Jeder Build-Nachweis ist nach dem Commit entstanden. Befehl: `pio run` mit allen
 | H-03 | a9377ce | 12.11.2026 18:35:48 | pico1_cashdesk, pico2_barriers, servo_test, servo_test_all_pins | 4 von 4 SUCCESS |
 | H-04 | f708382 | 12.11.2026 18:38:08 | pico1_cashdesk, pico2_barriers, servo_test, servo_test_all_pins | 4 von 4 SUCCESS |
 | H-05 | 867aed7 | 12.11.2026 18:42:24 | zusätzlich pico1_cashdesk_prod, pico2_barriers_prod | 6 von 6 SUCCESS |
+| F-01 | 6c3877d | 14.11.2026 21:56:56 | alle sechs Umgebungen | 6 von 6 SUCCESS |
+| F-02 | 5c01ce8 | 14.11.2026 21:58:52 | alle sechs Umgebungen | 6 von 6 SUCCESS |
+| F-03 | b812ed9 | 14.11.2026 22:00:02 | alle sechs Umgebungen | 6 von 6 SUCCESS |
+| F-04 | bad02f7 | 14.11.2026 22:01:47 | alle sechs Umgebungen | 6 von 6 SUCCESS |
 
 ### Anhang C Monitor-Auszüge
 
