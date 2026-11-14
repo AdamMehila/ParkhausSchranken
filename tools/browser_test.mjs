@@ -101,12 +101,13 @@ async function connect(name) {
 
 // Zählt in der Seite die laufenden und fertigen Anfragen je Pfad. Ändert am Verhalten der Seite nichts.
 const INSTALL_TRACKER = `(() => {
-  if (window.__t) return true;
-  window.__t = { pending: 0, done: [] };
+  if (window.__t && window.__t.v === 2) return true;
+  window.__t = { v: 2, pending: 0, started: [], done: [] };
   const original = window.fetch.bind(window);
   window.fetch = async (url, opts) => {
     const path = String(url).split("?")[0];
     window.__t.pending++;
+    window.__t.started.push({ path, t: Date.now() });
     try { return await original(url, opts); }
     finally { window.__t.pending--; window.__t.done.push({ path, t: Date.now() }); }
   };
@@ -210,7 +211,23 @@ async function screenshot(cdp, file) {
 async function act(cdp, { fill, button, path, force = false }) {
   const result = {};
   for (const [selector, text] of fill ?? []) result[`eingabe ${selector}`] = await typeInto(cdp, selector, text);
-  const c = await click(cdp, button, force);
+  let c = await click(cdp, button, force);
+  // Kommt ein Klick nicht bei der Seite an (verdeckter Tab), startet keine Anfrage.
+  // Dann bis zu zweimal neu klicken. Das ist sicher, weil der Pico noch nichts erhalten hat.
+  if (c.clicked && path && !c.disabled) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      let started = false;
+      for (let i = 0; i < 30 && !started; i++) {
+        started = await cdp.eval(`window.__t.started.some(d => d.path === ${JSON.stringify(path)} && d.t >= ${c.t})`);
+        if (!started) await sleep(50);
+      }
+      if (started) break;
+      result[`klickOhneWirkung${attempt}`] = c.clickTime;
+      await cdp.send("Page.bringToFront");
+      await sleep(300);
+      c = await click(cdp, button, force);
+    }
+  }
   result.klick = c.clicked ? c.clickTime : c.reason;
   if (c.clicked) result.knopfGesperrtBeimKlick = c.disabled;
   // Bei einem Klick auf einen gesperrten Knopf 3 s warten. Bleibt die Anfrage aus, ist anfrageFertig false.
