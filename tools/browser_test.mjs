@@ -163,7 +163,12 @@ async function click(cdp, selector, force = false) {
 const READ_MESSAGE = id => `(() => { const e = document.getElementById("${id}");
   return { text: e.textContent, kind: e.className.replace("message", "").trim() || "keine", visible: getComputedStyle(e).display !== "none" }; })()`;
 
+const REFRESH = `(async () => { if (typeof refreshPage === "function") { try { await refreshPage(); } catch (e) {} } return true; })()`;
+
 async function readKasse(cdp) {
+  // Ein Tab im Hintergrund frischt sich nur verzögert auf. Vor dem Ablesen dieselbe
+  // Funktion aufrufen, die die Seite sonst alle 2 s selbst aufruft.
+  await cdp.eval(REFRESH);
   return cdp.eval(`(() => {
     const t = id => document.getElementById(id)?.textContent ?? null;
     const rows = id => [...document.querySelectorAll("#" + id + " tr")].map(r => [...r.cells].map(c => c.textContent.trim()).join(" | "));
@@ -183,6 +188,7 @@ async function readKasse(cdp) {
 }
 
 async function readSchranke(cdp) {
+  await cdp.eval(REFRESH);
   return cdp.eval(`(() => {
     const t = id => document.getElementById(id)?.textContent ?? null;
     const msg = id => { const e = document.getElementById(id); return { text: e.textContent, kind: e.className.replace("message", "").trim() || "keine", visible: getComputedStyle(e).display !== "none" }; };
